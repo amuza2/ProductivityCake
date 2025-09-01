@@ -1,0 +1,154 @@
+<UserControl
+    d:DesignHeight="550"
+    d:DesignWidth="350"
+    mc:Ignorable="d"
+    x:Class="ProductivityCake.Views.TaskCreationView"
+    x:DataType="vm:TaskCreationViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:ProductivityCake.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Design.DataContext>
+        <vm:TaskCreationViewModel />
+    </Design.DataContext>
+
+    <Grid Margin="10" RowDefinitions="Auto, *, Auto">
+        <!--  header  -->
+        <StackPanel Orientation="Horizontal" Spacing="10">
+            <Button
+                Background="Transparent"
+                Command="{Binding NavigateToTaskListCommand}"
+                Content="←"
+                FontSize="18" />
+            <TextBlock
+                FontWeight="Bold"
+                Text="New Task"
+                VerticalAlignment="Center" />
+        </StackPanel>
+
+        <Grid
+            Grid.Row="1"
+            RowDefinitions="Auto,Auto,Auto,Auto,Auto"
+            RowSpacing="10">
+
+            <!--  Task Name  -->
+            <Grid RowDefinitions="Auto, Auto" RowSpacing="5">
+                <TextBlock FontWeight="SemiBold" Text="What is to be done?" />
+                <Grid ColumnDefinitions="*, Auto,Auto" Grid.Row="1">
+                    <TextBox />
+                    <Button Background="Transparent" Grid.Column="1">
+                        <PathIcon Data="{StaticResource mic_on_regular}" />
+                    </Button>
+                    <Button Background="Transparent" Grid.Column="2">
+                        <PathIcon Data="{StaticResource erase_regular}" />
+                    </Button>
+                </Grid>
+            </Grid>
+
+            <!--  Task date & time  -->
+            <Grid
+                Grid.Row="1"
+                RowDefinitions="Auto,Auto,Auto"
+                RowSpacing="8">
+                <TextBlock FontWeight="SemiBold" Text="Due date" />
+
+                <!--  Date picker  -->
+                <Grid ColumnDefinitions="*, Auto" Grid.Row="1">
+                    <TextBox IsReadOnly="True" Text="{Binding DateTextFormat}" />
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <CalendarDatePicker
+                            IsDropDownOpen="{Binding IsOpenDropDown}"
+                            SelectedDate="{Binding SelectedDate}"
+                            Width="0" />
+                        <Button Background="Transparent" Command="{Binding OpenCalendarCommand}">
+                            <PathIcon Data="{StaticResource calendar_regular}" />
+                        </Button>
+                        <Button Background="Transparent">
+                            <PathIcon Data="{StaticResource erase_regular}" />
+                        </Button>
+
+                    </StackPanel>
+                </Grid>
+
+                <!--  time picker  -->
+                <Grid ColumnDefinitions="*, Auto" Grid.Row="2">
+                    <TextBox />
+                    <StackPanel Grid.Column="1" Orientation="Horizontal">
+                        <TimePicker
+                            IsHitTestVisible="False"
+                            Opacity="0"
+                            Width="1" />
+                        <Button Background="Transparent">
+                            <PathIcon Data="{StaticResource clock_regular}" />
+                        </Button>
+                        <Button Background="Transparent">
+                            <PathIcon Data="{StaticResource erase_regular}" />
+                        </Button>
+
+                    </StackPanel>
+                </Grid>
+            </Grid>
+
+            <!--  Repeat Task  -->
+            <StackPanel Grid.Row="2" Spacing="5">
+                <TextBlock FontWeight="SemiBold" Text="Repeat" />
+                <Grid ColumnDefinitions="*,Auto,Auto">
+                    <ComboBox HorizontalAlignment="Stretch" MinWidth="100" />
+                    <Button Grid.Column="1" Opacity="0">
+                        <PathIcon Data="{StaticResource erase_regular}" />
+                    </Button>
+                    <Button Grid.Column="2" Opacity="0">
+                        <PathIcon Data="{StaticResource erase_regular}" />
+                    </Button>
+                </Grid>
+            </StackPanel>
+
+            <!--  Categories  -->
+            <Grid
+                ColumnDefinitions="*, Auto, Auto"
+                Grid.Row="3"
+                RowDefinitions="Auto, Auto"
+                RowSpacing="5">
+                <TextBlock
+                    FontWeight="SemiBold"
+                    Grid.Row="0"
+                    Text="Add to Category" />
+                <ComboBox
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    HorizontalAlignment="Stretch"
+                    MinWidth="100" />
+                <Button
+                    Background="Transparent"
+                    Grid.Column="1"
+                    Grid.Row="1">
+                    <PathIcon Data="{StaticResource text_bullet_list_add_regular}" />
+                </Button>
+                <Button
+                    Background="Transparent"
+                    Grid.Column="2"
+                    Grid.Row="1"
+                    Opacity="0">
+                    <PathIcon Data="{StaticResource erase_regular}" />
+                </Button>
+            </Grid>
+        </Grid>
+
+        <Button
+            CornerRadius="30"
+            FontSize="24"
+            Grid.Row="2"
+            Height="50"
+            HorizontalAlignment="Right"
+            HorizontalContentAlignment="Center"
+            VerticalAlignment="Bottom"
+            VerticalContentAlignment="Center"
+            Width="50">
+            <PathIcon Data="{StaticResource checkmark_regular}" />
+        </Button>
+    </Grid>
+
+</UserControl>

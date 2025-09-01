@@ -4,6 +4,8 @@ using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using System.Linq;
 using Avalonia.Markup.Xaml;
+using Microsoft.Extensions.DependencyInjection;
+using ProductivityCake.Extensions;
 using ProductivityCake.ViewModels;
 using ProductivityCake.Views;
 
@@ -20,12 +22,21 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            // Avoid duplicate validations from both Avalonia and the CommunityToolkit. 
-            // More info: https://docs.avaloniaui.net/docs/guides/development-guides/data-validation#manage-validationplugins
+            BindingPlugins.DataValidators.RemoveAt(0);
+            
+            var collection = new ServiceCollection();
+            collection.AddCommonServices();
+            
+            var services = collection.BuildServiceProvider();
+            // var dataDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data");
+            // Directory.CreateDirectory(dataDirectory);
+            
+            var vm = services.GetRequiredService<MainWindowViewModel>();
+            
             DisableAvaloniaDataAnnotationValidation();
             desktop.MainWindow = new MainWindow
             {
-                DataContext = new MainWindowViewModel(),
+                DataContext = vm,
             };
         }
 

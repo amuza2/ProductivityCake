@@ -1,0 +1,19 @@
+<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="ProductivityCake.Views.TimerView"
+    x:DataType="vm:TimerViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:ProductivityCake.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Design.DataContext>
+        <vm:TimerViewModel />
+    </Design.DataContext>
+
+    <TextBlock FontSize="24" Text="Timer Page" />
+
+</UserControl>

@@ -1,15 +1,24 @@
-<Application xmlns="https://github.com/avaloniaui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             x:Class="ProductivityCake.App"
-             xmlns:local="using:ProductivityCake"
-             RequestedThemeVariant="Default">
-             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+<Application
+    RequestedThemeVariant="Default"
+    x:Class="ProductivityCake.App"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:converter="using:ProductivityCake.Converters"
+    xmlns:local="using:ProductivityCake"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--  "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options.  -->
+
+    <Application.Resources>
+        <converter:DueDateConverter x:Key="DueDateConverter" />
+        <converter:DueDateToColorConverter x:Key="DueDateToColorConverter" />
+    </Application.Resources>
+
 
     <Application.DataTemplates>
-        <local:ViewLocator/>
+        <local:ViewLocator />
     </Application.DataTemplates>
-  
+
     <Application.Styles>
         <FluentTheme />
+        <StyleInclude Source="Assets/Icons.axaml" />
     </Application.Styles>
 </Application>
