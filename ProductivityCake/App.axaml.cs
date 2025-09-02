@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
@@ -28,8 +30,8 @@ public partial class App : Application
             collection.AddCommonServices();
             
             var services = collection.BuildServiceProvider();
-            // var dataDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data");
-            // Directory.CreateDirectory(dataDirectory);
+            var dataDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data");
+            Directory.CreateDirectory(dataDirectory);
             
             var vm = services.GetRequiredService<MainWindowViewModel>();
             

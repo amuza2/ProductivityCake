@@ -1,6 +1,6 @@
 <UserControl
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    d:DesignHeight="550"
+    d:DesignWidth="350"
     mc:Ignorable="d"
     x:Class="ProductivityCake.Views.TaskListView"
     x:DataType="vm:TaskListViewModel"
@@ -19,9 +19,9 @@
         <Grid ColumnDefinitions="Auto, *">
             <ComboBox
                 IsVisible="{Binding !InSearchMode}"
-                ItemsSource="{Binding ListSelections}"
-                SelectedItem="{Binding SelectedList}"
-                Width="100" />
+                ItemsSource="{Binding ListFilter}"
+                SelectedItem="{Binding SelectedFilter}"
+                Width="130" />
 
             <StackPanel
                 Grid.Column="1"

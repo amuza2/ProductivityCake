@@ -12,8 +12,8 @@ public class TodoItem
     [JsonPropertyName("title")]
     public string Title { get; set; } = string.Empty;
     
-    [JsonPropertyName("description")]
-    public string Description { get; set; } = string.Empty;
+    // [JsonPropertyName("description")]
+    // public string Description { get; set; } = string.Empty;
     
     [JsonPropertyName("isCompleted")]
     public bool IsComplete { get; set; }
@@ -27,6 +27,9 @@ public class TodoItem
     [JsonPropertyName("completedAt")]
     public DateTimeOffset? CompletedAt { get; set; }
     
-    [JsonPropertyName("priority")]
-    public TodoPriority Priority { get; set; }
+    [JsonPropertyName("repeatType")]
+    public RepeatType RepeatType { get; set; }
+    
+    [JsonPropertyName("category")]
+    public string Category { get; set; }
 }

@@ -22,8 +22,8 @@ public partial class TaskListViewModel : ViewModelBase
     
     [ObservableProperty] private ObservableCollection<TodoItem> _todoItems;
     [ObservableProperty] private TodoItem? _selectedItem;
-    [ObservableProperty] private ObservableCollection<ListSelection> _listSelections;
-    [ObservableProperty] private ListSelection _selectedList;
+    public Array ListFilter => Enum.GetValues(typeof(FilterSelection));
+    [ObservableProperty] private FilterSelection _selectedFilter;
 
     [ObservableProperty] private bool _inSearchMode;
     [ObservableProperty] private string _searchText;
@@ -32,13 +32,17 @@ public partial class TaskListViewModel : ViewModelBase
     {
         _jsonService = jsonService;
         _navigationService = navigationService;
-        TodoItems = new  ObservableCollection<TodoItem>()
+        TodoItems = new ObservableCollection<TodoItem>();
+        _ = LoadTasksAsync();
+    }
+
+    private async Task LoadTasksAsync()
+    {
+        var tasks = await _jsonService.GetAllAsync();
+        foreach (var task in tasks)
         {
-            new TodoItem{Id = 1,Title = "Task1", Description = "Task 1 Description", DueDate = DateTimeOffset.Now.AddDays(1),  Priority = TodoPriority.Medium},
-            new TodoItem{Id = 2,Title = "Task2", Description = "Task 2 Description", DueDate = DateTimeOffset.Now,  Priority = TodoPriority.Medium}
-        };
-        ListSelections = new ObservableCollection<ListSelection>() { ListSelection.All , ListSelection.Completed, ListSelection.NotCompleted};
-        SelectedList = ListSelection.All;
+            TodoItems.Add(task);
+        }
     }
 
     public TaskListViewModel():this(null!,null!)
@@ -49,6 +53,7 @@ public partial class TaskListViewModel : ViewModelBase
     {
         InSearchMode = !InSearchMode;
     }
+    
     [RelayCommand]
     private async Task NavigateToTaskCreationView()
     {

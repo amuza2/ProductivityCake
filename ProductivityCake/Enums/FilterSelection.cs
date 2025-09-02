@@ -1,6 +1,6 @@
 namespace ProductivityCake.Enums;
 
-public enum ListSelection
+public enum FilterSelection
 {
     All,
     Completed,

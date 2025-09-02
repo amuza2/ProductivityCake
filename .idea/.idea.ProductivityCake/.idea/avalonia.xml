@@ -6,6 +6,7 @@
         <entry key="ProductivityCake/App.axaml" value="ProductivityCake/ProductivityCake.csproj" />
         <entry key="ProductivityCake/Assets/Icons.axaml" value="ProductivityCake/ProductivityCake.csproj" />
         <entry key="ProductivityCake/Views/MainWindow.axaml" value="ProductivityCake/ProductivityCake.csproj" />
+        <entry key="ProductivityCake/Views/TaskCreationView.axaml" value="ProductivityCake/ProductivityCake.csproj" />
         <entry key="ProductivityCake/Views/TaskCreationViewModel.axaml" value="ProductivityCake/ProductivityCake.csproj" />
         <entry key="ProductivityCake/Views/TaskListView.axaml" value="ProductivityCake/ProductivityCake.csproj" />
         <entry key="ProductivityCake/Views/TimerView.axaml" value="ProductivityCake/ProductivityCake.csproj" />

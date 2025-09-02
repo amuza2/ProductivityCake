@@ -28,20 +28,25 @@
                 VerticalAlignment="Center" />
         </StackPanel>
 
+        <!--  Form  -->
         <Grid
             Grid.Row="1"
+            Margin="0,20,0,0"
             RowDefinitions="Auto,Auto,Auto,Auto,Auto"
-            RowSpacing="10">
+            RowSpacing="20">
 
             <!--  Task Name  -->
             <Grid RowDefinitions="Auto, Auto" RowSpacing="5">
                 <TextBlock FontWeight="SemiBold" Text="What is to be done?" />
                 <Grid ColumnDefinitions="*, Auto,Auto" Grid.Row="1">
-                    <TextBox />
+                    <TextBox Text="{Binding Title}" />
                     <Button Background="Transparent" Grid.Column="1">
                         <PathIcon Data="{StaticResource mic_on_regular}" />
                     </Button>
-                    <Button Background="Transparent" Grid.Column="2">
+                    <Button
+                        Background="Transparent"
+                        Command="{Binding ClearTitleCommand}"
+                        Grid.Column="2">
                         <PathIcon Data="{StaticResource erase_regular}" />
                     </Button>
                 </Grid>
@@ -57,31 +62,41 @@
                 <!--  Date picker  -->
                 <Grid ColumnDefinitions="*, Auto" Grid.Row="1">
                     <TextBox IsReadOnly="True" Text="{Binding DateTextFormat}" />
-
                     <StackPanel Grid.Column="1" Orientation="Horizontal">
-                        <CalendarDatePicker
-                            IsDropDownOpen="{Binding IsOpenDropDown}"
+                        <DatePicker
+                            DayFormat="ddd dd"
+                            Opacity="0"
                             SelectedDate="{Binding SelectedDate}"
-                            Width="0" />
-                        <Button Background="Transparent" Command="{Binding OpenCalendarCommand}">
+                            Width="0"
+                            x:Name="MyDatePicker" />
+                        <Button
+                            Background="Transparent"
+                            Command="{Binding OpenDatePickerCommand}"
+                            CommandParameter="{Binding #MyDatePicker}">
                             <PathIcon Data="{StaticResource calendar_regular}" />
                         </Button>
-                        <Button Background="Transparent">
+                        <Button Background="Transparent" Command="{Binding ClearDateCommand}">
                             <PathIcon Data="{StaticResource erase_regular}" />
                         </Button>
-
                     </StackPanel>
                 </Grid>
 
                 <!--  time picker  -->
                 <Grid ColumnDefinitions="*, Auto" Grid.Row="2">
-                    <TextBox />
+                    <TextBox
+                        IsReadOnly="True"
+                        Text="{Binding TimeTextFormat}"
+                        VerticalContentAlignment="Center" />
                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                         <TimePicker
-                            IsHitTestVisible="False"
                             Opacity="0"
-                            Width="1" />
-                        <Button Background="Transparent">
+                            SelectedTime="{Binding SelectedTime}"
+                            Width="0"
+                            x:Name="MyTimePicker" />
+                        <Button
+                            Background="Transparent"
+                            Command="{Binding OpenTimePickerCommand}"
+                            CommandParameter="{Binding #MyTimePicker}">
                             <PathIcon Data="{StaticResource clock_regular}" />
                         </Button>
                         <Button Background="Transparent">
@@ -96,7 +111,11 @@
             <StackPanel Grid.Row="2" Spacing="5">
                 <TextBlock FontWeight="SemiBold" Text="Repeat" />
                 <Grid ColumnDefinitions="*,Auto,Auto">
-                    <ComboBox HorizontalAlignment="Stretch" MinWidth="100" />
+                    <ComboBox
+                        HorizontalAlignment="Stretch"
+                        ItemsSource="{Binding RepeatTypes}"
+                        MinWidth="100"
+                        SelectedItem="{Binding SelectedRepeat}" />
                     <Button Grid.Column="1" Opacity="0">
                         <PathIcon Data="{StaticResource erase_regular}" />
                     </Button>
@@ -117,15 +136,41 @@
                     Grid.Row="0"
                     Text="Add to Category" />
                 <ComboBox
+                    DisplayMemberBinding="{Binding Name}"
                     Grid.Column="0"
                     Grid.Row="1"
                     HorizontalAlignment="Stretch"
-                    MinWidth="100" />
+                    ItemsSource="{Binding Categories}"
+                    MinWidth="100"
+                    SelectedItem="{Binding SelectedCategory}" />
                 <Button
                     Background="Transparent"
+                    Command="{Binding OpenCategoryFlyoutCommand}"
+                    CommandParameter="{Binding #CategoryButton}"
                     Grid.Column="1"
-                    Grid.Row="1">
+                    Grid.Row="1"
+                    x:Name="CategoryButton">
                     <PathIcon Data="{StaticResource text_bullet_list_add_regular}" />
+
+                    <Button.Flyout>
+                        <Flyout Placement="TopEdgeAlignedRight">
+                            <StackPanel Margin="10" Spacing="5">
+                                <TextBlock Text="Enter Category:" />
+                                <TextBox Text="{Binding NewCategoryName}" Width="200" />
+
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <Button
+                                        Command="{Binding AddCategoryCommand}"
+                                        CommandParameter="{Binding #CategoryButton}"
+                                        Content="Add" />
+                                    <Button
+                                        Command="{Binding CancelCategoryCommand}"
+                                        CommandParameter="{Binding #CategoryButton}"
+                                        Content="Cancel" />
+                                </StackPanel>
+                            </StackPanel>
+                        </Flyout>
+                    </Button.Flyout>
                 </Button>
                 <Button
                     Background="Transparent"
@@ -135,9 +180,18 @@
                     <PathIcon Data="{StaticResource erase_regular}" />
                 </Button>
             </Grid>
+
+            <TextBlock
+                FontSize="14"
+                Foreground="Red"
+                Grid.ColumnSpan="2"
+                Grid.Row="4"
+                IsVisible="{Binding ErrorMessage, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                Text="{Binding ErrorMessage}" />
         </Grid>
 
         <Button
+            Command="{Binding SaveCommand}"
             CornerRadius="30"
             FontSize="24"
             Grid.Row="2"
