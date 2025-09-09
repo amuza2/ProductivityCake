@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -39,8 +40,17 @@ public partial class TaskCreationViewModel : ViewModelBase
     public DateTimeOffset? DueDate => SelectedDate.HasValue && SelectedTime.HasValue
         ? SelectedDate.Value.Date + SelectedTime.Value
         : null;
-    
-    public Array RepeatTypes => Enum.GetValues(typeof(RepeatType));
+
+    [ObservableProperty] private ObservableCollection<RepeatType> _repeatTypes = new()
+    {
+        new RepeatType() {Name = "No Repeat"},
+        new RepeatType() {Name = "Once a Day"},
+        new RepeatType() {Name = "Once a Day (Mon-Fri)"},
+        new RepeatType() {Name = "Once a Week"},
+        new RepeatType() {Name = "Once a Month"},
+        new RepeatType() {Name = "Once a Year"},
+        new RepeatType() {Name = "Other..."},
+    };
     [ObservableProperty] private RepeatType _selectedRepeat;
 
     [ObservableProperty] private ObservableCollection<Category> _categories = new()
@@ -62,7 +72,8 @@ public partial class TaskCreationViewModel : ViewModelBase
     {
         _navigationService = navigationService;
         _dataService = dataService;
-        SelectedCategory = Categories.FirstOrDefault();
+        SelectedCategory = Categories.FirstOrDefault()!;
+        SelectedRepeat = RepeatTypes.FirstOrDefault()!;
     }
 
     public TaskCreationViewModel() : this(null!, null!) { }
@@ -91,7 +102,7 @@ public partial class TaskCreationViewModel : ViewModelBase
                     if (popup != null)
                     {
                         popup.Placement = PlacementMode.Pointer;
-                        popup.HorizontalOffset = -250;
+                        popup.HorizontalOffset = -280;
                         popup.VerticalOffset = -50;
                     }
                 }, DispatcherPriority.Background);

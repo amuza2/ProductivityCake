@@ -46,7 +46,8 @@
                     <Button
                         Background="Transparent"
                         Command="{Binding ClearTitleCommand}"
-                        Grid.Column="2">
+                        Grid.Column="2"
+                        IsVisible="{Binding Title, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
                         <PathIcon Data="{StaticResource erase_regular}" />
                     </Button>
                 </Grid>
@@ -61,7 +62,10 @@
 
                 <!--  Date picker  -->
                 <Grid ColumnDefinitions="*, Auto" Grid.Row="1">
-                    <TextBox IsReadOnly="True" Text="{Binding DateTextFormat}" />
+                    <TextBox
+                        IsReadOnly="True"
+                        Text="{Binding DateTextFormat}"
+                        Watermark="Date not set" />
                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                         <DatePicker
                             DayFormat="ddd dd"
@@ -75,18 +79,25 @@
                             CommandParameter="{Binding #MyDatePicker}">
                             <PathIcon Data="{StaticResource calendar_regular}" />
                         </Button>
-                        <Button Background="Transparent" Command="{Binding ClearDateCommand}">
+                        <Button
+                            Background="Transparent"
+                            Command="{Binding ClearDateCommand}"
+                            IsVisible="{Binding SelectedDate, Converter={x:Static ObjectConverters.IsNotNull}}">
                             <PathIcon Data="{StaticResource erase_regular}" />
                         </Button>
                     </StackPanel>
                 </Grid>
 
                 <!--  time picker  -->
-                <Grid ColumnDefinitions="*, Auto" Grid.Row="2">
+                <Grid
+                    ColumnDefinitions="*, Auto"
+                    Grid.Row="2"
+                    IsVisible="{Binding SelectedDate, Converter={x:Static ObjectConverters.IsNotNull}}">
                     <TextBox
                         IsReadOnly="True"
                         Text="{Binding TimeTextFormat}"
-                        VerticalContentAlignment="Center" />
+                        VerticalContentAlignment="Center"
+                        Watermark="Time not set (all day)" />
                     <StackPanel Grid.Column="1" Orientation="Horizontal">
                         <TimePicker
                             Opacity="0"
@@ -99,7 +110,10 @@
                             CommandParameter="{Binding #MyTimePicker}">
                             <PathIcon Data="{StaticResource clock_regular}" />
                         </Button>
-                        <Button Background="Transparent">
+                        <Button
+                            Background="Transparent"
+                            Command="{Binding ClearTimeCommand}"
+                            IsVisible="{Binding SelectedTime, Converter={x:Static ObjectConverters.IsNotNull}}">
                             <PathIcon Data="{StaticResource erase_regular}" />
                         </Button>
 
@@ -112,6 +126,7 @@
                 <TextBlock FontWeight="SemiBold" Text="Repeat" />
                 <Grid ColumnDefinitions="*,Auto,Auto">
                     <ComboBox
+                        DisplayMemberBinding="{Binding Name}"
                         HorizontalAlignment="Stretch"
                         ItemsSource="{Binding RepeatTypes}"
                         MinWidth="100"
