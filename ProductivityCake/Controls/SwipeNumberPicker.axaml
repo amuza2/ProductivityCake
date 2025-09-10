@@ -1,0 +1,79 @@
+<UserControl
+    x:Class="ProductivityCake.Controls.SwipeNumberPicker"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Border Background="{DynamicResource BackgroundCardBrush}" x:Name="MainBorder">
+        <Grid
+            Height="90"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center">
+            <!--  Value Stack Panel  -->
+            <Border ClipToBounds="True" Height="90">
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    Orientation="Vertical"
+                    Spacing="0"
+                    x:Name="ValueStackPanel">
+                    <!--  Values will be added dynamically  -->
+                </StackPanel>
+            </Border>
+
+            <!--  Style 1: Two Lines  -->
+            <Grid IsVisible="False" x:Name="TwoLinesStyle">
+                <!--  Top line between numbers  -->
+                <Border
+                    Background="LightGray"
+                    Height="1"
+                    IsHitTestVisible="False"
+                    Margin="0,29,0,0"
+                    VerticalAlignment="Top" />
+
+                <!--  Bottom line between numbers  -->
+                <Border
+                    Background="LightGray"
+                    Height="1"
+                    IsHitTestVisible="False"
+                    Margin="0,0,0,34"
+                    VerticalAlignment="Bottom" />
+            </Grid>
+
+            <!--  Style 2: Selection Area  -->
+            <Grid IsVisible="True" x:Name="SelectionAreaStyle">
+                <!--  Selection Highlight Area  -->
+                <Border
+                    Background="#10000000"
+                    BorderBrush="LightGray"
+                    BorderThickness="1"
+                    CornerRadius="2"
+                    Height="30"
+                    IsHitTestVisible="False"
+                    Margin="0,-5,0,0"
+                    VerticalAlignment="Center" />
+            </Grid>
+
+            <!--  Subtle gradients at top and bottom  -->
+            <Grid>
+                <Rectangle
+                    Fill="White"
+                    Height="10"
+                    IsHitTestVisible="False"
+                    Opacity="0.3"
+                    VerticalAlignment="Top" />
+
+                <Rectangle
+                    Height="15"
+                    IsHitTestVisible="False"
+                    Opacity="0.3"
+                    VerticalAlignment="Bottom">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                            <GradientStop Color="Transparent" Offset="0" />
+                            <GradientStop Color="White" Offset="1" />
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Grid>
+        </Grid>
+    </Border>
+</UserControl>

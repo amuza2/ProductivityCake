@@ -1,6 +1,11 @@
+using CommunityToolkit.Mvvm.ComponentModel;
+using ProductivityCake.ViewModels;
+
 namespace ProductivityCake.Models;
 
-public class RepeatType
+public partial class RepeatType : ViewModelBase
 {
-    public string Name { get; set; } = string.Empty;
+    [ObservableProperty] private string _name = string.Empty;
+    [ObservableProperty] private int _interval;
+    public override string ToString() => Name;
 }

@@ -52,6 +52,8 @@ public partial class TaskCreationViewModel : ViewModelBase
         new RepeatType() {Name = "Other..."},
     };
     [ObservableProperty] private RepeatType _selectedRepeat;
+    [ObservableProperty] private bool _showCustomPicker;
+    [ObservableProperty] private int _customRepeatDefaultValue = 2;
 
     [ObservableProperty] private ObservableCollection<Category> _categories = new()
     {
@@ -77,6 +79,25 @@ public partial class TaskCreationViewModel : ViewModelBase
     }
 
     public TaskCreationViewModel() : this(null!, null!) { }
+    
+    partial void OnSelectedRepeatChanged(RepeatType value)
+    {
+        // Show the custom picker only when "Other..." is selected
+        ShowCustomPicker = value.Name == "Other...";
+        
+        // If switching away from "Other...", reset the custom interval
+        if (!ShowCustomPicker)
+        {
+            CustomRepeatDefaultValue = 2;
+        }
+    }
+
+    [RelayCommand]
+    private void CancelCustomRepeat()
+    {
+        ShowCustomPicker = false;
+        SelectedRepeat = RepeatTypes.FirstOrDefault()!;
+    }
     
     [RelayCommand]
     private void OpenDatePicker(DatePicker? datePicker)

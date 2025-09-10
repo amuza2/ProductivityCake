@@ -5,6 +5,8 @@
       <map>
         <entry key="ProductivityCake/App.axaml" value="ProductivityCake/ProductivityCake.csproj" />
         <entry key="ProductivityCake/Assets/Icons.axaml" value="ProductivityCake/ProductivityCake.csproj" />
+        <entry key="ProductivityCake/Controls/CategoryComboBox.axaml" value="ProductivityCake/ProductivityCake.csproj" />
+        <entry key="ProductivityCake/Controls/SwipeNumberPicker.axaml" value="ProductivityCake/ProductivityCake.csproj" />
         <entry key="ProductivityCake/Views/MainWindow.axaml" value="ProductivityCake/ProductivityCake.csproj" />
         <entry key="ProductivityCake/Views/TaskCreationView.axaml" value="ProductivityCake/ProductivityCake.csproj" />
         <entry key="ProductivityCake/Views/TaskCreationViewModel.axaml" value="ProductivityCake/ProductivityCake.csproj" />

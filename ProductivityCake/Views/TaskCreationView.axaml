@@ -5,6 +5,7 @@
     x:Class="ProductivityCake.Views.TaskCreationView"
     x:DataType="vm:TaskCreationViewModel"
     xmlns="https://github.com/avaloniaui"
+    xmlns:controls="using:ProductivityCake.Controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="using:ProductivityCake.ViewModels"
@@ -138,6 +139,13 @@
                         <PathIcon Data="{StaticResource erase_regular}" />
                     </Button>
                 </Grid>
+
+                <controls:SwipeNumberPicker
+                    Maximum="100"
+                    Minimum="2"
+                    PickerStyle="TwoLines"
+                    Step="1"
+                    Value="{Binding CustomRepeatDefaultValue}" />
             </StackPanel>
 
             <!--  Categories  -->
