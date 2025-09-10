@@ -52,6 +52,9 @@ public partial class SwipeNumberPicker : UserControl
     public static readonly StyledProperty<Thickness> CustomPaddingProperty =
         AvaloniaProperty.Register<SwipeNumberPicker, Thickness>(nameof(CustomPadding), new Thickness(16, 8));
 
+    public static readonly StyledProperty<bool> EnableSmoothAnimationProperty =
+        AvaloniaProperty.Register<SwipeNumberPicker, bool>(nameof(EnableSmoothAnimation), defaultValue: true);
+    
     // CLR Properties
     public int Value
     {
@@ -99,6 +102,12 @@ public partial class SwipeNumberPicker : UserControl
     {
         get => GetValue(CustomPaddingProperty);
         set => SetValue(CustomPaddingProperty, value);
+    }
+    
+    public bool EnableSmoothAnimation
+    {
+        get => GetValue(EnableSmoothAnimationProperty);
+        set => SetValue(EnableSmoothAnimationProperty, value);
     }
 
     public SwipeNumberPicker()
@@ -246,13 +255,13 @@ public partial class SwipeNumberPicker : UserControl
                 }
             }
         }
-
+        
         // Now find and highlight the value that's in the center of the selection area
         var selectionAreaCenter = 45;
         double minDistance = double.MaxValue;
         TextBlock? centerTextBlock = null;
         int centerValue = Value; // Default to current value
-
+        
         for (int i = 0; i < ValueStackPanel.Children.Count; i++)
         {
             if (ValueStackPanel.Children[i] is TextBlock textBlock && 
@@ -270,7 +279,7 @@ public partial class SwipeNumberPicker : UserControl
                 }
             }
         }
-
+        
         // Highlight the center value
         if (centerTextBlock != null)
         {
@@ -327,6 +336,7 @@ public partial class SwipeNumberPicker : UserControl
     
         // Update offset and move the stack panel proportionally to finger movement
         _currentOffset = _startOffset + deltaY;
+        
         UpdateStackPanelPosition();
         UpdateValueDisplay(false); // Don't update value property during drag
     }
@@ -391,8 +401,16 @@ public partial class SwipeNumberPicker : UserControl
 
     private async void SmoothSnapToPosition(double targetOffset)
     {
-        const int animationDuration = 200; // ms
-        const int steps = 10;
+        if (!EnableSmoothAnimation)
+        {
+            _currentOffset = targetOffset;
+            UpdateStackPanelPosition();
+            UpdateValueDisplay(false);
+            return;
+        }
+        
+        const int animationDuration = 150; // ms
+        const int steps = 8;
         var stepTime = animationDuration / steps;
         var startOffset = _currentOffset;
         var delta = targetOffset - startOffset;
@@ -404,6 +422,7 @@ public partial class SwipeNumberPicker : UserControl
             {
                 _currentOffset = startOffset + (delta * i / steps);
                 UpdateStackPanelPosition();
+                if (i % 2 == 0) UpdateValueDisplay(false);
             }
         }
         
@@ -411,6 +430,7 @@ public partial class SwipeNumberPicker : UserControl
         {
             _currentOffset = targetOffset;
             UpdateStackPanelPosition();
+            UpdateValueDisplay(false);
         }
     }
 }

@@ -141,6 +141,7 @@
                 </Grid>
 
                 <controls:SwipeNumberPicker
+                    EnableSmoothAnimation="True"
                     Maximum="100"
                     Minimum="2"
                     PickerStyle="TwoLines"
