@@ -1,5 +1,3 @@
-# 🍰 Productivity Cake
-
 <div align="center">
 
 ![Productivity Cake Logo](ProductivityCake/Assets/icons8-cake-96.png)
