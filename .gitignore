@@ -3,3 +3,10 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+DEPLOYMENT.md
+LINUX_DEPLOYMENT.md
+publish-linux.sh
+publish-macos.sh
+publish-windows.sh
+TASK_REMOVAL_INSTRUCTIONS.md
+TRAY_ICON_GUIDE.md
