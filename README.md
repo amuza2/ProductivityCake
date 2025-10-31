@@ -12,6 +12,7 @@ A modern, lightweight desktop application for managing projects, tasks, and time
 [![Avalonia UI](https://img.shields.io/badge/Avalonia-11.0-8B5CF6)](https://avaloniaui.net/)
 [![License](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20Windows%20%7C%20macOS-lightgrey)](https://github.com/amuza2/ProductivityCake)
+[![CI](https://github.com/amuza2/ProductivityCake/actions/workflows/ci.yml/badge.svg)](https://github.com/amuza2/ProductivityCake/actions/workflows/ci.yml)
 
 [Features](#-features) • [Installation](#-installation)  • [Screenshots](#-screenshots) • [Building](#-building-from-source)
 
