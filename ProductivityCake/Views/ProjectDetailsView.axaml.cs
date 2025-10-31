@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace ProductivityCake.Views;
 
-public partial class TaskCreationView : UserControl
+public partial class ProjectDetailsView : UserControl
 {
-    public TaskCreationView()
+    public ProjectDetailsView()
     {
         InitializeComponent();
     }

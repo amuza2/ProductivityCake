@@ -1,27 +1,18 @@
 using System;
 using System.Globalization;
 using Avalonia.Data.Converters;
-using Avalonia.Media;
 
 namespace ProductivityCake.Converters;
 
-public class DueDateToColorConverter : IValueConverter
+public class BoolToStartPauseConverter : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (value is DateTimeOffset date)
+        if (value is bool isRunning)
         {
-            var today = DateTimeOffset.Now.Date;
-            
-            if (date.Date.Equals(today))
-                return Brushes.Red;
-            else
-            {
-                return Brushes.DodgerBlue;
-            }
-
+            return isRunning ? "Pause" : "Start";
         }
-        return Brushes.Black;
+        return "Start";
     }
 
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)

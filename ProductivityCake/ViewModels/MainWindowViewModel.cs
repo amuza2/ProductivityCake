@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProductivityCake.Services;
 
@@ -14,16 +14,16 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         _navigationService = navigationService;
         ((NavigationService)navigationService).SetMainWindowViewModel(this);
-        _navigationService.NavigateToAsync<TaskListViewModel>();
+        _navigationService.NavigateToAsync<ProjectListViewModel>();
     }
 
     public MainWindowViewModel() : this(null!)
     { }
     
     [RelayCommand]
-    private void NavigateToTasksPage()
+    private void NavigateToProjectsPage()
     {
-        _navigationService.NavigateToAsync<TaskListViewModel>();
+        _navigationService.NavigateToAsync<ProjectListViewModel>();
     }
     
     [RelayCommand]

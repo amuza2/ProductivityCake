@@ -6,10 +6,15 @@
         <entry key="ProductivityCake/App.axaml" value="ProductivityCake/ProductivityCake.csproj" />
         <entry key="ProductivityCake/Assets/Icons.axaml" value="ProductivityCake/ProductivityCake.csproj" />
         <entry key="ProductivityCake/Controls/CategoryComboBox.axaml" value="ProductivityCake/ProductivityCake.csproj" />
+        <entry key="ProductivityCake/Controls/SwipeListPicker.axaml" value="ProductivityCake/ProductivityCake.csproj" />
         <entry key="ProductivityCake/Controls/SwipeNumberPicker.axaml" value="ProductivityCake/ProductivityCake.csproj" />
+        <entry key="ProductivityCake/Styles/CustomStyles.axaml" value="ProductivityCake/ProductivityCake.csproj" />
         <entry key="ProductivityCake/Views/MainWindow.axaml" value="ProductivityCake/ProductivityCake.csproj" />
+        <entry key="ProductivityCake/Views/ProjectDetailsView.axaml" value="ProductivityCake/ProductivityCake.csproj" />
+        <entry key="ProductivityCake/Views/ProjectListView.axaml" value="ProductivityCake/ProductivityCake.csproj" />
         <entry key="ProductivityCake/Views/TaskCreationView.axaml" value="ProductivityCake/ProductivityCake.csproj" />
         <entry key="ProductivityCake/Views/TaskCreationViewModel.axaml" value="ProductivityCake/ProductivityCake.csproj" />
+        <entry key="ProductivityCake/Views/TaskDetailsView.axaml" value="ProductivityCake/ProductivityCake.csproj" />
         <entry key="ProductivityCake/Views/TaskListView.axaml" value="ProductivityCake/ProductivityCake.csproj" />
         <entry key="ProductivityCake/Views/TimerView.axaml" value="ProductivityCake/ProductivityCake.csproj" />
       </map>

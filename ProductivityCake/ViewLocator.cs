@@ -2,6 +2,7 @@ using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
 using ProductivityCake.ViewModels;
+using ProductivityCake.Views;
 
 namespace ProductivityCake;
 
@@ -11,16 +12,18 @@ public class ViewLocator : IDataTemplate
     {
         if (param is null)
             return null;
+        
+        if (param is string || param.GetType().IsPrimitive)
+            return new TextBlock { Text = param.ToString() };
 
-        var name = param.GetType().FullName!.Replace("ViewModel", "View", StringComparison.Ordinal);
-        var type = Type.GetType(name);
-
-        if (type != null)
+        // Direct mapping for Native AOT compatibility
+        return param switch
         {
-            return (Control)Activator.CreateInstance(type)!;
-        }
-
-        return new TextBlock { Text = "Not Found: " + name };
+            ProjectListViewModel => new ProjectListView(),
+            ProjectDetailsViewModel => new ProjectDetailsView(),
+            TimerViewModel => new TimerView(),
+            _ => new TextBlock { Text = "Not Found: " + param.GetType().Name }
+        };
     }
 
     public bool Match(object? data)

@@ -58,7 +58,7 @@ public class JsonDataService : IJsonDataService
         if (string.IsNullOrWhiteSpace(json))
             return new List<TodoItem>();
 
-        var items = JsonSerializer.Deserialize<List<TodoItem>>(json, _jsonOptions);
+        var items = JsonSerializer.Deserialize(json, AppJsonSerializerContext.Default.ListTodoItem);
         return items ?? new List<TodoItem>();
     }
 
@@ -149,7 +149,7 @@ public class JsonDataService : IJsonDataService
     {
         try
         {
-            var  json = JsonSerializer.Serialize(items, _jsonOptions);
+            var json = JsonSerializer.Serialize(items, AppJsonSerializerContext.Default.ListTodoItem);
             await File.WriteAllTextAsync(_filePath, json);
             return true;
         }

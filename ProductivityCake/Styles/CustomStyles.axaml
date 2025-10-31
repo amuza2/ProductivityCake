@@ -1,0 +1,173 @@
+<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--  Button Hover Effects  -->
+    <!-- <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter"> -->
+    <!--     <Setter Property="Background" Value="#7C3AED" /> -->
+    <!-- </Style> -->
+    <!--    -->
+    <!-- <Style Selector="Button:pressed /template/ ContentPresenter#PART_ContentPresenter"> -->
+    <!--     <Setter Property="Background" Value="#6D28D9" /> -->
+    <!-- </Style> -->
+
+    <!--  Specific Button Styles  -->
+
+    <!--  Primary Action Buttons (Add, Save, etc.)  -->
+    <Style Selector="Button.primary">
+        <Setter Property="Background" Value="#8B5CF6" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="CornerRadius" Value="8" />
+    </Style>
+
+    <Style Selector="Button.primary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#A78BFA" />
+    </Style>
+
+    <Style Selector="Button.primary:pressed /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#7C3AED" />
+    </Style>
+
+    <!--  Secondary Buttons (Cancel, etc.)  -->
+    <Style Selector="Button.secondary">
+        <Setter Property="Background" Value="#3B82F6" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="CornerRadius" Value="8" />
+    </Style>
+
+    <Style Selector="Button.secondary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#60A5FA" />
+    </Style>
+
+    <Style Selector="Button.secondary:pressed /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#2563EB" />
+    </Style>
+
+    <!--  Danger Buttons (Delete)  -->
+    <Style Selector="Button.danger">
+        <Setter Property="Background" Value="#EF4444" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="CornerRadius" Value="8" />
+    </Style>
+
+    <Style Selector="Button.danger:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#F87171" />
+    </Style>
+
+    <Style Selector="Button.danger:pressed /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#DC2626" />
+    </Style>
+
+    <!--  Transparent Buttons  -->
+    <Style Selector="Button.transparent">
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <Style Selector="Button.transparent:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#8B5CF620" />
+    </Style>
+
+    <Style Selector="Button.transparent:pressed /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#8B5CF610" />
+    </Style>
+
+    <!--  Floating Action Button  -->
+    <Style Selector="Button.fab">
+        <Setter Property="Background" Value="#10B981" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="CornerRadius" Value="30" />
+        <Setter Property="Width" Value="60" />
+        <Setter Property="Height" Value="60" />
+    </Style>
+
+    <Style Selector="Button.fab:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#34D399" />
+    </Style>
+
+    <Style Selector="Button.fab:pressed /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#059669" />
+    </Style>
+
+    <!--  Task Card Buttons  -->
+    <Style Selector="Button.task-card">
+        <Setter Property="Background" Value="#1E293B" />
+        <Setter Property="BorderBrush" Value="#8B5CF640" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="CornerRadius" Value="12" />
+    </Style>
+
+    <Style Selector="Button.task-card:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#334155" />
+        <Setter Property="BorderBrush" Value="#8B5CF6" />
+    </Style>
+
+    <Style Selector="Button.task-card:pressed /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#1E293B" />
+    </Style>
+
+    <!--  CheckBox Styling  -->
+    <Style Selector="CheckBox:pointerover /template/ Border#NormalRectangle">
+        <Setter Property="BorderBrush" Value="#8B5CF6" />
+        <Setter Property="Background" Value="#8B5CF620" />
+    </Style>
+
+    <Style Selector="CheckBox:pressed /template/ Border#NormalRectangle">
+        <Setter Property="BorderBrush" Value="#7C3AED" />
+        <Setter Property="Background" Value="#8B5CF630" />
+    </Style>
+
+    <!--  ComboBox Styling  -->
+    <Style Selector="ComboBox:pointerover /template/ Border#Background">
+        <Setter Property="BorderBrush" Value="#8B5CF6" />
+    </Style>
+
+    <Style Selector="ComboBox:focus /template/ Border#Background">
+        <Setter Property="BorderBrush" Value="#A78BFA" />
+    </Style>
+
+    <!--  TextBox Styling  -->
+    <Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
+        <Setter Property="BorderBrush" Value="#8B5CF6" />
+    </Style>
+
+    <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+        <Setter Property="BorderBrush" Value="#A78BFA" />
+    </Style>
+
+    <!--  Border Hover Effects (Self-rendering)  -->
+    <Style Selector="Border.hoverable:pointerover">
+        <Setter Property="Background" Value="#334155" />
+    </Style>
+
+    <Style Selector="Border.task-card:pointerover">
+        <Setter Property="BorderBrush" Value="#8B5CF6" />
+        <Setter Property="Background" Value="#334155" />
+    </Style>
+
+    <!--  Navigation Button Styling  -->
+    <Style Selector="Button.nav-button">
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+
+    <Style Selector="Button.nav-button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#8B5CF620" />
+    </Style>
+
+    <!--  Project Card Hover  -->
+    <Style Selector="Button.project-card:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#334155" />
+        <Setter Property="BorderBrush" Value="#8B5CF6" />
+    </Style>
+
+    <!--  Title Bar Button Styles  -->
+    <Style Selector="Button#MinimizeButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#334155" />
+    </Style>
+    
+    <Style Selector="Button#CloseButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#EF444420" />
+    </Style>
+    
+    <Style Selector="Button#CloseButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#EF4444" />
+    </Style>
+
+</Styles>

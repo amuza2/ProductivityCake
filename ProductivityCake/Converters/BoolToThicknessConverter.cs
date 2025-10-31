@@ -1,27 +1,19 @@
 using System;
 using System.Globalization;
+using Avalonia;
 using Avalonia.Data.Converters;
-using Avalonia.Media;
 
 namespace ProductivityCake.Converters;
 
-public class DueDateToColorConverter : IValueConverter
+public class BoolToThicknessConverter : IValueConverter
 {
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (value is DateTimeOffset date)
+        if (value is bool isActive && isActive)
         {
-            var today = DateTimeOffset.Now.Date;
-            
-            if (date.Date.Equals(today))
-                return Brushes.Red;
-            else
-            {
-                return Brushes.DodgerBlue;
-            }
-
+            return new Thickness(3); // Active: thicker border
         }
-        return Brushes.Black;
+        return new Thickness(2); // Inactive: normal border
     }
 
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)
