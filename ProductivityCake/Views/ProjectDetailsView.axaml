@@ -1,0 +1,973 @@
+<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="ProductivityCake.Views.ProjectDetailsView"
+    x:DataType="vm:ProjectDetailsViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:converters="using:ProductivityCake.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:ProductivityCake.Models"
+    xmlns:vm="using:ProductivityCake.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Design.DataContext>
+        <vm:ProjectDetailsViewModel />
+    </Design.DataContext>
+
+    <Grid>
+        <!--  Main Content  -->
+        <Grid RowDefinitions="Auto, *">
+            <!--  Header  -->
+            <Border
+                Background="#1E293B"
+                BorderBrush="#8B5CF640"
+                BorderThickness="0,0,0,2"
+                Grid.Row="0"
+                Padding="20,15">
+                <StackPanel Spacing="10">
+                    <StackPanel Orientation="Horizontal" Spacing="10">
+                        <Button
+                            Classes="secondary"
+                            Command="{Binding NavigateBackCommand}"
+                            Content="←"
+                            Foreground="#fff"
+                            HorizontalAlignment="Left"
+                            Padding="12,6" />
+
+                        <TextBlock
+                            FontSize="24"
+                            FontWeight="Bold"
+                            Text="{Binding CurrentProject.Name}" />
+                    </StackPanel>
+
+                    <TextBlock
+                        FontSize="14"
+                        Foreground="#9CA3AF"
+                        IsVisible="{Binding CurrentProject.Description, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                        Text="{Binding CurrentProject.Description}"
+                        TextWrapping="Wrap" />
+                </StackPanel>
+            </Border>
+
+            <!--  Trello-Style Vertical Board  -->
+            <ScrollViewer Background="#0F172A" Grid.Row="1">
+                <StackPanel Margin="20,20,20,100" Spacing="15">
+
+                    <!--  ToDo Section  -->
+                    <Border
+                        Background="#3B82F6"
+                        CornerRadius="12"
+                        Padding="0">
+                        <StackPanel>
+                            <!--  Section Header  -->
+                            <Button
+                                Background="Transparent"
+                                Command="{Binding ToggleTodoExpandedCommand}"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Left"
+                                Padding="15,10">
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <TextBlock
+                                        FontSize="16"
+                                        FontWeight="Bold"
+                                        Foreground="White"
+                                        Text="To Do" />
+                                    <TextBlock
+                                        FontSize="14"
+                                        Foreground="White"
+                                        Opacity="0.8"
+                                        Text="{Binding TodoTasks.Count, StringFormat='({0})'}" />
+                                    <TextBlock
+                                        FontSize="12"
+                                        Foreground="White"
+                                        Text="{Binding IsTodoExpanded, Converter={x:Static converters:BooleanConverters.ToExpanderIcon}}"
+                                        VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+
+                            <!--  Tasks List  -->
+                            <ItemsControl
+                                IsVisible="{Binding IsTodoExpanded}"
+                                ItemsSource="{Binding TodoTasks}"
+                                Margin="10,0,10,10">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="models:TodoItem">
+                                        <Button
+                                            Background="#1F2937"
+                                            BorderBrush="#374151"
+                                            BorderThickness="1"
+                                            Classes="task-card"
+                                            Command="{Binding $parent[ItemsControl].((vm:ProjectDetailsViewModel)DataContext).OpenTaskDetailsCommand}"
+                                            CommandParameter="{Binding}"
+                                            CornerRadius="6"
+                                            HorizontalAlignment="Stretch"
+                                            HorizontalContentAlignment="Stretch"
+                                            Margin="0,0,0,8"
+                                            Padding="12">
+                                            <Grid ColumnDefinitions="*, Auto">
+                                                <StackPanel Grid.Column="0" Spacing="6">
+                                                    <TextBlock
+                                                        FontSize="14"
+                                                        FontWeight="SemiBold"
+                                                        Text="{Binding Title}"
+                                                        TextWrapping="Wrap" />
+                                                    <TextBlock
+                                                        FontSize="11"
+                                                        Foreground="#9CA3AF"
+                                                        IsVisible="{Binding Description, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                                        Text="{Binding Description}"
+                                                        TextWrapping="Wrap" />
+                                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                                        <!--  Tags  -->
+                                                        <ItemsControl ItemsSource="{Binding Tags}">
+                                                            <ItemsControl.ItemsPanel>
+                                                                <ItemsPanelTemplate>
+                                                                    <StackPanel Orientation="Horizontal" Spacing="4" />
+                                                                </ItemsPanelTemplate>
+                                                            </ItemsControl.ItemsPanel>
+                                                            <ItemsControl.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <Border
+                                                                        Background="{Binding Color}"
+                                                                        CornerRadius="3"
+                                                                        Padding="5,2">
+                                                                        <TextBlock
+                                                                            FontSize="9"
+                                                                            FontWeight="SemiBold"
+                                                                            Foreground="White"
+                                                                            Text="{Binding Name}" />
+                                                                    </Border>
+                                                                </DataTemplate>
+                                                            </ItemsControl.ItemTemplate>
+                                                        </ItemsControl>
+                                                        <TextBlock
+                                                            FontSize="10"
+                                                            Foreground="#6B7280"
+                                                            IsVisible="{Binding DueDate, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                                            Text="{Binding DueDate, StringFormat='📅 {0:MMM dd}'}"
+                                                            VerticalAlignment="Center" />
+                                                    </StackPanel>
+                                                </StackPanel>
+                                                <StackPanel
+                                                    Grid.Column="1"
+                                                    Spacing="4"
+                                                    VerticalAlignment="Center">
+                                                    <Button
+                                                        Command="{Binding $parent[ItemsControl].((vm:ProjectDetailsViewModel)DataContext).OpenEditTaskDialogCommand}"
+                                                        CommandParameter="{Binding}"
+                                                        Content="✏️"
+                                                        FontSize="12"
+                                                        Padding="8,4" />
+                                                    <Button
+                                                        Command="{Binding $parent[ItemsControl].((vm:ProjectDetailsViewModel)DataContext).DeleteTaskCommand}"
+                                                        CommandParameter="{Binding}"
+                                                        Content="🗑️"
+                                                        FontSize="12"
+                                                        Foreground="#C62828"
+                                                        Padding="8,4" />
+                                                </StackPanel>
+                                            </Grid>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <!--  Doing Section  -->
+                    <Border
+                        Background="#F59E0B"
+                        CornerRadius="12"
+                        Padding="0">
+                        <StackPanel>
+                            <!--  Section Header  -->
+                            <Button
+                                Background="Transparent"
+                                Command="{Binding ToggleDoingExpandedCommand}"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Left"
+                                Padding="15,10">
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <TextBlock
+                                        FontSize="16"
+                                        FontWeight="Bold"
+                                        Foreground="White"
+                                        Text="In Progress" />
+                                    <TextBlock
+                                        FontSize="14"
+                                        Foreground="White"
+                                        Opacity="0.8"
+                                        Text="{Binding DoingTasks.Count, StringFormat='({0})'}" />
+                                    <TextBlock
+                                        FontSize="12"
+                                        Foreground="White"
+                                        Text="{Binding IsDoingExpanded, Converter={x:Static converters:BooleanConverters.ToExpanderIcon}}"
+                                        VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+
+                            <!--  Tasks List  -->
+                            <ItemsControl
+                                IsVisible="{Binding IsDoingExpanded}"
+                                ItemsSource="{Binding DoingTasks}"
+                                Margin="10,0,10,10">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="models:TodoItem">
+                                        <Button
+                                            Background="#1F2937"
+                                            BorderBrush="#374151"
+                                            BorderThickness="1"
+                                            Classes="task-card"
+                                            Command="{Binding $parent[ItemsControl].((vm:ProjectDetailsViewModel)DataContext).OpenTaskDetailsCommand}"
+                                            CommandParameter="{Binding}"
+                                            CornerRadius="6"
+                                            HorizontalAlignment="Stretch"
+                                            HorizontalContentAlignment="Stretch"
+                                            Margin="0,0,0,8"
+                                            Padding="12">
+                                            <Grid ColumnDefinitions="*, Auto">
+                                                <StackPanel Grid.Column="0" Spacing="6">
+                                                    <TextBlock
+                                                        FontSize="14"
+                                                        FontWeight="SemiBold"
+                                                        Text="{Binding Title}"
+                                                        TextWrapping="Wrap" />
+                                                    <TextBlock
+                                                        FontSize="11"
+                                                        Foreground="#9CA3AF"
+                                                        IsVisible="{Binding Description, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                                        Text="{Binding Description}"
+                                                        TextWrapping="Wrap" />
+                                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                                        <!--  Tags  -->
+                                                        <ItemsControl ItemsSource="{Binding Tags}">
+                                                            <ItemsControl.ItemsPanel>
+                                                                <ItemsPanelTemplate>
+                                                                    <StackPanel Orientation="Horizontal" Spacing="4" />
+                                                                </ItemsPanelTemplate>
+                                                            </ItemsControl.ItemsPanel>
+                                                            <ItemsControl.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <Border
+                                                                        Background="{Binding Color}"
+                                                                        CornerRadius="3"
+                                                                        Padding="5,2">
+                                                                        <TextBlock
+                                                                            FontSize="9"
+                                                                            FontWeight="SemiBold"
+                                                                            Foreground="White"
+                                                                            Text="{Binding Name}" />
+                                                                    </Border>
+                                                                </DataTemplate>
+                                                            </ItemsControl.ItemTemplate>
+                                                        </ItemsControl>
+                                                        <TextBlock
+                                                            FontSize="10"
+                                                            Foreground="#6B7280"
+                                                            IsVisible="{Binding DueDate, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                                            Text="{Binding DueDate, StringFormat='📅 {0:MMM dd}'}"
+                                                            VerticalAlignment="Center" />
+                                                    </StackPanel>
+                                                </StackPanel>
+                                                <StackPanel
+                                                    Grid.Column="1"
+                                                    Spacing="4"
+                                                    VerticalAlignment="Center">
+                                                    <Button
+                                                        Command="{Binding $parent[ItemsControl].((vm:ProjectDetailsViewModel)DataContext).OpenEditTaskDialogCommand}"
+                                                        CommandParameter="{Binding}"
+                                                        Content="✏️"
+                                                        FontSize="12"
+                                                        Padding="8,4" />
+                                                    <Button
+                                                        Command="{Binding $parent[ItemsControl].((vm:ProjectDetailsViewModel)DataContext).DeleteTaskCommand}"
+                                                        CommandParameter="{Binding}"
+                                                        Content="🗑️"
+                                                        FontSize="12"
+                                                        Foreground="#C62828"
+                                                        Padding="8,4" />
+                                                </StackPanel>
+                                            </Grid>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <!--  Done Section  -->
+                    <Border
+                        Background="#10B981"
+                        CornerRadius="12"
+                        Padding="0">
+                        <StackPanel>
+                            <!--  Section Header  -->
+                            <Button
+                                Background="Transparent"
+                                Command="{Binding ToggleDoneExpandedCommand}"
+                                HorizontalAlignment="Stretch"
+                                HorizontalContentAlignment="Left"
+                                Padding="15,10">
+                                <StackPanel Orientation="Horizontal" Spacing="10">
+                                    <TextBlock
+                                        FontSize="16"
+                                        FontWeight="Bold"
+                                        Foreground="White"
+                                        Text="Done" />
+                                    <TextBlock
+                                        FontSize="14"
+                                        Foreground="White"
+                                        Opacity="0.8"
+                                        Text="{Binding DoneTasks.Count, StringFormat='({0})'}" />
+                                    <TextBlock
+                                        FontSize="12"
+                                        Foreground="White"
+                                        Text="{Binding IsDoneExpanded, Converter={x:Static converters:BooleanConverters.ToExpanderIcon}}"
+                                        VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+
+                            <!--  Tasks List  -->
+                            <ItemsControl
+                                IsVisible="{Binding IsDoneExpanded}"
+                                ItemsSource="{Binding DoneTasks}"
+                                Margin="10,0,10,10">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="models:TodoItem">
+                                        <Button
+                                            Background="#1F2937"
+                                            BorderBrush="#374151"
+                                            BorderThickness="1"
+                                            Classes="task-card"
+                                            Command="{Binding $parent[ItemsControl].((vm:ProjectDetailsViewModel)DataContext).OpenTaskDetailsCommand}"
+                                            CommandParameter="{Binding}"
+                                            CornerRadius="6"
+                                            HorizontalAlignment="Stretch"
+                                            HorizontalContentAlignment="Stretch"
+                                            Margin="0,0,0,8"
+                                            Padding="12">
+                                            <Grid ColumnDefinitions="*, Auto">
+                                                <StackPanel Grid.Column="0" Spacing="6">
+                                                    <TextBlock
+                                                        FontSize="14"
+                                                        FontWeight="SemiBold"
+                                                        Text="{Binding Title}"
+                                                        TextWrapping="Wrap" />
+                                                    <TextBlock
+                                                        FontSize="11"
+                                                        Foreground="#9CA3AF"
+                                                        IsVisible="{Binding Description, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                                        Text="{Binding Description}"
+                                                        TextWrapping="Wrap" />
+                                                    <StackPanel Orientation="Horizontal" Spacing="6">
+                                                        <!--  Tags  -->
+                                                        <ItemsControl ItemsSource="{Binding Tags}">
+                                                            <ItemsControl.ItemsPanel>
+                                                                <ItemsPanelTemplate>
+                                                                    <StackPanel Orientation="Horizontal" Spacing="4" />
+                                                                </ItemsPanelTemplate>
+                                                            </ItemsControl.ItemsPanel>
+                                                            <ItemsControl.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <Border
+                                                                        Background="{Binding Color}"
+                                                                        CornerRadius="3"
+                                                                        Padding="5,2">
+                                                                        <TextBlock
+                                                                            FontSize="9"
+                                                                            FontWeight="SemiBold"
+                                                                            Foreground="White"
+                                                                            Text="{Binding Name}" />
+                                                                    </Border>
+                                                                </DataTemplate>
+                                                            </ItemsControl.ItemTemplate>
+                                                        </ItemsControl>
+                                                        <TextBlock
+                                                            FontSize="10"
+                                                            Foreground="#6B7280"
+                                                            IsVisible="{Binding DueDate, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                                            Text="{Binding DueDate, StringFormat='📅 {0:MMM dd}'}"
+                                                            VerticalAlignment="Center" />
+                                                    </StackPanel>
+                                                </StackPanel>
+                                                <StackPanel
+                                                    Grid.Column="1"
+                                                    Spacing="4"
+                                                    VerticalAlignment="Center">
+                                                    <Button
+                                                        Command="{Binding $parent[ItemsControl].((vm:ProjectDetailsViewModel)DataContext).OpenEditTaskDialogCommand}"
+                                                        CommandParameter="{Binding}"
+                                                        Content="✏️"
+                                                        FontSize="12"
+                                                        Padding="8,4" />
+                                                    <Button
+                                                        Command="{Binding $parent[ItemsControl].((vm:ProjectDetailsViewModel)DataContext).DeleteTaskCommand}"
+                                                        CommandParameter="{Binding}"
+                                                        Content="🗑️"
+                                                        FontSize="12"
+                                                        Foreground="#C62828"
+                                                        Padding="8,4" />
+                                                </StackPanel>
+                                            </Grid>
+                                        </Button>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+        <!--  Floating Add Button  -->
+        <Button
+            Classes="fab"
+            Command="{Binding OpenAddTaskDialogCommand}"
+            HorizontalAlignment="Right"
+            HorizontalContentAlignment="Center"
+            Margin="20"
+            VerticalAlignment="Bottom"
+            VerticalContentAlignment="Center">
+            <TextBlock
+                FontSize="32"
+                FontWeight="Light"
+                Text="+" />
+        </Button>
+
+        <!--  Add Task Dialog  -->
+        <Border
+            Background="#80000000"
+            IsVisible="{Binding IsAddTaskDialogOpen}"
+            ZIndex="100">
+            <Border
+                Background="#1F2937"
+                BorderBrush="#374151"
+                BorderThickness="1"
+                CornerRadius="12"
+                HorizontalAlignment="Center"
+                MaxWidth="400"
+                Padding="20"
+                VerticalAlignment="Center">
+                <StackPanel Spacing="15">
+                    <TextBlock
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        Text="Add New Task" />
+
+                    <TextBox Text="{Binding TaskTitle}" Watermark="Task title" />
+
+                    <TextBox
+                        AcceptsReturn="True"
+                        Height="80"
+                        Text="{Binding TaskDescription}"
+                        TextWrapping="Wrap"
+                        Watermark="Description (optional)" />
+
+                    <DatePicker SelectedDate="{Binding TaskDueDate}" />
+
+                    <!--  Status Selection  -->
+                    <StackPanel Spacing="5">
+                        <TextBlock FontWeight="SemiBold" Text="Status" />
+                        <ComboBox HorizontalAlignment="Stretch" SelectedIndex="{Binding TaskStatus}">
+                            <ComboBoxItem Content="To Do" />
+                            <ComboBoxItem Content="In Progress" />
+                            <ComboBoxItem Content="Done" />
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!--  Tags Selection  -->
+                    <StackPanel Spacing="5">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock
+                                FontWeight="SemiBold"
+                                Text="Tags"
+                                VerticalAlignment="Center" />
+                            <Button
+                                Command="{Binding OpenAddCategoryDialogCommand}"
+                                Content="+ New Tag"
+                                FontSize="11"
+                                Padding="5,2" />
+                        </StackPanel>
+
+                        <!--  Selected Tags Display  -->
+                        <ItemsControl ItemsSource="{Binding SelectedTags}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border
+                                        Background="{Binding Color}"
+                                        CornerRadius="4"
+                                        Margin="0,0,6,6"
+                                        Padding="8,4">
+                                        <TextBlock
+                                            FontSize="11"
+                                            FontWeight="SemiBold"
+                                            Foreground="White"
+                                            Text="{Binding Name}" />
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <!--  Tag Selection ComboBox  -->
+                        <ComboBox
+                            HorizontalAlignment="Stretch"
+                            ItemsSource="{Binding Categories}"
+                            PlaceholderText="Select tags..."
+                            SelectedItem="{x:Null}">
+                            <!--  Template for collapsed state (not used since SelectedItem is null)  -->
+                            <ComboBox.SelectionBoxItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="Select tags..." />
+                                </DataTemplate>
+                            </ComboBox.SelectionBoxItemTemplate>
+                            <!--  Template for dropdown items  -->
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="*, Auto">
+                                        <CheckBox
+                                            Command="{Binding $parent[ComboBox].((vm:ProjectDetailsViewModel)DataContext).ToggleTagCommand}"
+                                            CommandParameter="{Binding}"
+                                            Grid.Column="0"
+                                            HorizontalAlignment="Stretch">
+                                            <CheckBox.IsChecked>
+                                                <MultiBinding Converter="{StaticResource ContainsItemConverter}" Mode="OneWay">
+                                                    <Binding Path="." />
+                                                    <Binding Path="$parent[ComboBox].((vm:ProjectDetailsViewModel)DataContext).SelectedTags" />
+                                                </MultiBinding>
+                                            </CheckBox.IsChecked>
+                                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                                <Border
+                                                    Background="{Binding Color}"
+                                                    CornerRadius="2"
+                                                    Height="12"
+                                                    VerticalAlignment="Center"
+                                                    Width="12" />
+                                                <TextBlock
+                                                    Foreground="{Binding Color}"
+                                                    Text="{Binding Name}"
+                                                    VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </CheckBox>
+                                        <Button
+                                            Background="Transparent"
+                                            Command="{Binding $parent[ComboBox].((vm:ProjectDetailsViewModel)DataContext).DeleteTagCommand}"
+                                            CommandParameter="{Binding}"
+                                            Content="🗑️"
+                                            FontSize="12"
+                                            Foreground="#EF4444"
+                                            Grid.Column="1"
+                                            Padding="4,2"
+                                            VerticalAlignment="Center" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="10">
+                        <Button
+                            Classes="secondary"
+                            Command="{Binding CancelAddTaskCommand}"
+                            Content="Cancel"
+                            Padding="20,8" />
+                        <Button
+                            Classes="primary"
+                            Command="{Binding AddTaskCommand}"
+                            Content="Add"
+                            Padding="20,8" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Border>
+
+        <!--  Edit Task Dialog  -->
+        <Border
+            Background="#80000000"
+            IsVisible="{Binding IsEditTaskDialogOpen}"
+            ZIndex="100">
+            <Border
+                Background="#1F2937"
+                BorderBrush="#374151"
+                BorderThickness="1"
+                CornerRadius="12"
+                HorizontalAlignment="Center"
+                MaxWidth="400"
+                Padding="20"
+                VerticalAlignment="Center">
+                <StackPanel Spacing="15">
+                    <TextBlock
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        Text="Edit Task" />
+
+                    <TextBox Text="{Binding TaskTitle}" Watermark="Task title" />
+
+                    <TextBox
+                        AcceptsReturn="True"
+                        Height="80"
+                        Text="{Binding TaskDescription}"
+                        TextWrapping="Wrap"
+                        Watermark="Description (optional)" />
+
+                    <DatePicker SelectedDate="{Binding TaskDueDate}" />
+
+                    <!--  Status Selection  -->
+                    <StackPanel Spacing="5">
+                        <TextBlock FontWeight="SemiBold" Text="Status" />
+                        <ComboBox HorizontalAlignment="Stretch" SelectedIndex="{Binding TaskStatus}">
+                            <ComboBoxItem Content="To Do" />
+                            <ComboBoxItem Content="In Progress" />
+                            <ComboBoxItem Content="Done" />
+                        </ComboBox>
+                    </StackPanel>
+
+                    <!--  Tags Selection  -->
+                    <StackPanel Spacing="5">
+                        <StackPanel Orientation="Horizontal" Spacing="10">
+                            <TextBlock
+                                FontWeight="SemiBold"
+                                Text="Tags"
+                                VerticalAlignment="Center" />
+                            <Button
+                                Command="{Binding OpenAddCategoryDialogCommand}"
+                                Content="+ New Tag"
+                                FontSize="11"
+                                Padding="5,2" />
+                        </StackPanel>
+
+                        <!--  Selected Tags Display  -->
+                        <ItemsControl ItemsSource="{Binding SelectedTags}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border
+                                        Background="{Binding Color}"
+                                        CornerRadius="4"
+                                        Margin="0,0,6,6"
+                                        Padding="8,4">
+                                        <TextBlock
+                                            FontSize="11"
+                                            FontWeight="SemiBold"
+                                            Foreground="White"
+                                            Text="{Binding Name}" />
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <!--  Tag Selection ComboBox  -->
+                        <ComboBox
+                            HorizontalAlignment="Stretch"
+                            ItemsSource="{Binding Categories}"
+                            PlaceholderText="Select tags..."
+                            SelectedItem="{x:Null}">
+                            <!--  Template for collapsed state (not used since SelectedItem is null)  -->
+                            <ComboBox.SelectionBoxItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="Select tags..." />
+                                </DataTemplate>
+                            </ComboBox.SelectionBoxItemTemplate>
+                            <!--  Template for dropdown items  -->
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid ColumnDefinitions="*, Auto">
+                                        <CheckBox
+                                            Command="{Binding $parent[ComboBox].((vm:ProjectDetailsViewModel)DataContext).ToggleTagCommand}"
+                                            CommandParameter="{Binding}"
+                                            Grid.Column="0"
+                                            HorizontalAlignment="Stretch">
+                                            <CheckBox.IsChecked>
+                                                <MultiBinding Converter="{StaticResource ContainsItemConverter}" Mode="OneWay">
+                                                    <Binding Path="." />
+                                                    <Binding Path="$parent[ComboBox].((vm:ProjectDetailsViewModel)DataContext).SelectedTags" />
+                                                </MultiBinding>
+                                            </CheckBox.IsChecked>
+                                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                                <Border
+                                                    Background="{Binding Color}"
+                                                    CornerRadius="2"
+                                                    Height="12"
+                                                    VerticalAlignment="Center"
+                                                    Width="12" />
+                                                <TextBlock
+                                                    Foreground="{Binding Color}"
+                                                    Text="{Binding Name}"
+                                                    VerticalAlignment="Center" />
+                                            </StackPanel>
+                                        </CheckBox>
+                                        <Button
+                                            Background="Transparent"
+                                            Command="{Binding $parent[ComboBox].((vm:ProjectDetailsViewModel)DataContext).DeleteTagCommand}"
+                                            CommandParameter="{Binding}"
+                                            Content="🗑️"
+                                            FontSize="12"
+                                            Foreground="#EF4444"
+                                            Grid.Column="1"
+                                            Padding="4,2"
+                                            VerticalAlignment="Center" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="10">
+                        <Button
+                            Classes="secondary"
+                            Command="{Binding CancelEditTaskCommand}"
+                            Content="Cancel"
+                            Padding="20,8" />
+                        <Button
+                            Classes="primary"
+                            Command="{Binding UpdateTaskCommand}"
+                            Content="Save"
+                            Padding="20,8" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Border>
+
+        <!--  Add Category Dialog  -->
+        <Border
+            Background="#80000000"
+            IsVisible="{Binding IsAddCategoryDialogOpen}"
+            ZIndex="101">
+            <Border
+                Background="#1F2937"
+                BorderBrush="#374151"
+                BorderThickness="1"
+                CornerRadius="12"
+                HorizontalAlignment="Center"
+                MaxWidth="350"
+                Padding="20"
+                VerticalAlignment="Center">
+                <StackPanel Spacing="15">
+                    <TextBlock
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        Text="Add New Tag" />
+
+                    <TextBox Text="{Binding NewCategoryName}" Watermark="Tag name" />
+
+                    <!--  Color Selection  -->
+                    <StackPanel Spacing="5">
+                        <TextBlock FontWeight="SemiBold" Text="Color" />
+                        <ComboBox HorizontalAlignment="Stretch" SelectedItem="{Binding NewCategoryColor}">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal" Spacing="8">
+                                        <Border
+                                            Background="{Binding}"
+                                            CornerRadius="3"
+                                            Height="20"
+                                            Width="20" />
+                                        <TextBlock Text="{Binding}" VerticalAlignment="Center" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                            <x:String>#2196F3</x:String>
+                            <x:String>#4CAF50</x:String>
+                            <x:String>#FF9800</x:String>
+                            <x:String>#F44336</x:String>
+                            <x:String>#9C27B0</x:String>
+                            <x:String>#00BCD4</x:String>
+                            <x:String>#FFEB3B</x:String>
+                            <x:String>#795548</x:String>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <StackPanel
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="10">
+                        <Button
+                            Classes="secondary"
+                            Command="{Binding CancelAddCategoryCommand}"
+                            Content="Cancel"
+                            Padding="20,8" />
+                        <Button
+                            Classes="primary"
+                            Command="{Binding AddCategoryCommand}"
+                            Content="Add"
+                            Padding="20,8" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Border>
+
+        <!--  Task Details Dialog  -->
+        <Border
+            Background="#80000000"
+            IsVisible="{Binding IsTaskDetailsDialogOpen}"
+            ZIndex="102">
+            <Border
+                Background="#1F2937"
+                BorderBrush="#374151"
+                BorderThickness="1"
+                CornerRadius="12"
+                HorizontalAlignment="Center"
+                MaxWidth="400"
+                Padding="20"
+                VerticalAlignment="Center">
+                <StackPanel Spacing="15">
+                    <Grid ColumnDefinitions="*, Auto">
+                        <TextBlock
+                            FontSize="20"
+                            FontWeight="SemiBold"
+                            Grid.Column="0"
+                            Text="Task Details" />
+                        <Button
+                            Background="Transparent"
+                            Command="{Binding CloseTaskDetailsCommand}"
+                            Content="✕"
+                            FontSize="18"
+                            Foreground="#9CA3AF"
+                            Grid.Column="1"
+                            Padding="8,4" />
+                    </Grid>
+
+                    <!--  Task Title  -->
+                    <StackPanel Spacing="5">
+                        <TextBlock
+                            FontSize="12"
+                            FontWeight="SemiBold"
+                            Foreground="#9CA3AF"
+                            Text="TITLE" />
+                        <TextBlock
+                            FontSize="16"
+                            FontWeight="SemiBold"
+                            Text="{Binding SelectedTaskForDetails.Title}"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+
+                    <!--  Description  -->
+                    <StackPanel IsVisible="{Binding SelectedTaskForDetails.Description, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" Spacing="5">
+                        <TextBlock
+                            FontSize="12"
+                            FontWeight="SemiBold"
+                            Foreground="#9CA3AF"
+                            Text="DESCRIPTION" />
+                        <TextBlock
+                            FontSize="14"
+                            Foreground="#D1D5DB"
+                            Text="{Binding SelectedTaskForDetails.Description}"
+                            TextWrapping="Wrap" />
+                    </StackPanel>
+
+                    <!--  Status  -->
+                    <StackPanel Spacing="5">
+                        <TextBlock
+                            FontSize="12"
+                            FontWeight="SemiBold"
+                            Foreground="#9CA3AF"
+                            Text="STATUS" />
+                        <Border
+                            Background="#2D3748"
+                            CornerRadius="4"
+                            HorizontalAlignment="Left"
+                            Padding="10,5">
+                            <TextBlock
+                                FontSize="14"
+                                Foreground="#D1D5DB"
+                                Text="{Binding SelectedTaskForDetails.Status}" />
+                        </Border>
+                    </StackPanel>
+
+                    <!--  Tags  -->
+                    <StackPanel Spacing="5">
+                        <TextBlock
+                            FontSize="12"
+                            FontWeight="SemiBold"
+                            Foreground="#9CA3AF"
+                            Text="TAGS" />
+                        <ItemsControl ItemsSource="{Binding SelectedTaskForDetails.Tags}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Border
+                                        Background="{Binding Color}"
+                                        CornerRadius="4"
+                                        Margin="0,0,6,6"
+                                        Padding="10,5">
+                                        <TextBlock
+                                            FontSize="12"
+                                            FontWeight="SemiBold"
+                                            Foreground="White"
+                                            Text="{Binding Name}" />
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+
+                    <!--  Due Date  -->
+                    <StackPanel IsVisible="{Binding SelectedTaskForDetails.DueDate, Converter={x:Static ObjectConverters.IsNotNull}}" Spacing="5">
+                        <TextBlock
+                            FontSize="12"
+                            FontWeight="SemiBold"
+                            Foreground="#9CA3AF"
+                            Text="DUE DATE" />
+                        <TextBlock
+                            FontSize="14"
+                            Foreground="#D1D5DB"
+                            Text="{Binding SelectedTaskForDetails.DueDate, StringFormat='{}{0:MMMM dd, yyyy}'}" />
+                    </StackPanel>
+
+                    <!--  Created Date  -->
+                    <StackPanel Spacing="5">
+                        <TextBlock
+                            FontSize="12"
+                            FontWeight="SemiBold"
+                            Foreground="#9CA3AF"
+                            Text="CREATED" />
+                        <TextBlock
+                            FontSize="14"
+                            Foreground="#6B7280"
+                            Text="{Binding SelectedTaskForDetails.CreatedAt, StringFormat='{}{0:MMMM dd, yyyy}'}" />
+                    </StackPanel>
+
+                    <!--  Action Buttons  -->
+                    <StackPanel
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="10">
+                        <Button
+                            Classes="primary"
+                            Command="{Binding OpenEditTaskDialogCommand}"
+                            CommandParameter="{Binding SelectedTaskForDetails}"
+                            Content="Edit Task"
+                            Padding="20,8" />
+                        <Button
+                            Classes="secondary"
+                            Command="{Binding CloseTaskDetailsCommand}"
+                            Content="Close"
+                            Padding="20,8" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Border>
+    </Grid>
+
+</UserControl>

@@ -5,23 +5,18 @@ using Avalonia.Media;
 
 namespace ProductivityCake.Converters;
 
-public class DueDateToColorConverter : IValueConverter
+public class BoolToBorderBrushConverter : IValueConverter
 {
+    public string? ActiveColor { get; set; }
+    public string InactiveColor { get; set; } = "#4B5563";
+
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
-        if (value is DateTimeOffset date)
+        if (value is bool isActive && isActive && !string.IsNullOrEmpty(ActiveColor))
         {
-            var today = DateTimeOffset.Now.Date;
-            
-            if (date.Date.Equals(today))
-                return Brushes.Red;
-            else
-            {
-                return Brushes.DodgerBlue;
-            }
-
+            return new SolidColorBrush(Color.Parse(ActiveColor));
         }
-        return Brushes.Black;
+        return new SolidColorBrush(Color.Parse(InactiveColor));
     }
 
     public object? ConvertBack(object? value, Type targetType, object? parameter, CultureInfo culture)

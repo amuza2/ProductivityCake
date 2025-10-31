@@ -1,8 +1,12 @@
 <Window
-    Height="550"
-    Icon="/Assets/avalonia-logo.ico"
+    Background="#0F172A"
+    ExtendClientAreaChromeHints="NoChrome"
+    ExtendClientAreaToDecorationsHint="True"
+    Height="600"
+    Icon="/Assets/icons8-cake-96.png"
+    SystemDecorations="None"
     Title="ProductivityCake"
-    Width="350"
+    Width="400"
     d:DesignHeight="550"
     d:DesignWidth="350"
     mc:Ignorable="d"
@@ -18,30 +22,138 @@
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <Grid RowDefinitions="*, Auto">
+    <Grid RowDefinitions="Auto, *, Auto">
+        <!--  Custom Title Bar  -->
+        <Border
+            Background="#1E293B"
+            BorderBrush="#8B5CF640"
+            BorderThickness="0,0,0,2"
+            Grid.Row="0"
+            IsHitTestVisible="True">
+            <Grid ColumnDefinitions="Auto, *, Auto" Height="40">
+                <!--  Logo and Title  -->
+                <StackPanel
+                    Grid.Column="0"
+                    Orientation="Horizontal"
+                    Spacing="8"
+                    VerticalAlignment="Center"
+                    Margin="10,0,0,0">
+                    <Image
+                        Source="/Assets/icons8-cake-96.png"
+                        Width="24"
+                        Height="24" />
+                    <TextBlock
+                        Text="ProductivityCake"
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="#A78BFA"
+                        VerticalAlignment="Center" />
+                </StackPanel>
+                
+                <!--  Draggable Area  -->
+                <Panel
+                    Grid.Column="1"
+                    Background="Transparent"
+                    PointerPressed="OnTitleBarPointerPressed" />
+                
+                <!--  Window Controls  -->
+                <StackPanel
+                    Grid.Column="2"
+                    Orientation="Horizontal"
+                    Spacing="0">
+                    <!--  Minimize Button  -->
+                    <Button
+                        Name="MinimizeButton"
+                        Click="OnMinimizeClicked"
+                        Background="Transparent"
+                        Width="40"
+                        Height="40"
+                        Padding="0">
+                        <TextBlock
+                            Text="─"
+                            FontSize="16"
+                            Foreground="#A78BFA"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center" />
+                    </Button>
+                    
+                    <!--  Close Button  -->
+                    <Button
+                        Name="CloseButton"
+                        Click="OnCloseClicked"
+                        Background="Transparent"
+                        Width="40"
+                        Height="40"
+                        Padding="0">
+                        <TextBlock
+                            Text="✕"
+                            FontSize="16"
+                            Foreground="#EF4444"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center" />
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
+        
         <!--  page content  -->
-        <ContentControl Content="{Binding CurrentViewModel}" />
+        <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}" />
 
-        <!--  footer  -->
-        <Grid
-            ColumnDefinitions="*,*"
-            Grid.Row="1"
-            Margin="0,5">
-            <Button
-                Background="Transparent"
-                Command="{Binding NavigateToTasksPageCommand}"
-                HorizontalAlignment="Center">
-                <PathIcon Data="{StaticResource tasks_app_regular}" />
-            </Button>
+        <!--  footer navigation  -->
+        <Border
+            Background="#1E293B"
+            BorderBrush="#8B5CF640"
+            BorderThickness="0,2,0,0"
+            Grid.Row="2">
+            <Grid ColumnDefinitions="*,*" Height="60">
+                <Button
+                    Classes="nav-button"
+                    Command="{Binding NavigateToProjectsPageCommand}"
+                    HorizontalAlignment="Stretch"
+                    Padding="0"
+                    VerticalAlignment="Stretch">
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        Spacing="4"
+                        VerticalAlignment="Center">
+                        <PathIcon
+                            Data="{StaticResource folder_regular}"
+                            Foreground="#A78BFA"
+                            Height="24"
+                            Width="24" />
+                        <TextBlock
+                            FontSize="10"
+                            Foreground="#A78BFA"
+                            HorizontalAlignment="Center"
+                            Text="Projects" />
+                    </StackPanel>
+                </Button>
 
-            <Button
-                Background="Transparent"
-                Command="{Binding NavigateToTimerPageCommand}"
-                Grid.Column="1"
-                HorizontalAlignment="Center">
-                <PathIcon Data="{StaticResource clock_regular}" />
-            </Button>
-        </Grid>
+                <Button
+                    Classes="nav-button"
+                    Command="{Binding NavigateToTimerPageCommand}"
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    Padding="0"
+                    VerticalAlignment="Stretch">
+                    <StackPanel
+                        HorizontalAlignment="Center"
+                        Spacing="4"
+                        VerticalAlignment="Center">
+                        <PathIcon
+                            Data="{StaticResource clock_regular}"
+                            Foreground="#A78BFA"
+                            Height="24"
+                            Width="24" />
+                        <TextBlock
+                            FontSize="10"
+                            Foreground="#A78BFA"
+                            HorizontalAlignment="Center"
+                            Text="Timer" />
+                    </StackPanel>
+                </Button>
+            </Grid>
+        </Border>
     </Grid>
 
 </Window>

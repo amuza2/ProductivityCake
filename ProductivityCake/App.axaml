@@ -1,5 +1,5 @@
 <Application
-    RequestedThemeVariant="Default"
+    RequestedThemeVariant="Dark"
     x:Class="ProductivityCake.App"
     xmlns="https://github.com/avaloniaui"
     xmlns:converter="using:ProductivityCake.Converters"
@@ -10,6 +10,16 @@
     <Application.Resources>
         <converter:DueDateConverter x:Key="DueDateConverter" />
         <converter:DueDateToColorConverter x:Key="DueDateToColorConverter" />
+        <converter:BoolToStartPauseConverter x:Key="BoolToStartPauseConverter" />
+        <converter:BoolToExpanderConverter x:Key="BoolToExpanderConverter" />
+        <converter:ContainsItemConverter x:Key="ContainsItemConverter" />
+        <converter:TimerStateToColorConverter x:Key="TimerStateToColorConverter" />
+        <converter:ProgressToAngleConverter x:Key="ProgressToAngleConverter" />
+        <converter:BoolToThicknessConverter x:Key="BoolToThicknessConverter" />
+        <converter:BoolToBorderBrushConverter x:Key="WorkBorderBrushConverter" ActiveColor="#16A34A" />
+        <converter:BoolToBorderBrushConverter x:Key="LongWorkBorderBrushConverter" ActiveColor="#059669" />
+        <converter:BoolToBorderBrushConverter x:Key="ShortBreakBorderBrushConverter" ActiveColor="#3B82F6" />
+        <converter:BoolToBorderBrushConverter x:Key="LongBreakBorderBrushConverter" ActiveColor="#9333EA" />
     </Application.Resources>
 
 
@@ -20,5 +30,6 @@
     <Application.Styles>
         <FluentTheme />
         <StyleInclude Source="Assets/Icons.axaml" />
+        <StyleInclude Source="Styles/CustomStyles.axaml" />
     </Application.Styles>
 </Application>

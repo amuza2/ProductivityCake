@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
         <TargetFramework>net9.0</TargetFramework>
@@ -6,10 +6,21 @@
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        
+        <!-- Native AOT Configuration -->
+        <PublishAot>true</PublishAot>
+        <InvariantGlobalization>false</InvariantGlobalization>
+        <StripSymbols>true</StripSymbols>
     </PropertyGroup>
 
     <ItemGroup>
-        <AvaloniaResource Include="Assets\**"/>
+        <AvaloniaResource Include="Assets\**" Exclude="Assets\alarm.mp3"/>
+        <Resource Include="Assets\alarm.mp3" CopyToOutputDirectory="PreserveNewest" />
+    </ItemGroup>
+
+    <!-- Trimmer Configuration for Native AOT -->
+    <ItemGroup>
+        <TrimmerRootDescriptor Include="TrimmerRoots.xml" />
     </ItemGroup>
 
     <ItemGroup>

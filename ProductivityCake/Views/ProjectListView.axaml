@@ -1,0 +1,360 @@
+<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="ProductivityCake.Views.ProjectListView"
+    x:DataType="vm:ProjectListViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:ProductivityCake.Models"
+    xmlns:vm="using:ProductivityCake.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Design.DataContext>
+        <vm:ProjectListViewModel />
+    </Design.DataContext>
+
+    <Grid Background="#0F172A">
+        <!--  Main Content  -->
+        <Grid RowDefinitions="Auto, *">
+            <!--  Header  -->
+            <Border
+                Background="#1E293B"
+                BorderBrush="#8B5CF640"
+                BorderThickness="0,0,0,2"
+                Grid.Row="0"
+                Padding="20,20,20,15">
+                <Grid ColumnDefinitions="*,Auto">
+                    <TextBlock
+                        FontSize="24"
+                        FontWeight="Bold"
+                        Grid.Column="0"
+                        Text="Projects"
+                        VerticalAlignment="Center" />
+
+                    <!--  Archive Toggle Button  -->
+                    <StackPanel
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        Spacing="10">
+                        <Button
+                            Classes="secondary"
+                            Command="{Binding ToggleShowArchivedCommand}"
+                            IsVisible="{Binding !ShowArchived}"
+                            Padding="12,8">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <TextBlock FontSize="14" Text="Show Archived" />
+                            </StackPanel>
+                        </Button>
+                        <Button
+                            Classes="secondary"
+                            Command="{Binding ToggleShowArchivedCommand}"
+                            IsVisible="{Binding ShowArchived}"
+                            Padding="12,8">
+                            <StackPanel Orientation="Horizontal" Spacing="6">
+                                <TextBlock FontSize="14" Text="Show Active" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Border>
+
+            <!--  Projects List  -->
+            <ScrollViewer Background="#0F172A" Grid.Row="1">
+                <Grid Margin="20,20,20,100">
+                    <!--  Empty State  -->
+                    <Border
+                        HorizontalAlignment="Center"
+                        IsVisible="{Binding !HasProjects}"
+                        Padding="40"
+                        VerticalAlignment="Center">
+                        <StackPanel HorizontalAlignment="Center" Spacing="20">
+                            <TextBlock
+                                FontSize="24"
+                                FontWeight="SemiBold"
+                                Foreground="#D1D5DB"
+                                HorizontalAlignment="Center"
+                                Text="No Projects Yet" />
+                            <TextBlock
+                                FontSize="14"
+                                Foreground="#9CA3AF"
+                                HorizontalAlignment="Center"
+                                MaxWidth="300"
+                                Text="Create your first project to get started!"
+                                TextAlignment="Center"
+                                TextWrapping="Wrap" />
+                            <Button
+                                Classes="primary"
+                                Command="{Binding OpenAddProjectDialogCommand}"
+                                Content="Create Project"
+                                HorizontalAlignment="Center"
+                                Margin="0,10,0,0"
+                                Padding="20,10" />
+                        </StackPanel>
+                    </Border>
+
+                    <!--  Projects List  -->
+                    <ItemsControl IsVisible="{Binding HasProjects}" ItemsSource="{Binding DisplayedProjects}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate DataType="models:Project">
+                                <Button
+                                    Background="#1F2937"
+                                    BorderBrush="#374151"
+                                    BorderThickness="1"
+                                    Classes="project-card"
+                                    Command="{Binding $parent[ItemsControl].((vm:ProjectListViewModel)DataContext).OpenProjectDetailsCommand}"
+                                    CommandParameter="{Binding}"
+                                    CornerRadius="8"
+                                    HorizontalAlignment="Stretch"
+                                    HorizontalContentAlignment="Stretch"
+                                    Margin="0,0,0,10"
+                                    Padding="15">
+                                    <Grid ColumnDefinitions="*, Auto">
+                                        <StackPanel Grid.Column="0" Spacing="8">
+                                            <TextBlock
+                                                FontSize="16"
+                                                FontWeight="SemiBold"
+                                                Text="{Binding Name}" />
+
+                                            <TextBlock
+                                                FontSize="12"
+                                                Foreground="#9CA3AF"
+                                                IsVisible="{Binding Description, Converter={x:Static StringConverters.IsNotNullOrEmpty}}"
+                                                Text="{Binding Description}"
+                                                TextWrapping="Wrap" />
+
+                                            <!--  Task Counts  -->
+                                            <StackPanel Orientation="Horizontal" Spacing="12">
+                                                <Border
+                                                    Background="#1E40AF"
+                                                    CornerRadius="3"
+                                                    Padding="6,3">
+                                                    <TextBlock
+                                                        FontSize="10"
+                                                        FontWeight="SemiBold"
+                                                        Foreground="White"
+                                                        Text="{Binding TodoTasksCount, StringFormat='To Do: {0}'}" />
+                                                </Border>
+                                                <Border
+                                                    Background="#CA8A04"
+                                                    CornerRadius="3"
+                                                    Padding="6,3">
+                                                    <TextBlock
+                                                        FontSize="10"
+                                                        FontWeight="SemiBold"
+                                                        Foreground="White"
+                                                        Text="{Binding DoingTasksCount, StringFormat='Doing: {0}'}" />
+                                                </Border>
+                                                <Border
+                                                    Background="#16A34A"
+                                                    CornerRadius="3"
+                                                    Padding="6,3">
+                                                    <TextBlock
+                                                        FontSize="10"
+                                                        FontWeight="SemiBold"
+                                                        Foreground="White"
+                                                        Text="{Binding DoneTasksCount, StringFormat='Done: {0}'}" />
+                                                </Border>
+                                            </StackPanel>
+
+                                            <!--  Project Stats  -->
+                                            <StackPanel Orientation="Horizontal" Spacing="15">
+                                                <!--  Completion Percentage  -->
+                                                <StackPanel Orientation="Horizontal" Spacing="5">
+                                                    <TextBlock
+                                                        FontSize="11"
+                                                        Foreground="#9CA3AF"
+                                                        Text="📊" />
+                                                    <TextBlock
+                                                        FontSize="11"
+                                                        FontWeight="SemiBold"
+                                                        Foreground="#10B981"
+                                                        Text="{Binding CompletionPercentage, StringFormat={}{0}% Complete}" />
+                                                </StackPanel>
+
+                                                <!--  Last Updated  -->
+                                                <TextBlock
+                                                    FontSize="11"
+                                                    Foreground="#6B7280"
+                                                    IsVisible="{Binding LastUpdated, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                                    Text="{Binding LastUpdated, StringFormat='Updated: {0:MMM dd, yyyy}'}" />
+                                            </StackPanel>
+
+                                            <TextBlock
+                                                FontSize="11"
+                                                Foreground="#6B7280"
+                                                Text="{Binding CreatedAt, StringFormat='Created: {0:MMM dd, yyyy}'}" />
+                                        </StackPanel>
+
+                                        <StackPanel
+                                            Grid.Column="1"
+                                            Orientation="Horizontal"
+                                            Spacing="5"
+                                            VerticalAlignment="Center">
+                                            <!--  Archive Button (Active Projects Only)  -->
+                                            <Button
+                                                Classes="secondary"
+                                                Command="{Binding $parent[ItemsControl].((vm:ProjectListViewModel)DataContext).ArchiveProjectCommand}"
+                                                CommandParameter="{Binding}"
+                                                IsVisible="{Binding !IsArchived}"
+                                                Padding="10,5"
+                                                ToolTip.Tip="Archive this project">
+                                                <StackPanel Orientation="Horizontal" Spacing="4">
+                                                    <TextBlock FontSize="12" Text="Archive" />
+                                                </StackPanel>
+                                            </Button>
+
+                                            <!--  Unarchive Button (Archived Projects Only)  -->
+                                            <Button
+                                                Classes="secondary"
+                                                Command="{Binding $parent[ItemsControl].((vm:ProjectListViewModel)DataContext).UnarchiveProjectCommand}"
+                                                CommandParameter="{Binding}"
+                                                IsVisible="{Binding IsArchived}"
+                                                Padding="10,5"
+                                                ToolTip.Tip="Restore this project">
+                                                <StackPanel Orientation="Horizontal" Spacing="4">
+                                                    <TextBlock FontSize="12" Text="Unarchive" />
+                                                </StackPanel>
+                                            </Button>
+
+                                            <!--  Delete Button (Archived Projects Only)  -->
+                                            <Button
+                                                Classes="danger"
+                                                Command="{Binding $parent[ItemsControl].((vm:ProjectListViewModel)DataContext).ShowDeleteConfirmationCommand}"
+                                                CommandParameter="{Binding}"
+                                                IsVisible="{Binding IsArchived}"
+                                                Padding="10,5"
+                                                ToolTip.Tip="Permanently delete this project">
+                                                <StackPanel Orientation="Horizontal" Spacing="4">
+                                                    <TextBlock FontSize="12" Text="🗑️" />
+                                                </StackPanel>
+                                            </Button>
+                                        </StackPanel>
+                                    </Grid>
+                                </Button>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+
+        <!--  Floating Add Button  -->
+        <Button
+            Classes="fab"
+            Command="{Binding OpenAddProjectDialogCommand}"
+            HorizontalAlignment="Right"
+            HorizontalContentAlignment="Center"
+            Margin="20"
+            VerticalAlignment="Bottom"
+            VerticalContentAlignment="Center">
+            <TextBlock
+                FontSize="32"
+                FontWeight="Light"
+                Text="+" />
+        </Button>
+
+        <!--  Add Project Dialog  -->
+        <Border
+            Background="#80000000"
+            IsVisible="{Binding IsAddProjectDialogOpen}"
+            ZIndex="100">
+            <Border
+                Background="#1F2937"
+                BorderBrush="#374151"
+                BorderThickness="1"
+                CornerRadius="12"
+                HorizontalAlignment="Center"
+                MaxWidth="400"
+                Padding="20"
+                VerticalAlignment="Center">
+                <StackPanel Spacing="15">
+                    <TextBlock
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        Text="Add New Project" />
+
+                    <TextBox Text="{Binding NewProjectName}" Watermark="Project name" />
+
+                    <TextBox
+                        AcceptsReturn="True"
+                        Height="80"
+                        Text="{Binding NewProjectDescription}"
+                        TextWrapping="Wrap"
+                        Watermark="Description (optional)" />
+
+                    <StackPanel
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="10">
+                        <Button
+                            Classes="secondary"
+                            Command="{Binding CancelAddProjectCommand}"
+                            Content="Cancel"
+                            Padding="20,8" />
+                        <Button
+                            Classes="primary"
+                            Command="{Binding AddProjectCommand}"
+                            Content="Add"
+                            Padding="20,8" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Border>
+
+        <!--  Delete Confirmation Dialog  -->
+        <Border
+            Background="#80000000"
+            IsVisible="{Binding IsDeleteConfirmationOpen}"
+            ZIndex="100">
+            <Border
+                Background="#1F2937"
+                BorderBrush="#374151"
+                BorderThickness="1"
+                CornerRadius="12"
+                HorizontalAlignment="Center"
+                MaxWidth="400"
+                Padding="20"
+                VerticalAlignment="Center">
+                <StackPanel Spacing="15">
+                    <TextBlock
+                        FontSize="20"
+                        FontWeight="SemiBold"
+                        Text="Delete Project?" />
+
+                    <TextBlock
+                        FontSize="14"
+                        Foreground="#9CA3AF"
+                        TextWrapping="Wrap">
+                        Are you sure you want to delete this project? This action cannot be undone.
+                    </TextBlock>
+
+                    <TextBlock
+                        FontSize="14"
+                        FontWeight="SemiBold"
+                        Foreground="#EF4444"
+                        Text="{Binding ProjectToDelete.Name, StringFormat='Project: {0}'}"
+                        TextWrapping="Wrap" />
+
+                    <StackPanel
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal"
+                        Spacing="10">
+                        <Button
+                            Classes="secondary"
+                            Command="{Binding CancelDeleteCommand}"
+                            Content="Cancel"
+                            Padding="20,8" />
+                        <Button
+                            Classes="danger"
+                            Command="{Binding ConfirmDeleteCommand}"
+                            Content="Delete"
+                            Padding="20,8" />
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Border>
+    </Grid>
+
+</UserControl>

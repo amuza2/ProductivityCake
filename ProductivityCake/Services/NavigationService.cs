@@ -25,6 +25,17 @@ public class NavigationService : INavigationService
         return Task.CompletedTask;
     }
 
+    public Task NavigateToAsync<T>(Action<ViewModelBase> onNavigated) where T : ViewModelBase
+    {
+        if(_mainWindowViewModel == null)
+            return Task.CompletedTask;
+        
+        var vm = _serviceProvider.GetRequiredService<T>();
+        onNavigated?.Invoke(vm);
+        _mainWindowViewModel.CurrentViewModel = vm;
+        return Task.CompletedTask;
+    }
+
     public void SetMainWindowViewModel(MainWindowViewModel mainWindowViewModel)
     {
         _mainWindowViewModel = mainWindowViewModel;

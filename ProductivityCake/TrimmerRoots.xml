@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<linker>
+    <!-- Preserve all ViewModels -->
+    <assembly fullname="ProductivityCake">
+        <type fullname="ProductivityCake.ViewModels*" preserve="all"/>
+        <type fullname="ProductivityCake.Models*" preserve="all"/>
+        <type fullname="ProductivityCake.Services*" preserve="all"/>
+        <type fullname="ProductivityCake.Converters*" preserve="all"/>
+    </assembly>
+</linker>
