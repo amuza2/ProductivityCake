@@ -10,7 +10,7 @@ A modern, lightweight desktop application for managing projects, tasks, and time
 
 [![.NET](https://img.shields.io/badge/.NET-9.0-512BD4?logo=dotnet)](https://dotnet.microsoft.com/)
 [![Avalonia UI](https://img.shields.io/badge/Avalonia-11.0-8B5CF6)](https://avaloniaui.net/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![License](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20Windows%20%7C%20macOS-lightgrey)](https://github.com/amuza2/ProductivityCake)
 
 [Features](#-features) • [Installation](#-installation) • [Usage](#-usage) • [Screenshots](#-screenshots) • [Building](#-building-from-source)
@@ -59,34 +59,35 @@ A modern, lightweight desktop application for managing projects, tasks, and time
 
 ## 📥 Installation
 
+### Download Pre-built Binaries
+
+**All platforms are available in the [Releases](https://github.com/amuza2/ProductivityCake/releases) section.**
+
 ### Linux
 
-**Download & Run:**
-```bash
-# Download the latest release
-wget https://github.com/amuza2/ProductivityCake/releases/latest/download/ProductivityCake-linux-x64.tar.gz
-
-# Extract
-tar -xzf ProductivityCake-linux-x64.tar.gz
-
-# Run
-./ProductivityCake
-```
-
-**Quick Install:**
-```bash
-# Install to ~/.local/share
-./install.sh
-
-# Run from anywhere
-productivitycake
-```
+1. Download `ProductivityCake-linux-x64.tar.gz` from [Releases](https://github.com/amuza2/ProductivityCake/releases)
+2. Extract the archive:
+   ```bash
+   tar -xzf ProductivityCake-linux-x64.tar.gz
+   ```
+3. Run the application:
+   ```bash
+   ./ProductivityCake
+   ```
 
 ### Windows
-Download `ProductivityCake-win-x64.zip` from [Releases](https://github.com/amuza2/ProductivityCake/releases) and extract.
+
+1. Download `ProductivityCake-win-x64.zip` from [Releases](https://github.com/amuza2/ProductivityCake/releases)
+2. Extract the ZIP file
+3. Run `ProductivityCake.exe`
 
 ### macOS
-Download `ProductivityCake-osx-x64.tar.gz` or `ProductivityCake-osx-arm64.tar.gz` from [Releases](https://github.com/amuza2/ProductivityCake/releases).
+
+1. Download the appropriate version from [Releases](https://github.com/amuza2/ProductivityCake/releases):
+   - **Intel Macs**: `ProductivityCake-osx-x64.tar.gz`
+   - **Apple Silicon (M1/M2/M3)**: `ProductivityCake-osx-arm64.tar.gz`
+2. Extract the archive
+3. Run the application
 
 ---
 
@@ -234,7 +235,9 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
+
+This means you are free to use, modify, and distribute this software, but any modifications must also be released under the GPL-3.0 license.
 
 ---
 
