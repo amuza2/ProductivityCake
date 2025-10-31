@@ -3,7 +3,8 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
-
+.idea/
+*.DotSettings.user
 # Ignore all shell scripts
 *.sh
 
