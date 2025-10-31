@@ -5,9 +5,12 @@ riderModule.iml
 /_ReSharper.Caches/
 .idea/
 *.DotSettings.user
+
 # Ignore all shell scripts
 *.sh
 
-# Ignore all markdown files except README.md
+# Ignore all markdown files except README.md and .github folder
 *.md
 !README.md
+!.github/**/*.md
+!.github/**/*.yml
