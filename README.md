@@ -32,7 +32,7 @@ A modern, lightweight desktop application for managing projects, tasks, and time
 - **Status Tracking** - Track progress with ToDo, Doing, and Done states
 
 ### ⏱️ Pomodoro Timer
-- **25-Minute Work Sessions** - Focused work periods for maximum productivity
+- **25-50 Minute Work Sessions** - Focused work periods for maximum productivity
 - **Smart Breaks** - 5-minute short breaks and 15-minute long breaks
 - **Auto-Advance** - Automatically transitions between work and break sessions
 - **Progress Tracking** - Visual progress bar and completed pomodoro counter
@@ -41,11 +41,11 @@ A modern, lightweight desktop application for managing projects, tasks, and time
 
 ---
 
-## 📥 Installation
+## 📥 Installation (will be avaialble, need to fix some light issues)
 
 ### Download Pre-built Binaries
 
-**All platforms are available in the [Releases](https://github.com/amuza2/ProductivityCake/releases) section.**
+**All platforms will be available in the [Releases](https://github.com/amuza2/ProductivityCake/releases) section.**
 
 ### Linux
 
@@ -77,7 +77,16 @@ A modern, lightweight desktop application for managing projects, tasks, and time
 
 ## 📸 Screenshots
 
-> *Coming soon - Add screenshots of your application here*
+<img width="400" height="600" alt="image" src="https://github.com/user-attachments/assets/0cfa5b0d-12ea-46c3-8739-bd1e7f3e00a6" />
+
+<img width="400" height="600" alt="image" src="https://github.com/user-attachments/assets/86382cb2-2606-49e2-8bda-3c710c6e8eae" />
+
+<img width="400" height="600" alt="image" src="https://github.com/user-attachments/assets/1f885c5e-c250-4605-9d1f-9a17c52f8483" />
+
+<img width="400" height="600" alt="image" src="https://github.com/user-attachments/assets/b617336b-2c4f-431d-a1fe-c0832b7265a7" />
+
+<img width="400" height="600" alt="image" src="https://github.com/user-attachments/assets/77e818b2-8f06-47c1-8e8b-9ebabc66e308" />
+
 
 ---
 
@@ -102,27 +111,6 @@ dotnet build
 dotnet run --project ProductivityCake/ProductivityCake.csproj
 ```
 
-### Publish for Production
-
-**Linux:**
-```bash
-./publish-linux.sh
-# Output: ProductivityCake/bin/Release/net9.0/linux-x64/publish/
-```
-
-**Windows:**
-```bash
-./publish-windows.sh
-# Output: ProductivityCake/bin/Release/net9.0/win-x64/publish/
-```
-
-**macOS:**
-```bash
-./publish-macos.sh
-# Output: ProductivityCake/bin/Release/net9.0/osx-x64/publish/
-```
-
----
 
 ## 🏗️ Technology Stack
 
@@ -131,7 +119,6 @@ dotnet run --project ProductivityCake/ProductivityCake.csproj
 - **Architecture**: MVVM (Model-View-ViewModel)
 - **UI Toolkit**: [CommunityToolkit.Mvvm](https://github.com/CommunityToolkit/dotnet)
 - **Data Storage**: JSON file-based storage with source generation
-- **Deployment**: Native AOT compilation for optimal performance
 
 ---
 
