@@ -58,21 +58,6 @@ public partial class TimerView : UserControl
                 viewModel.SwitchToWorkCommand.Execute(null);
                 break;
             
-            case Key.D2:
-            case Key.NumPad2:
-                viewModel.SwitchToLongWorkCommand.Execute(null);
-                break;
-            
-            case Key.D3:
-            case Key.NumPad3:
-                viewModel.SwitchToShortBreakCommand.Execute(null);
-                break;
-            
-            case Key.D4:
-            case Key.NumPad4:
-                viewModel.SwitchToLongBreakCommand.Execute(null);
-                break;
-            
             default:
                 handled = false;
                 break;
