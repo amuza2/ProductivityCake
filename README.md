@@ -77,11 +77,11 @@ A modern, lightweight desktop application for managing projects, tasks, and time
 
 ## 📸 Screenshots
 
-<img width="400" height="600" alt="image" src="https://github.com/user-attachments/assets/0cfa5b0d-12ea-46c3-8739-bd1e7f3e00a6" />
+<img width="400" height="600" alt="image" src="https://github.com/user-attachments/assets/25f14f69-6f93-444b-aeb6-ba410d6915d2" />
 
-<img width="400" height="600" alt="image" src="https://github.com/user-attachments/assets/86382cb2-2606-49e2-8bda-3c710c6e8eae" />
+<img width="400" height="600" alt="image" src="https://github.com/user-attachments/assets/d12b8efe-7086-45d4-86b6-efba3cd52a33" />
 
-<img width="400" height="600" alt="image" src="https://github.com/user-attachments/assets/1f885c5e-c250-4605-9d1f-9a17c52f8483" />
+<img width="400" height="600" alt="image" src="https://github.com/user-attachments/assets/6e668f05-703a-4dc7-b6a8-d1f6471d9878" />
 
 <img width="400" height="600" alt="image" src="https://github.com/user-attachments/assets/b617336b-2c4f-431d-a1fe-c0832b7265a7" />
 
