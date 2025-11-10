@@ -35,9 +35,27 @@ A modern, lightweight desktop application for managing projects, tasks, and time
 - **25-50 Minute Work Sessions** - Focused work periods for maximum productivity
 - **Smart Breaks** - 5-minute short breaks and 15-minute long breaks
 - **Auto-Advance** - Automatically transitions between work and break sessions
-- **Progress Tracking** - Visual progress bar and completed pomodoro counter
-- **Flexible Controls** - Start, pause, reset, and switch modes manually
+- **Progress Tracking** - Visual circular progress bar and completed pomodoro counter
+- **Flexible Controls** - Start, pause, reset, skip, and switch modes manually
+- **Time Adjustment** - Add or subtract 5 minutes during active sessions
 - **Audio Notifications** - Sound alerts when timer completes
+- **Customizable Settings** - Adjust work and break durations (1-90 minutes)
+
+### 📊 Statistics & Analytics
+- **Daily Statistics** - Track today's work time, break time, and completed sessions
+- **Weekly & Monthly Stats** - View aggregated time worked over different periods
+- **GitHub-Style Heatmap** - Visualize your entire year of productivity at a glance
+  - Color-coded intensity based on daily session counts
+  - Day labels (Mon, Wed, Fri) on Y-axis
+  - Month labels on X-axis
+  - Hover tooltips showing date and session count
+- **Real-time Updates** - Statistics update automatically as you complete sessions
+
+### ⚙️ Settings & Customization
+- **Timer Configuration** - Customize work, short break, and long break durations
+- **Notification Controls** - Toggle desktop notifications on/off
+- **Always on Top** - Keep the window above all other applications
+- **Test Notifications** - 5-second test timer to verify sound and notifications
 
 ---
 
