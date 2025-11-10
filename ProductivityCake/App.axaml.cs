@@ -39,7 +39,10 @@ public partial class App : Application
             collection.AddCommonServices();
             
             _services = collection.BuildServiceProvider();
-            var dataDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data");
+            
+            // Use user's home directory for data storage (works with AppImage)
+            var homeDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+            var dataDirectory = Path.Combine(homeDir, ".local", "share", "ProductivityCake", "Data");
             Directory.CreateDirectory(dataDirectory);
             
             var vm = _services.GetRequiredService<MainWindowViewModel>();

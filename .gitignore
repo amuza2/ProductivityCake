@@ -8,6 +8,15 @@ riderModule.iml
 
 # Build and publish output
 publish/
+*.AppImage
+appimagetool
+appimagetool-*.AppImage
+ProductivityCake.AppDir/usr/
+squashfs-root/
+
+# Debug symbols
+*.dbg
+*.pdb
 
 
 # Ignore all markdown files except README.md and .github folder

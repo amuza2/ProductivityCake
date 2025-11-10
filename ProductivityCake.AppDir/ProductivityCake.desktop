@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=ProductivityCake
+Exec=ProductivityCake
+Icon=productivitycake
+Type=Application
+Categories=Utility;Office;ProjectManagement;
+Comment=A simple and elegant Pomodoro timer with project management
+Terminal=false
+StartupWMClass=ProductivityCake
