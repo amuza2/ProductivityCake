@@ -476,22 +476,36 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
     {
         try
         {
-            // Try to find the sound file in the source directory (for development)
-            var soundPath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "alarm.mp3");
-            
-            if (!System.IO.File.Exists(soundPath))
+            // Try multiple possible locations for the sound file
+            var possiblePaths = new[]
             {
-                // Try looking in the source directory
-                var sourceDir = System.IO.Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory)?.Parent?.Parent?.Parent?.FullName;
-                if (sourceDir != null)
+                // Published version (alarm.mp3 in same directory as executable)
+                System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "alarm.mp3"),
+                // Development version (in Assets folder)
+                System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "alarm.mp3"),
+                // Source directory (for development)
+                System.IO.Path.Combine(
+                    System.IO.Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory)?.Parent?.Parent?.Parent?.FullName ?? "",
+                    "Assets", "alarm.mp3")
+            };
+            
+            string? soundPath = null;
+            foreach (var path in possiblePaths)
+            {
+                if (System.IO.File.Exists(path))
                 {
-                    soundPath = System.IO.Path.Combine(sourceDir, "Assets", "alarm.mp3");
+                    soundPath = path;
+                    break;
                 }
             }
             
-            if (!System.IO.File.Exists(soundPath))
+            if (soundPath == null)
             {
-                Console.WriteLine($"Sound file not found at: {soundPath}");
+                Console.WriteLine($"Sound file not found. Tried paths:");
+                foreach (var path in possiblePaths)
+                {
+                    Console.WriteLine($"  - {path}");
+                }
                 return null;
             }
             

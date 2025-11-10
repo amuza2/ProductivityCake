@@ -113,7 +113,12 @@ A modern, lightweight desktop application for managing projects, tasks, and time
 ### Prerequisites
 
 - [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
-- Linux: `clang` and `zlib1g-dev` (for AOT compilation)
+- **Linux**: 
+  - `clang` and `zlib1g-dev` (for AOT compilation)
+  - `libnotify-bin` (for desktop notifications)
+  ```bash
+  sudo apt install clang zlib1g-dev libnotify-bin
+  ```
 
 ### Clone & Build
 
@@ -127,6 +132,29 @@ dotnet build
 
 # Run
 dotnet run --project ProductivityCake/ProductivityCake.csproj
+```
+
+### Publish for Linux (Native AOT)
+
+**Option 1: Using the publish script (recommended)**
+```bash
+chmod +x publish-linux.sh
+./publish-linux.sh
+```
+
+**Option 2: Manual publish**
+```bash
+# Publish optimized native binary for Linux x64
+dotnet publish ProductivityCake/ProductivityCake.csproj \
+  -c Release \
+  -r linux-x64 \
+  --self-contained \
+  -o ./publish/linux-x64
+
+# The executable will be at: ./publish/linux-x64/ProductivityCake
+# Create a distributable archive
+cd publish/linux-x64
+tar -czf ProductivityCake-linux-x64.tar.gz ProductivityCake alarm.mp3
 ```
 
 

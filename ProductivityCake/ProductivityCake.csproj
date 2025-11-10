@@ -24,7 +24,10 @@
 
     <ItemGroup>
         <AvaloniaResource Include="Assets\**" Exclude="Assets\alarm.mp3;Assets\Icons.axaml"/>
-        <Resource Include="Assets\alarm.mp3" CopyToOutputDirectory="PreserveNewest" />
+        <Content Include="Assets\alarm.mp3">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+        </Content>
     </ItemGroup>
 
     <!-- Trimmer Configuration for Native AOT -->
@@ -44,6 +47,5 @@
         </PackageReference>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.8" />
-        <PackageReference Include="ScottPlot.Avalonia" Version="5.0.47" />
     </ItemGroup>
 </Project>

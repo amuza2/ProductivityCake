@@ -6,8 +6,9 @@ riderModule.iml
 .idea/
 *.DotSettings.user
 
-# Ignore all shell scripts
-*.sh
+# Build and publish output
+publish/
+
 
 # Ignore all markdown files except README.md and .github folder
 *.md
