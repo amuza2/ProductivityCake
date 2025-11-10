@@ -59,7 +59,7 @@ A modern, lightweight desktop application for managing projects, tasks, and time
 
 ---
 
-## 📥 Installation (will be avaialble, need to fix some light issues)
+## 📥 Installation
 
 ### Download Pre-built Binaries
 
@@ -90,14 +90,6 @@ A modern, lightweight desktop application for managing projects, tasks, and time
 1. Download `ProductivityCake-win-x64.zip` from [Releases](https://github.com/amuza2/ProductivityCake/releases)
 2. Extract the ZIP file
 3. Run `ProductivityCake.exe`
-
-### macOS
-
-1. Download the appropriate version from [Releases](https://github.com/amuza2/ProductivityCake/releases):
-   - **Intel Macs**: `ProductivityCake-osx-x64.tar.gz`
-   - **Apple Silicon (M1/M2/M3)**: `ProductivityCake-osx-arm64.tar.gz`
-2. Extract the archive
-3. Run the application
 
 ---
 
