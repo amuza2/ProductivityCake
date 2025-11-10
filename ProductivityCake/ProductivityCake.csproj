@@ -23,8 +23,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <AvaloniaResource Include="Assets\**" Exclude="Assets\alarm.mp3;Assets\Icons.axaml"/>
-        <Content Include="Assets\alarm.mp3">
+        <AvaloniaResource Include="Assets/**" Exclude="Assets/alarm.mp3;Assets/Icons.axaml"/>
+        <Content Include="Assets/alarm.mp3">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
             <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
         </Content>

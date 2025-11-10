@@ -67,13 +67,21 @@ A modern, lightweight desktop application for managing projects, tasks, and time
 
 ### Linux
 
+**Option 1: AppImage (Recommended - Works on all distros)**
+
+1. Download `ProductivityCake-x.x.x-x86_64.AppImage` from [Releases](https://github.com/amuza2/ProductivityCake/releases)
+2. Make it executable and run:
+   ```bash
+   chmod +x ProductivityCake-*.AppImage
+   ./ProductivityCake-*.AppImage
+   ```
+
+**Option 2: Standalone Binary**
+
 1. Download `ProductivityCake-linux-x64.tar.gz` from [Releases](https://github.com/amuza2/ProductivityCake/releases)
-2. Extract the archive:
+2. Extract and run:
    ```bash
    tar -xzf ProductivityCake-linux-x64.tar.gz
-   ```
-3. Run the application:
-   ```bash
    ./ProductivityCake
    ```
 
@@ -156,6 +164,30 @@ dotnet publish ProductivityCake/ProductivityCake.csproj \
 cd publish/linux-x64
 tar -czf ProductivityCake-linux-x64.tar.gz ProductivityCake alarm.mp3
 ```
+
+### Build AppImage (Universal Linux Package)
+
+**Prerequisites for AppImage:**
+```bash
+# On Arch/EndeavourOS
+sudo pacman -S fuse2
+
+# On Ubuntu/Debian
+sudo apt install fuse libfuse2
+```
+
+**Build the AppImage:**
+```bash
+chmod +x build-appimage.sh
+./build-appimage.sh
+```
+
+This creates a universal `ProductivityCake-1.1.0-x86_64.AppImage` that works on:
+- ✅ Arch Linux / EndeavourOS / Manjaro
+- ✅ Ubuntu / Debian / Linux Mint
+- ✅ Fedora / RHEL / CentOS
+- ✅ openSUSE
+- ✅ Any Linux distro with FUSE support
 
 
 ## 🏗️ Technology Stack

@@ -18,7 +18,9 @@ public class JsonDataService : IJsonDataService
 
     public JsonDataService(string fileName)
     {
-        var dataDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Data");
+        // Use user's home directory for data storage (works with AppImage)
+        var homeDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        var dataDirectory = Path.Combine(homeDir, ".local", "share", "ProductivityCake", "Data");
         Directory.CreateDirectory(dataDirectory);
         
         _filePath = Path.Combine(dataDirectory, fileName);
