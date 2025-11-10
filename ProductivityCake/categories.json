@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Work",
+    "color": "#2196F3"
+  },
+  {
+    "id": 2,
+    "name": "Personal",
+    "color": "#4CAF50"
+  },
+  {
+    "id": 3,
+    "name": "Urgent",
+    "color": "#F44336"
+  }
+]
