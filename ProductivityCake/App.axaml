@@ -8,6 +8,11 @@
     <!--  "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options.  -->
 
     <Application.Resources>
+        <!-- Font Families -->
+        <!-- Kufi Regular for Arabic with Liberation Sans fallback (includes Bold, Italic, BoldItalic variants) -->
+        <FontFamily x:Key="DefaultFont">avares://ProductivityCake/Assets#Kufi Regular, avares://ProductivityCake/Assets#Liberation Sans</FontFamily>
+        <FontFamily x:Key="ArabicFont">avares://ProductivityCake/Assets#Kufi Regular</FontFamily>
+        <FontFamily x:Key="LatinFont">avares://ProductivityCake/Assets#Liberation Sans</FontFamily>
         <converter:DueDateConverter x:Key="DueDateConverter" />
         <converter:DueDateToColorConverter x:Key="DueDateToColorConverter" />
         <converter:BoolToStartPauseConverter x:Key="BoolToStartPauseConverter" />

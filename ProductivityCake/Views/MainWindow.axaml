@@ -1,5 +1,4 @@
 <Window
-    Background="#0F172A"
     ExtendClientAreaChromeHints="NoChrome"
     ExtendClientAreaToDecorationsHint="True"
     Height="600"
@@ -22,12 +21,21 @@
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
+    <!-- Gradient Background -->
+    <Window.Background>
+        <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+            <GradientStop Color="#0F172A" Offset="0" />
+            <GradientStop Color="#1E293B" Offset="0.5" />
+            <GradientStop Color="#0F172A" Offset="1" />
+        </LinearGradientBrush>
+    </Window.Background>
+
     <Grid RowDefinitions="Auto, *, Auto">
         <!--  Custom Title Bar  -->
         <Border
-            Background="#1E293B"
-            BorderBrush="#8B5CF640"
-            BorderThickness="0,0,0,2"
+            Background="#15FFFFFF"
+            BorderBrush="#30FFFFFF"
+            BorderThickness="0,0,0,1"
             Grid.Row="0"
             IsHitTestVisible="True">
             <Grid ColumnDefinitions="Auto, *, Auto" Height="40">
@@ -46,7 +54,7 @@
                         Text="ProductivityCake"
                         FontSize="14"
                         FontWeight="SemiBold"
-                        Foreground="#A78BFA"
+                        Foreground="White"
                         VerticalAlignment="Center" />
                 </StackPanel>
                 
@@ -72,7 +80,7 @@
                         <TextBlock
                             Text="─"
                             FontSize="16"
-                            Foreground="#A78BFA"
+                            Foreground="White"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center" />
                     </Button>
@@ -101,9 +109,9 @@
 
         <!--  footer navigation  -->
         <Border
-            Background="#1E293B"
-            BorderBrush="#8B5CF640"
-            BorderThickness="0,2,0,0"
+            Background="#15FFFFFF"
+            BorderBrush="#30FFFFFF"
+            BorderThickness="0,1,0,0"
             Grid.Row="2">
             <Grid ColumnDefinitions="*,*" Height="60">
                 <Button
@@ -118,12 +126,12 @@
                         VerticalAlignment="Center">
                         <PathIcon
                             Data="{StaticResource folder_regular}"
-                            Foreground="#A78BFA"
+                            Foreground="White"
                             Height="24"
                             Width="24" />
                         <TextBlock
                             FontSize="10"
-                            Foreground="#A78BFA"
+                            Foreground="White"
                             HorizontalAlignment="Center"
                             Text="Projects" />
                     </StackPanel>
@@ -142,12 +150,12 @@
                         VerticalAlignment="Center">
                         <PathIcon
                             Data="{StaticResource clock_regular}"
-                            Foreground="#A78BFA"
+                            Foreground="White"
                             Height="24"
                             Width="24" />
                         <TextBlock
                             FontSize="10"
-                            Foreground="#A78BFA"
+                            Foreground="White"
                             HorizontalAlignment="Center"
                             Text="Timer" />
                     </StackPanel>

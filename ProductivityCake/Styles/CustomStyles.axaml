@@ -1,9 +1,43 @@
-<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Styles
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!--  Add Controls for Previewer Here  -->
+        </Border>
+    </Design.PreviewWith>
 
+    <!--  Add Styles Here  -->
+    
+    <!-- Global Font Family -->
+    <Style Selector="Window">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+    </Style>
+    
+    <Style Selector="UserControl">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+    </Style>
+    
+    <Style Selector="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+    </Style>
+    
+    <Style Selector="TextBox">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+    </Style>
+    
+    <Style Selector="Button">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+    </Style>
+    
+    <Style Selector="ComboBox">
+        <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+    </Style>
+    
     <!--  Button Hover Effects  -->
-    <!-- <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter"> -->
-    <!--     <Setter Property="Background" Value="#7C3AED" /> -->
-    <!-- </Style> -->
+    <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#7C3AED" />
+    </Style>
     <!--    -->
     <!-- <Style Selector="Button:pressed /template/ ContentPresenter#PART_ContentPresenter"> -->
     <!--     <Setter Property="Background" Value="#6D28D9" /> -->
@@ -168,6 +202,263 @@
     
     <Style Selector="Button#CloseButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
         <Setter Property="Background" Value="#EF4444" />
+    </Style>
+
+    <!-- ========== GLASSMORPHISM STYLES ========== -->
+    
+    <!-- Mode Selection Button Style -->
+    <Style Selector="Button.mode-button">
+        <Setter Property="Background" Value="#15FFFFFF" />
+        <Setter Property="BorderBrush" Value="#30FFFFFF" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="#B0FFFFFF" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.2" />
+                <BrushTransition Property="Foreground" Duration="0:0:0.2" />
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.2" />
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Button.mode-button:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#25FFFFFF" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="BorderBrush" Value="#50FFFFFF" />
+    </Style>
+    
+    <Style Selector="Button.mode-button:pressed /template/ ContentPresenter">
+        <Setter Property="Background" Value="#35FFFFFF" />
+    </Style>
+    
+    <!-- Glass Card Style -->
+    <Style Selector="Border.glass-card">
+        <Setter Property="Background" Value="#15FFFFFF" />
+        <Setter Property="BorderBrush" Value="#30FFFFFF" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="BoxShadow" Value="0 8 32 0 #20000000" />
+    </Style>
+    
+    <!-- Glass Button Style -->
+    <Style Selector="Button.glass-button">
+        <Setter Property="Background" Value="#15FFFFFF" />
+        <Setter Property="BorderBrush" Value="#30FFFFFF" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="CornerRadius" Value="50" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.2" />
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Button.glass-button:pointerover /template/ ContentPresenter">
+        <Setter Property="Background" Value="#25FFFFFF" />
+    </Style>
+    
+    <Style Selector="Button.glass-button:pressed /template/ ContentPresenter">
+        <Setter Property="Background" Value="#35FFFFFF" />
+        <Setter Property="RenderTransform" Value="scale(0.95)" />
+    </Style>
+    
+    <!-- Primary Glass Button (Play/Pause) -->
+    <Style Selector="Button.glass-button-primary">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+                    <GradientStop Color="#10B981" Offset="0" />
+                    <GradientStop Color="#059669" Offset="1" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderBrush">
+            <Setter.Value>
+                <SolidColorBrush Color="#50FFFFFF" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="CornerRadius" Value="50" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Button.glass-button-primary:pointerover">
+        <Setter Property="RenderTransform" Value="scale(1.05)" />
+    </Style>
+    
+    <Style Selector="Button.glass-button-primary:pressed">
+        <Setter Property="RenderTransform" Value="scale(0.98)" />
+    </Style>
+    
+    <!-- Glass Tab Style -->
+    <Style Selector="TabItem.glass-tab">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Padding" Value="24,10" />
+        <Setter Property="Foreground" Value="#B0FFFFFF" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="CornerRadius" Value="12,12,0,0" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.3" />
+                <BrushTransition Property="Foreground" Duration="0:0:0.3" />
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="TabItem.glass-tab:selected">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="#15FFFFFF" />
+    </Style>
+    
+    <Style Selector="TabItem.glass-tab:pointerover">
+        <Setter Property="Foreground" Value="#E0FFFFFF" />
+        <Setter Property="Background" Value="#10FFFFFF" />
+    </Style>
+    
+    <!-- Glass Slider Style -->
+    <Style Selector="Slider.glass-slider">
+        <Setter Property="Foreground" Value="#10B981" />
+    </Style>
+    
+    <Style Selector="Slider.glass-slider /template/ RepeatButton#PART_DecreaseButton">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
+                    <GradientStop Color="#10B981" Offset="0" />
+                    <GradientStop Color="#34D399" Offset="1" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Slider.glass-slider /template/ RepeatButton#PART_IncreaseButton">
+        <Setter Property="Background">
+            <Setter.Value>
+                <SolidColorBrush Color="#20FFFFFF" />
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Slider.glass-slider /template/ Thumb">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="BorderBrush" Value="#10B981" />
+        <Setter Property="BorderThickness" Value="3" />
+        <Setter Property="Width" Value="22" />
+        <Setter Property="Height" Value="22" />
+        <Setter Property="CornerRadius" Value="11" />
+    </Style>
+    
+    <Style Selector="Slider.glass-slider:pointerover /template/ Thumb">
+    </Style>
+    
+    <!-- Blue Slider Variant -->
+    <Style Selector="Slider.glass-slider-blue /template/ RepeatButton#PART_DecreaseButton">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
+                    <GradientStop Color="#3B82F6" Offset="0" />
+                    <GradientStop Color="#60A5FA" Offset="1" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Slider.glass-slider-blue /template/ Thumb">
+        <Setter Property="BorderBrush" Value="#3B82F6" />
+    </Style>
+    
+    <!-- Purple Slider Variant -->
+    <Style Selector="Slider.glass-slider-purple /template/ RepeatButton#PART_DecreaseButton">
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
+                    <GradientStop Color="#A855F7" Offset="0" />
+                    <GradientStop Color="#C084FC" Offset="1" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Slider.glass-slider-purple /template/ Thumb">
+        <Setter Property="BorderBrush" Value="#A855F7" />
+    </Style>
+    
+    <!-- Glass ComboBox Style -->
+    <Style Selector="ComboBox.glass-combo">
+        <Setter Property="Background" Value="#15FFFFFF" />
+        <Setter Property="BorderBrush" Value="#30FFFFFF" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Padding" Value="16,10" />
+    </Style>
+    
+    <!-- Glass CheckBox Style -->
+    <Style Selector="CheckBox.glass-checkbox">
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <Style Selector="CheckBox.glass-checkbox /template/ Border#NormalRectangle">
+        <Setter Property="Background" Value="#15FFFFFF" />
+        <Setter Property="BorderBrush" Value="#30FFFFFF" />
+        <Setter Property="CornerRadius" Value="6" />
+    </Style>
+    
+    <Style Selector="CheckBox.glass-checkbox:checked /template/ Border#NormalRectangle">
+        <Setter Property="Background" Value="#10B981" />
+        <Setter Property="BorderBrush" Value="#10B981" />
+    </Style>
+    
+    <!-- Stat Card Style -->
+    <Style Selector="Border.stat-card">
+        <Setter Property="Background" Value="#15FFFFFF" />
+        <Setter Property="BorderBrush" Value="#30FFFFFF" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="16" />
+        <Setter Property="Padding" Value="20,16" />
+        <Setter Property="BoxShadow" Value="0 4 16 0 #15000000" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
+                <BoxShadowsTransition Property="BoxShadow" Duration="0:0:0.2" />
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Border.stat-card:pointerover">
+        <Setter Property="RenderTransform" Value="translateY(-2px)" />
+        <Setter Property="BoxShadow" Value="0 8 24 0 #20000000" />
+    </Style>
+    
+    <!-- Text Styles -->
+    <Style Selector="TextBlock.title">
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    
+    <Style Selector="TextBlock.subtitle">
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Foreground" Value="#B0FFFFFF" />
+    </Style>
+    
+    <Style Selector="TextBlock.label">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="Foreground" Value="#80FFFFFF" />
     </Style>
 
 </Styles>

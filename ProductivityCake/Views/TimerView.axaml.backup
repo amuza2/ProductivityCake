@@ -1,0 +1,744 @@
+<UserControl
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d"
+    x:Class="ProductivityCake.Views.TimerView"
+    x:DataType="vm:TimerViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:converter="using:ProductivityCake.Converters"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:ProductivityCake.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <UserControl.Resources>
+        <converter:BoolToStartPauseConverter x:Key="IconConverter" PlayText="▶" PauseText="⏸" />
+    </UserControl.Resources>
+
+    <Design.DataContext>
+        <vm:TimerViewModel />
+    </Design.DataContext>
+
+    <!-- Gradient Background -->
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+                <GradientStop Color="#0F172A" Offset="0" />
+                <GradientStop Color="#1E293B" Offset="0.5" />
+                <GradientStop Color="#0F172A" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <TabControl Margin="5,0,5,5" TabStripPlacement="Top">
+            <TabControl.Styles>
+                <Style Selector="TabControl">
+                    <Setter Property="Background" Value="Transparent" />
+                </Style>
+                <Style Selector="TabControl WrapPanel">
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                </Style>
+                <Style Selector="TabItem">
+                    <Setter Property="FontSize" Value="14" />
+                    <Setter Property="FontWeight" Value="SemiBold" />
+                    <Setter Property="Padding" Value="20,6" />
+                </Style>
+            </TabControl.Styles>
+
+            <!--  Timer Tab  -->
+            <TabItem Header="Timer">
+                    <StackPanel Margin="20,10,20,80" Spacing="10">
+                        <!--  Timer Display with Circular Progress  -->
+                       
+                            <StackPanel HorizontalAlignment="Center" Spacing="5">
+                                <!--  Timer State  -->
+                                <TextBlock
+                                    FontSize="20"
+                                    FontWeight="SemiBold"
+                                    HorizontalAlignment="Center"
+                                    Text="{Binding StateDisplayName}">
+                                    <TextBlock.Foreground>
+                                        <SolidColorBrush Color="{Binding CurrentState, Converter={StaticResource TimerStateToColorConverter}}" />
+                                    </TextBlock.Foreground>
+                                </TextBlock>
+
+                                <!--  Circular Progress with Time  -->
+                                <Grid
+                                    Height="240"
+                                    HorizontalAlignment="Center"
+                                    Width="240">
+                                    <!--  Background Circle  -->
+                                    <Arc
+                                        Height="240"
+                                        StartAngle="-90"
+                                        Stroke="#374151"
+                                        StrokeThickness="14"
+                                        SweepAngle="360"
+                                        Width="240" />
+
+                                    <!--  Progress Arc  -->
+                                    <Arc
+                                        Height="240"
+                                        StartAngle="-90"
+                                        StrokeLineCap="Round"
+                                        StrokeThickness="14"
+                                        SweepAngle="{Binding Progress, Converter={StaticResource ProgressToAngleConverter}}"
+                                        Width="240">
+                                        <Arc.Stroke>
+                                            <SolidColorBrush Color="{Binding CurrentState, Converter={StaticResource TimerStateToColorConverter}}" />
+                                        </Arc.Stroke>
+                                    </Arc>
+
+                                    <!--  Time Display in Center  -->
+                                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                        <TextBlock
+                                            FontFamily="Consolas"
+                                            FontSize="72"
+                                            FontWeight="Bold"
+                                            Foreground="White"
+                                            HorizontalAlignment="Center"
+                                            Text="{Binding TimeDisplay}" />
+                                        <TextBlock
+                                            FontSize="14"
+                                            Foreground="#9CA3AF"
+                                            HorizontalAlignment="Center"
+                                            Margin="0,5,0,0"
+                                            Text="remaining" />
+                                    </StackPanel>
+                                </Grid>
+
+                                <!--  Current Session  -->
+                                <TextBlock
+                                    FontSize="16"
+                                    FontWeight="SemiBold"
+                                    Foreground="#9CA3AF"
+                                    HorizontalAlignment="Center"
+                                    Text="{Binding CurrentSessionDisplay}" />
+                            </StackPanel>
+                       
+
+                        <!--  Media Player Controls  -->
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            Margin="0,20,0,0"
+                            Orientation="Horizontal"
+                            Spacing="15">
+                            <!--  Reset Button  -->
+                            <Button
+                                Command="{Binding ResetTimerCommand}"
+                                CornerRadius="30"
+                                Height="60"
+                                ToolTip.Tip="Reset Timer"
+                                Width="60">
+                                <Button.Styles>
+                                    <Style Selector="Button">
+                                        <Setter Property="Background" Value="#374151" />
+                                        <Setter Property="BorderThickness" Value="0" />
+                                    </Style>
+                                    <Style Selector="Button:pointerover /template/ ContentPresenter">
+                                        <Setter Property="Background" Value="#4B5563" />
+                                    </Style>
+                                    <Style Selector="Button:pressed /template/ ContentPresenter">
+                                        <Setter Property="Background" Value="#1F2937" />
+                                    </Style>
+                                </Button.Styles>
+                                <TextBlock
+                                    FontSize="24"
+                                    Foreground="White"
+                                    HorizontalAlignment="Center"
+                                    Text="↻"
+                                    VerticalAlignment="Center" />
+                            </Button>
+
+                            <!--  Play/Pause Button (Larger)  -->
+                            <Button
+                                Command="{Binding ToggleTimerCommand}"
+                                CornerRadius="40"
+                                Height="80"
+                                ToolTip.Tip="{Binding IsRunning, Converter={StaticResource BoolToStartPauseConverter}}"
+                                Width="80">
+                                <Button.Styles>
+                                    <Style Selector="Button">
+                                        <Setter Property="Background" Value="#16A34A" />
+                                        <Setter Property="BorderThickness" Value="0" />
+                                    </Style>
+                                    <Style Selector="Button:pointerover /template/ ContentPresenter">
+                                        <Setter Property="Background" Value="#22C55E" />
+                                    </Style>
+                                    <Style Selector="Button:pressed /template/ ContentPresenter">
+                                        <Setter Property="Background" Value="#15803D" />
+                                    </Style>
+                                </Button.Styles>
+                                <TextBlock
+                                    FontSize="32"
+                                    Foreground="White"
+                                    HorizontalAlignment="Center"
+                                    Text="{Binding IsRunning, Converter={StaticResource IconConverter}}"
+                                    VerticalAlignment="Center" />
+                            </Button>
+
+                            <!--  Skip Button  -->
+                            <Button
+                                Command="{Binding SkipSessionCommand}"
+                                CornerRadius="30"
+                                Height="60"
+                                ToolTip.Tip="Skip to Next Session"
+                                Width="60">
+                                <Button.Styles>
+                                    <Style Selector="Button">
+                                        <Setter Property="Background" Value="#374151" />
+                                        <Setter Property="BorderThickness" Value="0" />
+                                    </Style>
+                                    <Style Selector="Button:pointerover /template/ ContentPresenter">
+                                        <Setter Property="Background" Value="#4B5563" />
+                                    </Style>
+                                    <Style Selector="Button:pressed /template/ ContentPresenter">
+                                        <Setter Property="Background" Value="#1F2937" />
+                                    </Style>
+                                </Button.Styles>
+                                <TextBlock
+                                    FontSize="24"
+                                    Foreground="White"
+                                    HorizontalAlignment="Center"
+                                    Text="⏭"
+                                    VerticalAlignment="Center" />
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+            </TabItem>
+
+            <!--  Statistics Tab  -->
+            <TabItem Header="Statistics">
+                <ScrollViewer>
+                    <StackPanel Margin="20" Spacing="20">
+                    <!--  View Selector  -->
+                    <ComboBox
+                        HorizontalAlignment="Center"
+                        SelectedIndex="{Binding StatisticsViewIndex}"
+                        Width="150">
+                        <ComboBoxItem Content="Time" />
+                        <ComboBoxItem Content="Sessions" />
+                    </ComboBox>
+
+                    <!--  Statistics Cards  -->
+                    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                        <!--  Today  -->
+                        <Border
+                            Background="#1F2937"
+                            BorderBrush="#374151"
+                            BorderThickness="1"
+                            CornerRadius="8"
+                            Grid.Column="0"
+                            Padding="10">
+                            <StackPanel Spacing="8">
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="#9CA3AF"
+                                    HorizontalAlignment="Center"
+                                    Text="Today" />
+                                <TextBlock
+                                    FontSize="24"
+                                    FontWeight="Bold"
+                                    Foreground="White"
+                                    HorizontalAlignment="Center"
+                                    Text="{Binding TodayStatDisplay}" />
+                            </StackPanel>
+                        </Border>
+
+                        <!--  This Week  -->
+                        <Border
+                            Background="#1F2937"
+                            BorderBrush="#374151"
+                            BorderThickness="1"
+                            CornerRadius="8"
+                            Grid.Column="1"
+                            Padding="10">
+                            <StackPanel Spacing="8">
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="#9CA3AF"
+                                    HorizontalAlignment="Center"
+                                    Text="This Week" />
+                                <TextBlock
+                                    FontSize="24"
+                                    FontWeight="Bold"
+                                    Foreground="White"
+                                    HorizontalAlignment="Center"
+                                    Text="{Binding WeekStatDisplay}" />
+                            </StackPanel>
+                        </Border>
+
+                        <!--  This Month  -->
+                        <Border
+                            Background="#1F2937"
+                            BorderBrush="#374151"
+                            BorderThickness="1"
+                            CornerRadius="8"
+                            Grid.Column="2"
+                            Padding="10">
+                            <StackPanel Spacing="8">
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="#9CA3AF"
+                                    HorizontalAlignment="Center"
+                                    Text="{Binding CurrentMonthName}" />
+                                <TextBlock
+                                    FontSize="24"
+                                    FontWeight="Bold"
+                                    Foreground="White"
+                                    HorizontalAlignment="Center"
+                                    Text="{Binding MonthStatDisplay}" />
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+
+                    <!--  Activity Heatmap  -->
+                    <Border
+                        Background="#1F2937"
+                        BorderBrush="#374151"
+                        BorderThickness="1"
+                        CornerRadius="8"
+                        Padding="20"
+                        Margin="0,20,0,0">
+                        <StackPanel Spacing="15">
+                            <TextBlock
+                                FontSize="16"
+                                FontWeight="SemiBold"
+                                Foreground="White"
+                                Text="Activity Heatmap" />
+                            
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                                <StackPanel Spacing="5" Margin="0,0,0,20">
+                                    <!--  Month Labels  -->
+                                    <ItemsControl ItemsSource="{Binding HeatmapMonths}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal" Margin="30,0,0,0" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock
+                                                    Text="{Binding MonthName}"
+                                                    Width="{Binding Width}"
+                                                    FontSize="10"
+                                                    Foreground="#9CA3AF"
+                                                    Margin="0,0,3,0" />
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                    
+                                    <!--  Heatmap Grid with Day Labels  -->
+                                    <Grid ColumnDefinitions="Auto,*">
+                                        <!--  Day Labels (Y-axis)  -->
+                                        <StackPanel Grid.Column="0" Spacing="3" Margin="0,0,5,0">
+                                            <TextBlock Height="12" /> <!-- Empty space for alignment -->
+                                            <TextBlock Text="Mon" FontSize="9" Foreground="#9CA3AF" Height="12" />
+                                            <TextBlock Height="12" />
+                                            <TextBlock Text="Wed" FontSize="9" Foreground="#9CA3AF" Height="12" />
+                                            <TextBlock Height="12" />
+                                            <TextBlock Text="Fri" FontSize="9" Foreground="#9CA3AF" Height="12" />
+                                            <TextBlock Height="12" />
+                                        </StackPanel>
+                                        
+                                        <!--  Heatmap Squares  -->
+                                        <ItemsControl Grid.Column="1" x:Name="HeatmapContainer" ItemsSource="{Binding HeatmapWeeks}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal" Spacing="3" />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <ItemsControl ItemsSource="{Binding Days}">
+                                                        <ItemsControl.ItemsPanel>
+                                                            <ItemsPanelTemplate>
+                                                                <StackPanel Spacing="3" />
+                                                            </ItemsPanelTemplate>
+                                                        </ItemsControl.ItemsPanel>
+                                                        <ItemsControl.ItemTemplate>
+                                                            <DataTemplate>
+                                                                <Border
+                                                                    Width="12"
+                                                                    Height="12"
+                                                                    Background="{Binding Color}"
+                                                                    CornerRadius="2"
+                                                                    ToolTip.Tip="{Binding Tooltip}" />
+                                                            </DataTemplate>
+                                                        </ItemsControl.ItemTemplate>
+                                                    </ItemsControl>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </Grid>
+                                </StackPanel>
+                            </ScrollViewer>
+                            
+                            <!--  Legend  -->
+                            <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Right">
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="#9CA3AF"
+                                    Text="Less"
+                                    VerticalAlignment="Center" />
+                                <Border Width="12" Height="12" Background="#374151" CornerRadius="2" />
+                                <Border Width="12" Height="12" Background="#0E4429" CornerRadius="2" />
+                                <Border Width="12" Height="12" Background="#006D32" CornerRadius="2" />
+                                <Border Width="12" Height="12" Background="#26A641" CornerRadius="2" />
+                                <Border Width="12" Height="12" Background="#39D353" CornerRadius="2" />
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="#9CA3AF"
+                                    Text="More"
+                                    VerticalAlignment="Center" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+
+            <!--  Settings Tab  -->
+            <TabItem Header="Settings">
+                <ScrollViewer>
+                    <StackPanel Margin="20" Spacing="15">
+
+                        <!--  Timer Settings  -->
+                        <Border
+                            Background="#1F2937"
+                            BorderBrush="#374151"
+                            BorderThickness="1"
+                            CornerRadius="8"
+                            Padding="20">
+                            <StackPanel Spacing="20">
+                                <TextBlock
+                                    FontSize="18"
+                                    FontWeight="Bold"
+                                    Foreground="White"
+                                    Text="⏱️ Timer Settings" />
+
+                                <!--  Work Time  -->
+                                <StackPanel Spacing="10">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock
+                                            FontSize="14"
+                                            Foreground="#9CA3AF"
+                                            Grid.Column="0"
+                                            Text="Work Time"
+                                            VerticalAlignment="Center" />
+                                        <Border
+                                            Background="#374151"
+                                            CornerRadius="6"
+                                            Grid.Column="1"
+                                            Padding="12,6">
+                                            <TextBlock
+                                                FontSize="16"
+                                                FontWeight="Bold"
+                                                Foreground="White"
+                                                Text="{Binding WorkSessionMinutes, StringFormat='{}{0} min'}" />
+                                        </Border>
+                                    </Grid>
+                                    
+                                    <Slider
+                                        IsSnapToTickEnabled="True"
+                                        Maximum="90"
+                                        Minimum="1"
+                                        TickFrequency="1"
+                                        Value="{Binding WorkSessionMinutes}">
+                                        <Slider.Styles>
+                                            <Style Selector="Slider">
+                                                <Setter Property="Foreground" Value="#16A34A" />
+                                            </Style>
+                                            <Style Selector="Slider /template/ RepeatButton#PART_DecreaseButton">
+                                                <Setter Property="Background" Value="#374151" />
+                                            </Style>
+                                            <Style Selector="Slider /template/ RepeatButton#PART_IncreaseButton">
+                                                <Setter Property="Background" Value="#374151" />
+                                            </Style>
+                                            <Style Selector="Slider /template/ Thumb">
+                                                <Setter Property="Background" Value="#16A34A" />
+                                                <Setter Property="BorderBrush" Value="#16A34A" />
+                                                <Setter Property="Width" Value="20" />
+                                                <Setter Property="Height" Value="20" />
+                                            </Style>
+                                            <Style Selector="Slider:pointerover /template/ Thumb">
+                                                <Setter Property="Background" Value="#22C55E" />
+                                            </Style>
+                                        </Slider.Styles>
+                                    </Slider>
+                                    
+                                    <Grid ColumnDefinitions="*,*,*">
+                                        <TextBlock
+                                            FontSize="11"
+                                            Foreground="#6B7280"
+                                            Grid.Column="0"
+                                            HorizontalAlignment="Left"
+                                            Text="1 min" />
+                                        <TextBlock
+                                            FontSize="11"
+                                            Foreground="#6B7280"
+                                            Grid.Column="1"
+                                            HorizontalAlignment="Center"
+                                            Text="45 min" />
+                                        <TextBlock
+                                            FontSize="11"
+                                            Foreground="#6B7280"
+                                            Grid.Column="2"
+                                            HorizontalAlignment="Right"
+                                            Text="90 min" />
+                                    </Grid>
+                                </StackPanel>
+
+                                <!--  Short Break Time  -->
+                                <StackPanel Spacing="10">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock
+                                            FontSize="14"
+                                            Foreground="#9CA3AF"
+                                            Grid.Column="0"
+                                            Text="Short Break Time"
+                                            VerticalAlignment="Center" />
+                                        <Border
+                                            Background="#374151"
+                                            CornerRadius="6"
+                                            Grid.Column="1"
+                                            Padding="12,6">
+                                            <TextBlock
+                                                FontSize="16"
+                                                FontWeight="Bold"
+                                                Foreground="White"
+                                                Text="{Binding ShortBreakMinutes, StringFormat='{}{0} min'}" />
+                                        </Border>
+                                    </Grid>
+                                    
+                                    <Slider
+                                        IsSnapToTickEnabled="True"
+                                        Maximum="30"
+                                        Minimum="1"
+                                        TickFrequency="1"
+                                        Value="{Binding ShortBreakMinutes}">
+                                        <Slider.Styles>
+                                            <Style Selector="Slider">
+                                                <Setter Property="Foreground" Value="#3B82F6" />
+                                            </Style>
+                                            <Style Selector="Slider /template/ RepeatButton#PART_DecreaseButton">
+                                                <Setter Property="Background" Value="#374151" />
+                                            </Style>
+                                            <Style Selector="Slider /template/ RepeatButton#PART_IncreaseButton">
+                                                <Setter Property="Background" Value="#374151" />
+                                            </Style>
+                                            <Style Selector="Slider /template/ Thumb">
+                                                <Setter Property="Background" Value="#3B82F6" />
+                                                <Setter Property="BorderBrush" Value="#3B82F6" />
+                                                <Setter Property="Width" Value="20" />
+                                                <Setter Property="Height" Value="20" />
+                                            </Style>
+                                            <Style Selector="Slider:pointerover /template/ Thumb">
+                                                <Setter Property="Background" Value="#60A5FA" />
+                                            </Style>
+                                        </Slider.Styles>
+                                    </Slider>
+                                    
+                                    <Grid ColumnDefinitions="*,*,*">
+                                        <TextBlock
+                                            FontSize="11"
+                                            Foreground="#6B7280"
+                                            Grid.Column="0"
+                                            HorizontalAlignment="Left"
+                                            Text="1 min" />
+                                        <TextBlock
+                                            FontSize="11"
+                                            Foreground="#6B7280"
+                                            Grid.Column="1"
+                                            HorizontalAlignment="Center"
+                                            Text="15 min" />
+                                        <TextBlock
+                                            FontSize="11"
+                                            Foreground="#6B7280"
+                                            Grid.Column="2"
+                                            HorizontalAlignment="Right"
+                                            Text="30 min" />
+                                    </Grid>
+                                </StackPanel>
+
+                                <!--  Long Break Time  -->
+                                <StackPanel Spacing="10">
+                                    <Grid ColumnDefinitions="*,Auto">
+                                        <TextBlock
+                                            FontSize="14"
+                                            Foreground="#9CA3AF"
+                                            Grid.Column="0"
+                                            Text="Long Break Time"
+                                            VerticalAlignment="Center" />
+                                        <Border
+                                            Background="#374151"
+                                            CornerRadius="6"
+                                            Grid.Column="1"
+                                            Padding="12,6">
+                                            <TextBlock
+                                                FontSize="16"
+                                                FontWeight="Bold"
+                                                Foreground="White"
+                                                Text="{Binding LongBreakMinutes, StringFormat='{}{0} min'}" />
+                                        </Border>
+                                    </Grid>
+                                    
+                                    <Slider
+                                        IsSnapToTickEnabled="True"
+                                        Maximum="60"
+                                        Minimum="1"
+                                        TickFrequency="1"
+                                        Value="{Binding LongBreakMinutes}">
+                                        <Slider.Styles>
+                                            <Style Selector="Slider">
+                                                <Setter Property="Foreground" Value="#9333EA" />
+                                            </Style>
+                                            <Style Selector="Slider /template/ RepeatButton#PART_DecreaseButton">
+                                                <Setter Property="Background" Value="#374151" />
+                                            </Style>
+                                            <Style Selector="Slider /template/ RepeatButton#PART_IncreaseButton">
+                                                <Setter Property="Background" Value="#374151" />
+                                            </Style>
+                                            <Style Selector="Slider /template/ Thumb">
+                                                <Setter Property="Background" Value="#9333EA" />
+                                                <Setter Property="BorderBrush" Value="#9333EA" />
+                                                <Setter Property="Width" Value="20" />
+                                                <Setter Property="Height" Value="20" />
+                                            </Style>
+                                            <Style Selector="Slider:pointerover /template/ Thumb">
+                                                <Setter Property="Background" Value="#A855F7" />
+                                            </Style>
+                                        </Slider.Styles>
+                                    </Slider>
+                                    
+                                    <Grid ColumnDefinitions="*,*,*">
+                                        <TextBlock
+                                            FontSize="11"
+                                            Foreground="#6B7280"
+                                            Grid.Column="0"
+                                            HorizontalAlignment="Left"
+                                            Text="1 min" />
+                                        <TextBlock
+                                            FontSize="11"
+                                            Foreground="#6B7280"
+                                            Grid.Column="1"
+                                            HorizontalAlignment="Center"
+                                            Text="30 min" />
+                                        <TextBlock
+                                            FontSize="11"
+                                            Foreground="#6B7280"
+                                            Grid.Column="2"
+                                            HorizontalAlignment="Right"
+                                            Text="60 min" />
+                                    </Grid>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+
+                        <!--  Notifications  -->
+                        <Border
+                            Background="#1F2937"
+                            BorderBrush="#374151"
+                            BorderThickness="1"
+                            CornerRadius="8"
+                            Padding="20">
+                            <StackPanel Spacing="15">
+                                <TextBlock
+                                    FontSize="18"
+                                    FontWeight="Bold"
+                                    Foreground="White"
+                                    Text="🔔 Notifications" />
+
+                                <CheckBox
+                                    Content="Enable desktop notifications"
+                                    FontSize="14"
+                                    IsChecked="{Binding NotificationsEnabled}" />
+
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="#9CA3AF"
+                                    Text="Get notified when your timer completes"
+                                    TextWrapping="Wrap" />
+
+                                <Button
+                                    Classes="primary"
+                                    Command="{Binding StartTestTimerCommand}"
+                                    Content="🔔 Test Sound (5s)"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,10,0,0"
+                                    Padding="15,8"
+                                    ToolTip.Tip="Start a 5-second timer to test sound notification"
+                                    Width="200" />
+                            </StackPanel>
+                        </Border>
+
+                        <!--  Window Settings  -->
+                        <Border
+                            Background="#1F2937"
+                            BorderBrush="#374151"
+                            BorderThickness="1"
+                            CornerRadius="8"
+                            Padding="20">
+                            <StackPanel Spacing="15">
+                                <TextBlock
+                                    FontSize="18"
+                                    FontWeight="Bold"
+                                    Foreground="White"
+                                    Text="🪟 Window Settings" />
+
+                                <CheckBox
+                                    Content="Always on top"
+                                    FontSize="14"
+                                    IsChecked="{Binding AlwaysOnTop}" />
+
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="#9CA3AF"
+                                    Text="Keep the window above all other windows"
+                                    TextWrapping="Wrap" />
+                            </StackPanel>
+                        </Border>
+
+                        <!--  About  -->
+                        <Border
+                            Background="#1F2937"
+                            BorderBrush="#374151"
+                            BorderThickness="1"
+                            CornerRadius="8"
+                            Padding="20">
+                            <StackPanel Spacing="15">
+                                <TextBlock
+                                    FontSize="18"
+                                    FontWeight="Bold"
+                                    Foreground="White"
+                                    Text="About" />
+
+                                <TextBlock
+                                    FontSize="14"
+                                    Foreground="#9CA3AF"
+                                    Text="ProductivityCake - A simple Pomodoro timer"
+                                    TextWrapping="Wrap" />
+
+                                <TextBlock
+                                    FontSize="12"
+                                    Foreground="#6B7280"
+                                    Text="Version 1.1.0"
+                                    HorizontalAlignment="Center" />
+
+                                <Button
+                                    Classes="primary"
+                                    Command="{Binding OpenGitHubCommand}"
+                                    Content="⭐ Star it on GitHub"
+                                    HorizontalAlignment="Center"
+                                    Margin="0,10,0,0"
+                                    Padding="15,8"
+                                    ToolTip.Tip="Support the project on GitHub"
+                                    Width="200" />
+                            </StackPanel>
+                        </Border>
+                
+                    </StackPanel>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </Grid>
+
+</UserControl>

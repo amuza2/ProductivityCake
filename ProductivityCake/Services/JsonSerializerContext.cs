@@ -12,6 +12,8 @@ namespace ProductivityCake.Services;
 [JsonSerializable(typeof(List<Category>))]
 [JsonSerializable(typeof(Category))]
 [JsonSerializable(typeof(TaskStatus))]
+[JsonSerializable(typeof(TimerSettings))]
+[JsonSerializable(typeof(TimerStatistics))]
 public partial class AppJsonSerializerContext : JsonSerializerContext
 {
 }

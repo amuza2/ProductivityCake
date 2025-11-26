@@ -15,20 +15,28 @@
         <vm:ProjectListViewModel />
     </Design.DataContext>
 
-    <Grid Background="#0F172A">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+                <GradientStop Color="#0F172A" Offset="0" />
+                <GradientStop Color="#1E293B" Offset="0.5" />
+                <GradientStop Color="#0F172A" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
         <!--  Main Content  -->
         <Grid RowDefinitions="Auto, *">
             <!--  Header  -->
             <Border
-                Background="#1E293B"
-                BorderBrush="#8B5CF640"
-                BorderThickness="0,0,0,2"
+                Background="#15FFFFFF"
+                BorderBrush="#30FFFFFF"
+                BorderThickness="0,0,0,1"
                 Grid.Row="0"
                 Padding="20,20,20,15">
                 <Grid ColumnDefinitions="*,Auto">
                     <TextBlock
                         FontSize="24"
                         FontWeight="Bold"
+                        Foreground="White"
                         Grid.Column="0"
                         Text="Projects"
                         VerticalAlignment="Center" />
@@ -61,7 +69,7 @@
             </Border>
 
             <!--  Projects List  -->
-            <ScrollViewer Background="#0F172A" Grid.Row="1">
+            <ScrollViewer Background="Transparent" Grid.Row="1">
                 <Grid Margin="20,20,20,100">
                     <!--  Empty State  -->
                     <Border

@@ -7,6 +7,7 @@ using System.Threading;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using ProductivityCake.Models;
+using ProductivityCake.Services;
 
 namespace ProductivityCake.ViewModels;
 
@@ -33,6 +34,7 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
         {
             TimeRemaining = WorkDuration;
         }
+        _ = SaveSettingsAsync();
     }
     
     partial void OnShortBreakMinutesChanged(int value)
@@ -42,6 +44,7 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
         {
             TimeRemaining = ShortBreakDuration;
         }
+        _ = SaveSettingsAsync();
     }
     
     partial void OnLongBreakMinutesChanged(int value)
@@ -51,6 +54,17 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
         {
             TimeRemaining = LongBreakDuration;
         }
+        _ = SaveSettingsAsync();
+    }
+    
+    partial void OnNotificationsEnabledChanged(bool value)
+    {
+        _ = SaveSettingsAsync();
+    }
+    
+    partial void OnAlwaysOnTopChanged(bool value)
+    {
+        _ = SaveSettingsAsync();
     }
     
     private Timer? _timer;
@@ -84,24 +98,31 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
     
     // Statistics
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(TotalWorkTimeTodayDisplay), nameof(TodayStatDisplay))]
     private TimeSpan _totalWorkTimeToday;
     
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(TotalBreakTimeTodayDisplay))]
     private TimeSpan _totalBreakTimeToday;
     
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(TotalWorkTimeWeekDisplay), nameof(WeekStatDisplay))]
     private TimeSpan _totalWorkTimeWeek;
     
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(TotalWorkTimeMonthDisplay), nameof(MonthStatDisplay))]
     private TimeSpan _totalWorkTimeMonth;
     
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(TodayStatDisplay))]
     private int _sessionsToday;
     
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(WeekStatDisplay))]
     private int _sessionsWeek;
     
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(MonthStatDisplay))]
     private int _sessionsMonth;
     
     [ObservableProperty]
@@ -130,13 +151,21 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
     
     private DateTime _sessionStartTime;
     private DateTime _todayDate;
+    private DateTime _weekStartDate;
+    private DateTime _monthStartDate;
+    private readonly TimerDataService _dataService;
     
     public TimerViewModel()
     {
         _todayDate = DateTime.Today;
+        _weekStartDate = GetStartOfWeek(DateTime.Today);
+        _monthStartDate = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
         _lastSessionDate = DateTime.MinValue;
-        LoadTodayStatistics();
-        GenerateHeatmap();
+        _dataService = new TimerDataService();
+        
+        // Load saved data asynchronously
+        _ = LoadDataAsync();
+        
         SwitchToWork();
     }
     
@@ -379,6 +408,12 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
             
             if (CurrentState == TimerState.Work || CurrentState == TimerState.LongWork)
             {
+                // Track the work time for the completed session
+                var sessionDuration = CurrentState == TimerState.Work ? WorkDuration : WorkDuration;
+                TotalWorkTimeToday += sessionDuration;
+                TotalWorkTimeWeek += sessionDuration;
+                TotalWorkTimeMonth += sessionDuration;
+                
                 // Only count pomodoros for standard 25-minute work sessions
                 if (CurrentState == TimerState.Work)
                 {
@@ -387,6 +422,9 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
                     SessionsWeek++;
                     SessionsMonth++;
                     UpdateHeatmapForToday();
+                    
+                    // Save statistics after completing a session
+                    _ = SaveStatisticsAsync();
                 }
                 
                 // Auto-start break after work
@@ -558,25 +596,170 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
         }
     }
     
-    // Statistics Methods
-    private void LoadTodayStatistics()
+    // Data Persistence Methods
+    private async System.Threading.Tasks.Task LoadDataAsync()
     {
-        // TODO: Load from persistent storage
-        // For now, reset daily
-        TotalWorkTimeToday = TimeSpan.Zero;
-        TotalBreakTimeToday = TimeSpan.Zero;
-        CurrentStreak = 0;
-        LongestStreak = 0;
+        try
+        {
+            // Load settings
+            var settings = await _dataService.LoadSettingsAsync();
+            WorkSessionMinutes = settings.WorkSessionMinutes;
+            ShortBreakMinutes = settings.ShortBreakMinutes;
+            LongBreakMinutes = settings.LongBreakMinutes;
+            NotificationsEnabled = settings.NotificationsEnabled;
+            AlwaysOnTop = settings.AlwaysOnTop;
+            
+            // Load statistics
+            var statistics = await _dataService.LoadStatisticsAsync();
+            
+            // Check if we need to reset daily/weekly/monthly stats
+            var today = DateTime.Today;
+            
+            // Reset daily stats if it's a new day
+            if (statistics.LastSavedDate.Date != today)
+            {
+                TotalWorkTimeToday = TimeSpan.Zero;
+                TotalBreakTimeToday = TimeSpan.Zero;
+                SessionsToday = 0;
+            }
+            else
+            {
+                TotalWorkTimeToday = statistics.TotalWorkTimeToday;
+                TotalBreakTimeToday = statistics.TotalBreakTimeToday;
+                SessionsToday = statistics.SessionsToday;
+            }
+            
+            // Reset weekly stats if it's a new week
+            var weekStart = GetStartOfWeek(today);
+            if (statistics.WeekStartDate != weekStart)
+            {
+                TotalWorkTimeWeek = TimeSpan.Zero;
+                SessionsWeek = 0;
+            }
+            else
+            {
+                TotalWorkTimeWeek = statistics.TotalWorkTimeWeek;
+                SessionsWeek = statistics.SessionsWeek;
+            }
+            
+            // Reset monthly stats if it's a new month
+            var monthStart = new DateTime(today.Year, today.Month, 1);
+            if (statistics.MonthStartDate != monthStart)
+            {
+                TotalWorkTimeMonth = TimeSpan.Zero;
+                SessionsMonth = 0;
+            }
+            else
+            {
+                TotalWorkTimeMonth = statistics.TotalWorkTimeMonth;
+                SessionsMonth = statistics.SessionsMonth;
+            }
+            
+            // Load other statistics
+            CompletedPomodoros = statistics.CompletedPomodoros;
+            CurrentStreak = statistics.CurrentStreak;
+            LongestStreak = statistics.LongestStreak;
+            LastSessionDate = statistics.LastSessionDate;
+            _dailySessionCounts = statistics.DailySessionCounts ?? new Dictionary<DateTime, int>();
+            
+            // Regenerate heatmap with loaded data
+            GenerateHeatmap();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error loading timer data: {ex.Message}");
+        }
+    }
+    
+    private async System.Threading.Tasks.Task SaveSettingsAsync()
+    {
+        try
+        {
+            var settings = new TimerSettings
+            {
+                WorkSessionMinutes = WorkSessionMinutes,
+                ShortBreakMinutes = ShortBreakMinutes,
+                LongBreakMinutes = LongBreakMinutes,
+                NotificationsEnabled = NotificationsEnabled,
+                AlwaysOnTop = AlwaysOnTop
+            };
+            
+            await _dataService.SaveSettingsAsync(settings);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error saving settings: {ex.Message}");
+        }
+    }
+    
+    private async System.Threading.Tasks.Task SaveStatisticsAsync()
+    {
+        try
+        {
+            var statistics = new TimerStatistics
+            {
+                LastSavedDate = DateTime.Today,
+                TotalWorkTimeToday = TotalWorkTimeToday,
+                TotalBreakTimeToday = TotalBreakTimeToday,
+                SessionsToday = SessionsToday,
+                TotalWorkTimeWeek = TotalWorkTimeWeek,
+                SessionsWeek = SessionsWeek,
+                WeekStartDate = _weekStartDate,
+                TotalWorkTimeMonth = TotalWorkTimeMonth,
+                SessionsMonth = SessionsMonth,
+                MonthStartDate = _monthStartDate,
+                CompletedPomodoros = CompletedPomodoros,
+                CurrentStreak = CurrentStreak,
+                LongestStreak = LongestStreak,
+                LastSessionDate = LastSessionDate,
+                DailySessionCounts = _dailySessionCounts
+            };
+            
+            await _dataService.SaveStatisticsAsync(statistics);
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error saving statistics: {ex.Message}");
+        }
     }
     
     private void CheckAndResetDailyStats()
     {
-        if (DateTime.Today != _todayDate)
+        var today = DateTime.Today;
+        
+        // Reset daily stats if new day
+        if (today != _todayDate)
         {
-            _todayDate = DateTime.Today;
+            _todayDate = today;
             TotalWorkTimeToday = TimeSpan.Zero;
             TotalBreakTimeToday = TimeSpan.Zero;
+            SessionsToday = 0;
         }
+        
+        // Reset weekly stats if new week
+        var weekStart = GetStartOfWeek(today);
+        if (weekStart != _weekStartDate)
+        {
+            _weekStartDate = weekStart;
+            TotalWorkTimeWeek = TimeSpan.Zero;
+            SessionsWeek = 0;
+        }
+        
+        // Reset monthly stats if new month
+        var monthStart = new DateTime(today.Year, today.Month, 1);
+        if (monthStart != _monthStartDate)
+        {
+            _monthStartDate = monthStart;
+            TotalWorkTimeMonth = TimeSpan.Zero;
+            SessionsMonth = 0;
+        }
+    }
+    
+    private DateTime GetStartOfWeek(DateTime date)
+    {
+        // Get the start of the week (Monday)
+        int diff = (7 + (date.DayOfWeek - DayOfWeek.Monday)) % 7;
+        return date.AddDays(-diff).Date;
     }
     
     private void TrackSessionTime(TimeSpan duration)
@@ -584,6 +767,8 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
         if (IsWorkState)
         {
             TotalWorkTimeToday += duration;
+            TotalWorkTimeWeek += duration;
+            TotalWorkTimeMonth += duration;
         }
         else
         {
@@ -591,6 +776,9 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
         }
         
         UpdateStreak();
+        
+        // Save statistics after tracking time
+        _ = SaveStatisticsAsync();
     }
     
     private void UpdateStreak()
@@ -665,7 +853,8 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
         HeatmapMonths.Clear();
         
         var today = DateTime.Today;
-        var startDate = today.AddDays(-364); // Show last 365 days
+        // Show only current year starting from January 1st
+        var startDate = new DateTime(today.Year, 1, 1);
         
         // Align to start of week (Sunday)
         while (startDate.DayOfWeek != DayOfWeek.Sunday)
@@ -735,33 +924,37 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
             HeatmapWeeks.Add(week);
         }
         
-        // Generate month labels
+        // Generate month labels (only for current year)
         var previousMonth = "";
         var monthStartWeek = 0;
+        var currentYear = today.Year;
         
         for (int i = 0; i < weeks.Count; i++)
         {
-            var firstDay = weeks[i].Days.FirstOrDefault(d => d.Date <= today);
-            if (firstDay != null)
+            // Only consider days in the current year
+            var firstDayInCurrentYear = weeks[i].Days.FirstOrDefault(d => d.Date.Year == currentYear && d.Date <= today);
+            if (firstDayInCurrentYear != null)
             {
-                var currentMonth = firstDay.Date.ToString("MMM");
+                var currentMonth = firstDayInCurrentYear.Date.ToString("MMM");
                 
-                if (currentMonth != previousMonth && i > 0)
+                if (currentMonth != previousMonth)
                 {
                     // Add the previous month label
-                    var weeksInMonth = i - monthStartWeek;
-                    if (weeksInMonth > 0 && !string.IsNullOrEmpty(previousMonth))
+                    if (!string.IsNullOrEmpty(previousMonth))
                     {
-                        HeatmapMonths.Add(new HeatmapMonth
+                        var weeksInMonth = i - monthStartWeek;
+                        if (weeksInMonth > 0)
                         {
-                            MonthName = previousMonth,
-                            Width = weeksInMonth * 15 // 12px square + 3px spacing
-                        });
+                            HeatmapMonths.Add(new HeatmapMonth
+                            {
+                                MonthName = previousMonth,
+                                Width = weeksInMonth * 15 // 12px square + 3px spacing
+                            });
+                        }
                     }
                     monthStartWeek = i;
+                    previousMonth = currentMonth;
                 }
-                
-                previousMonth = currentMonth;
             }
         }
         

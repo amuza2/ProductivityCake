@@ -17,13 +17,20 @@
     </Design.DataContext>
 
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+                <GradientStop Color="#0F172A" Offset="0" />
+                <GradientStop Color="#1E293B" Offset="0.5" />
+                <GradientStop Color="#0F172A" Offset="1" />
+            </LinearGradientBrush>
+        </Grid.Background>
         <!--  Main Content  -->
         <Grid RowDefinitions="Auto, *">
             <!--  Header  -->
             <Border
-                Background="#1E293B"
-                BorderBrush="#8B5CF640"
-                BorderThickness="0,0,0,2"
+                Background="#15FFFFFF"
+                BorderBrush="#30FFFFFF"
+                BorderThickness="0,0,0,1"
                 Grid.Row="0"
                 Padding="20,15">
                 <StackPanel Spacing="10">
@@ -39,6 +46,7 @@
                         <TextBlock
                             FontSize="24"
                             FontWeight="Bold"
+                            Foreground="White"
                             Text="{Binding CurrentProject.Name}" />
                     </StackPanel>
 
@@ -52,7 +60,7 @@
             </Border>
 
             <!--  Trello-Style Vertical Board  -->
-            <ScrollViewer Background="#0F172A" Grid.Row="1">
+            <ScrollViewer Background="Transparent" Grid.Row="1">
                 <StackPanel Margin="20,20,20,100" Spacing="15">
 
                     <!--  ToDo Section  -->
@@ -65,6 +73,7 @@
                             <Button
                                 Background="Transparent"
                                 Command="{Binding ToggleTodoExpandedCommand}"
+                                CornerRadius="12,12,12,12"
                                 HorizontalAlignment="Stretch"
                                 HorizontalContentAlignment="Left"
                                 Padding="15,10">
@@ -186,6 +195,7 @@
                             <Button
                                 Background="Transparent"
                                 Command="{Binding ToggleDoingExpandedCommand}"
+                                CornerRadius="12,12,0,0"
                                 HorizontalAlignment="Stretch"
                                 HorizontalContentAlignment="Left"
                                 Padding="15,10">
@@ -307,6 +317,7 @@
                             <Button
                                 Background="Transparent"
                                 Command="{Binding ToggleDoneExpandedCommand}"
+                                CornerRadius="12,12,0,0"
                                 HorizontalAlignment="Stretch"
                                 HorizontalContentAlignment="Left"
                                 Padding="15,10">
@@ -443,10 +454,11 @@
             IsVisible="{Binding IsAddTaskDialogOpen}"
             ZIndex="100">
             <Border
-                Background="#1F2937"
-                BorderBrush="#374151"
+                Background="#CC1E293B"
+                BorderBrush="#50FFFFFF"
                 BorderThickness="1"
-                CornerRadius="12"
+                CornerRadius="20"
+                BoxShadow="0 8 32 0 #40000000"
                 HorizontalAlignment="Center"
                 MaxWidth="400"
                 Padding="20"
@@ -455,6 +467,7 @@
                     <TextBlock
                         FontSize="20"
                         FontWeight="SemiBold"
+                        Foreground="White"
                         Text="Add New Task" />
 
                     <TextBox Text="{Binding TaskTitle}" Watermark="Task title" />
@@ -597,10 +610,11 @@
             IsVisible="{Binding IsEditTaskDialogOpen}"
             ZIndex="100">
             <Border
-                Background="#1F2937"
-                BorderBrush="#374151"
+                Background="#CC1E293B"
+                BorderBrush="#50FFFFFF"
                 BorderThickness="1"
-                CornerRadius="12"
+                CornerRadius="20"
+                BoxShadow="0 8 32 0 #40000000"
                 HorizontalAlignment="Center"
                 MaxWidth="400"
                 Padding="20"
@@ -609,6 +623,7 @@
                     <TextBlock
                         FontSize="20"
                         FontWeight="SemiBold"
+                        Foreground="White"
                         Text="Edit Task" />
 
                     <TextBox Text="{Binding TaskTitle}" Watermark="Task title" />
@@ -751,10 +766,11 @@
             IsVisible="{Binding IsAddCategoryDialogOpen}"
             ZIndex="101">
             <Border
-                Background="#1F2937"
-                BorderBrush="#374151"
+                Background="#CC1E293B"
+                BorderBrush="#50FFFFFF"
                 BorderThickness="1"
-                CornerRadius="12"
+                CornerRadius="20"
+                BoxShadow="0 8 32 0 #40000000"
                 HorizontalAlignment="Center"
                 MaxWidth="350"
                 Padding="20"
@@ -763,6 +779,7 @@
                     <TextBlock
                         FontSize="20"
                         FontWeight="SemiBold"
+                        Foreground="White"
                         Text="Add New Tag" />
 
                     <TextBox Text="{Binding NewCategoryName}" Watermark="Tag name" />
@@ -819,10 +836,11 @@
             IsVisible="{Binding IsTaskDetailsDialogOpen}"
             ZIndex="102">
             <Border
-                Background="#1F2937"
-                BorderBrush="#374151"
+                Background="#CC1E293B"
+                BorderBrush="#50FFFFFF"
                 BorderThickness="1"
-                CornerRadius="12"
+                CornerRadius="20"
+                BoxShadow="0 8 32 0 #40000000"
                 HorizontalAlignment="Center"
                 MaxWidth="400"
                 Padding="20"
@@ -832,6 +850,7 @@
                         <TextBlock
                             FontSize="20"
                             FontWeight="SemiBold"
+                            Foreground="White"
                             Grid.Column="0"
                             Text="Task Details" />
                         <Button
