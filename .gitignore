@@ -21,6 +21,7 @@ squashfs-root/
 
 # Ignore all markdown files except README.md and .github folder
 *.md
+publish.sh
 !README.md
 !.github/**/*.md
 !.github/**/*.yml
