@@ -17,6 +17,24 @@ Modern glassmorphism UI • Native AOT • Cross-platform
 
 ---
 
+## 📸 Screenshots
+
+<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/1a98105c-f9d9-4a6e-99d9-b227841bb9ef" />
+
+<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/d32e2b77-556e-49ab-b95f-84daad2e6a51" />
+
+<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/93cbfef2-3bd8-4752-b27b-cdf6bf3a567f" />
+
+<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/b3923740-3238-4f60-aeb0-4dace12cc463" />
+
+<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/a3a067ef-102a-4785-adad-2e4262adcc6b" />
+
+<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/68085158-4593-4366-8ea8-f3a39886f25a" />
+
+<img width="245" height="182" alt="image" src="https://github.com/user-attachments/assets/2297a9b5-8dfb-4fbc-8554-8b746fc194bf" />
+
+---
+
 ## ✨ Features
 
 ### ⏱️ Pomodoro Timer
