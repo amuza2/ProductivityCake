@@ -8,9 +8,9 @@
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
         
         <!-- Version Information -->
-        <Version>1.1.0</Version>
-        <AssemblyVersion>1.0.0.0</AssemblyVersion>
-        <FileVersion>1.0.0.0</FileVersion>
+        <Version>1.2.0</Version>
+        <AssemblyVersion>1.2.0.0</AssemblyVersion>
+        <FileVersion>1.2.0.0</FileVersion>
         <Company>amuza2</Company>
         <Product>ProductivityCake</Product>
         <Description>A simple and elegant Pomodoro timer with project management</Description>
