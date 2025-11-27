@@ -20,15 +20,17 @@ A modern, lightweight desktop application for managing projects, tasks, and time
 
 ## 📸 Screenshots
 
-<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/25f14f69-6f93-444b-aeb6-ba410d6915d2" />
+<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/1a98105c-f9d9-4a6e-99d9-b227841bb9ef" />
 
-<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/d12b8efe-7086-45d4-86b6-efba3cd52a33" />
+<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/d32e2b77-556e-49ab-b95f-84daad2e6a51" />
 
-<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/6e668f05-703a-4dc7-b6a8-d1f6471d9878" />
+<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/93cbfef2-3bd8-4752-b27b-cdf6bf3a567f" />
 
-<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/b617336b-2c4f-431d-a1fe-c0832b7265a7" />
+<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/b3923740-3238-4f60-aeb0-4dace12cc463" />
 
-<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/77e818b2-8f06-47c1-8e8b-9ebabc66e308" />
+<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/a3a067ef-102a-4785-adad-2e4262adcc6b" />
+
+<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/68085158-4593-4366-8ea8-f3a39886f25a" />
 
 <img width="245" height="182" alt="image" src="https://github.com/user-attachments/assets/2297a9b5-8dfb-4fbc-8554-8b746fc194bf" />
 
@@ -49,12 +51,11 @@ A modern, lightweight desktop application for managing projects, tasks, and time
 - **Status Tracking** - Track progress with ToDo, Doing, and Done states
 
 ### ⏱️ Pomodoro Timer
-- **25-50 Minute Work Sessions** - Focused work periods for maximum productivity
+- **25-90 Minute Work Sessions** - Focused work periods for maximum productivity
 - **Smart Breaks** - 5-minute short breaks and 15-minute long breaks
 - **Auto-Advance** - Automatically transitions between work and break sessions
 - **Progress Tracking** - Visual circular progress bar and completed pomodoro counter
 - **Flexible Controls** - Start, pause, reset, skip, and switch modes manually
-- **Time Adjustment** - Add or subtract 5 minutes during active sessions
 - **Audio Notifications** - Sound alerts when timer completes
 - **Customizable Settings** - Adjust work and break durations (1-90 minutes)
 
