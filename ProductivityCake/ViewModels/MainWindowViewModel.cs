@@ -14,7 +14,7 @@ public partial class MainWindowViewModel : ViewModelBase
     {
         _navigationService = navigationService;
         ((NavigationService)navigationService).SetMainWindowViewModel(this);
-        _navigationService.NavigateToAsync<ProjectListViewModel>();
+        _navigationService.NavigateToAsync<TimerViewModel>();
     }
 
     public MainWindowViewModel() : this(null!)

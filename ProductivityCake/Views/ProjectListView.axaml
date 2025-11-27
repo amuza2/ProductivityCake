@@ -265,47 +265,75 @@
 
         <!--  Add Project Dialog  -->
         <Border
-            Background="#80000000"
+            Background="#90000000"
             IsVisible="{Binding IsAddProjectDialogOpen}"
             ZIndex="100">
             <Border
-                Background="#1F2937"
-                BorderBrush="#374151"
+                Background="#45FFFFFF"
+                BorderBrush="#50FFFFFF"
                 BorderThickness="1"
-                CornerRadius="12"
+                CornerRadius="20"
                 HorizontalAlignment="Center"
-                MaxWidth="400"
-                Padding="20"
-                VerticalAlignment="Center">
-                <StackPanel Spacing="15">
-                    <TextBlock
-                        FontSize="20"
-                        FontWeight="SemiBold"
-                        Text="Add New Project" />
+                MaxWidth="450"
+                Padding="30,25"
+                VerticalAlignment="Center"
+                BoxShadow="0 20 60 0 #40000000">
+                <StackPanel Spacing="20">
+                    <StackPanel Spacing="8">
+                        <TextBlock
+                            Classes="title"
+                            FontSize="22"
+                            Text="Add New Project" />
+                        <TextBlock
+                            Classes="subtitle"
+                            FontSize="13"
+                            Text="Create a new project to organize your tasks" />
+                    </StackPanel>
 
-                    <TextBox Text="{Binding NewProjectName}" Watermark="Project name" />
+                    <StackPanel Spacing="15">
+                        <StackPanel Spacing="8">
+                            <TextBlock
+                                Classes="label"
+                                FontSize="12"
+                                Text="Project Name" />
+                            <TextBox
+                                Classes="glass-combo"
+                                Text="{Binding NewProjectName}"
+                                Watermark="Enter project name..." />
+                        </StackPanel>
 
-                    <TextBox
-                        AcceptsReturn="True"
-                        Height="80"
-                        Text="{Binding NewProjectDescription}"
-                        TextWrapping="Wrap"
-                        Watermark="Description (optional)" />
+                        <StackPanel Spacing="8">
+                            <TextBlock
+                                Classes="label"
+                                FontSize="12"
+                                Text="Description (Optional)" />
+                            <TextBox
+                                AcceptsReturn="True"
+                                Classes="glass-combo"
+                                Height="90"
+                                Text="{Binding NewProjectDescription}"
+                                TextWrapping="Wrap"
+                                Watermark="Add a description..." />
+                        </StackPanel>
+                    </StackPanel>
 
                     <StackPanel
                         HorizontalAlignment="Right"
+                        Margin="0,10,0,0"
                         Orientation="Horizontal"
-                        Spacing="10">
+                        Spacing="12">
                         <Button
-                            Classes="secondary"
+                            Classes="glass-button"
                             Command="{Binding CancelAddProjectCommand}"
                             Content="Cancel"
-                            Padding="20,8" />
+                            Padding="24,10"
+                            Width="100" />
                         <Button
-                            Classes="primary"
+                            Classes="glass-button-primary"
                             Command="{Binding AddProjectCommand}"
-                            Content="Add"
-                            Padding="20,8" />
+                            Content="✓ Add"
+                            Padding="24,10"
+                            Width="100" />
                     </StackPanel>
                 </StackPanel>
             </Border>
@@ -313,52 +341,92 @@
 
         <!--  Delete Confirmation Dialog  -->
         <Border
-            Background="#80000000"
+            Background="#90000000"
             IsVisible="{Binding IsDeleteConfirmationOpen}"
             ZIndex="100">
             <Border
-                Background="#1F2937"
-                BorderBrush="#374151"
-                BorderThickness="1"
-                CornerRadius="12"
+                Classes="glass-card"
                 HorizontalAlignment="Center"
-                MaxWidth="400"
-                Padding="20"
-                VerticalAlignment="Center">
-                <StackPanel Spacing="15">
-                    <TextBlock
-                        FontSize="20"
-                        FontWeight="SemiBold"
-                        Text="Delete Project?" />
+                MaxWidth="450"
+                Padding="30,25"
+                VerticalAlignment="Center"
+                BoxShadow="0 20 60 0 #40000000">
+                <StackPanel Spacing="20">
+                    <StackPanel Spacing="8">
+                        <TextBlock
+                            Classes="title"
+                            FontSize="22"
+                            Foreground="#EF4444"
+                            Text="⚠️ Delete Project?" />
+                        <TextBlock
+                            Classes="subtitle"
+                            FontSize="13"
+                            Text="This action cannot be undone" />
+                    </StackPanel>
+
+                    <Border
+                        Background="#15EF4444"
+                        BorderBrush="#30EF4444"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="16">
+                        <StackPanel Spacing="8">
+                            <TextBlock
+                                Classes="subtitle"
+                                FontSize="13"
+                                Text="You are about to permanently delete:" />
+                            <TextBlock
+                                FontSize="15"
+                                FontWeight="SemiBold"
+                                Foreground="White"
+                                Text="{Binding ProjectToDelete.Name}"
+                                TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Border>
 
                     <TextBlock
-                        FontSize="14"
-                        Foreground="#9CA3AF"
-                        TextWrapping="Wrap">
-                        Are you sure you want to delete this project? This action cannot be undone.
-                    </TextBlock>
-
-                    <TextBlock
-                        FontSize="14"
-                        FontWeight="SemiBold"
-                        Foreground="#EF4444"
-                        Text="{Binding ProjectToDelete.Name, StringFormat='Project: {0}'}"
+                        Classes="label"
+                        FontSize="12"
+                        HorizontalAlignment="Center"
+                        Text="All tasks and data will be lost forever"
                         TextWrapping="Wrap" />
 
                     <StackPanel
                         HorizontalAlignment="Right"
+                        Margin="0,10,0,0"
                         Orientation="Horizontal"
-                        Spacing="10">
+                        Spacing="12">
                         <Button
-                            Classes="secondary"
+                            Classes="glass-button"
                             Command="{Binding CancelDeleteCommand}"
                             Content="Cancel"
-                            Padding="20,8" />
+                            Padding="24,10"
+                            Width="110" />
                         <Button
-                            Classes="danger"
+                            Background="#EF4444"
+                            BorderBrush="#50FFFFFF"
+                            BorderThickness="1"
                             Command="{Binding ConfirmDeleteCommand}"
-                            Content="Delete"
-                            Padding="20,8" />
+                            Content="🗑️ Delete"
+                            CornerRadius="50"
+                            Cursor="Hand"
+                            Foreground="White"
+                            Padding="24,10"
+                            Width="110">
+                            <Button.Transitions>
+                                <Transitions>
+                                    <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
+                                </Transitions>
+                            </Button.Transitions>
+                            <Button.Styles>
+                                <Style Selector="Button:pointerover">
+                                    <Setter Property="RenderTransform" Value="scale(1.05)" />
+                                </Style>
+                                <Style Selector="Button:pressed">
+                                    <Setter Property="RenderTransform" Value="scale(0.98)" />
+                                </Style>
+                            </Button.Styles>
+                        </Button>
                     </StackPanel>
                 </StackPanel>
             </Border>

@@ -98,7 +98,7 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
     
     // Statistics
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(TotalWorkTimeTodayDisplay), nameof(TodayStatDisplay))]
+    [NotifyPropertyChangedFor(nameof(TotalWorkTimeTodayDisplay), nameof(TodayStatDisplay), nameof(TodayTimeDisplay))]
     private TimeSpan _totalWorkTimeToday;
     
     [ObservableProperty]
@@ -106,23 +106,23 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
     private TimeSpan _totalBreakTimeToday;
     
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(TotalWorkTimeWeekDisplay), nameof(WeekStatDisplay))]
+    [NotifyPropertyChangedFor(nameof(TotalWorkTimeWeekDisplay), nameof(WeekStatDisplay), nameof(WeekTimeDisplay))]
     private TimeSpan _totalWorkTimeWeek;
     
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(TotalWorkTimeMonthDisplay), nameof(MonthStatDisplay))]
+    [NotifyPropertyChangedFor(nameof(TotalWorkTimeMonthDisplay), nameof(MonthStatDisplay), nameof(MonthTimeDisplay))]
     private TimeSpan _totalWorkTimeMonth;
     
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(TodayStatDisplay))]
+    [NotifyPropertyChangedFor(nameof(TodayStatDisplay), nameof(TodaySessionsDisplay))]
     private int _sessionsToday;
     
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(WeekStatDisplay))]
+    [NotifyPropertyChangedFor(nameof(WeekStatDisplay), nameof(WeekSessionsDisplay))]
     private int _sessionsWeek;
     
     [ObservableProperty]
-    [NotifyPropertyChangedFor(nameof(MonthStatDisplay))]
+    [NotifyPropertyChangedFor(nameof(MonthStatDisplay), nameof(MonthSessionsDisplay))]
     private int _sessionsMonth;
     
     [ObservableProperty]
@@ -830,6 +830,15 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
     public string WeekStatDisplay => StatisticsViewIndex == 0 ? TotalWorkTimeWeekDisplay : $"{SessionsWeek}";
     
     public string MonthStatDisplay => StatisticsViewIndex == 0 ? TotalWorkTimeMonthDisplay : $"{SessionsMonth}";
+    
+    // Separate properties for time and sessions display
+    public string TodayTimeDisplay => TotalWorkTimeTodayDisplay;
+    public string WeekTimeDisplay => TotalWorkTimeWeekDisplay;
+    public string MonthTimeDisplay => TotalWorkTimeMonthDisplay;
+    
+    public string TodaySessionsDisplay => $"{SessionsToday}";
+    public string WeekSessionsDisplay => $"{SessionsWeek}";
+    public string MonthSessionsDisplay => $"{SessionsMonth}";
     
     private string FormatTimeSpan(TimeSpan time)
     {

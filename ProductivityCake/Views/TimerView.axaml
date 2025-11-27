@@ -192,67 +192,109 @@
             <!--  Statistics Tab  -->
             <TabItem Classes="glass-tab" Header="Statistics">
                 <ScrollViewer>
-                    <StackPanel Margin="15" Spacing="20">
-                        <!--  View Selector  -->
-                        <ComboBox
-                            Classes="glass-combo"
-                            HorizontalAlignment="Center"
-                            SelectedIndex="{Binding StatisticsViewIndex}"
-                            Width="160">
-                            <ComboBoxItem Content="Time" />
-                            <ComboBoxItem Content="Sessions" />
-                        </ComboBox>
-
+                    <StackPanel Margin="15" Spacing="10">
                         <!--  Statistics Cards  -->
-                        <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
-                            <!--  Today  -->
-                            <Border Classes="stat-card" Grid.Column="0">
-                                <StackPanel Spacing="12">
-                                    <TextBlock
-                                        Classes="label"
-                                        HorizontalAlignment="Center"
-                                        Text="Today" />
-                                    <TextBlock
-                                        FontSize="20"
-                                        FontWeight="SemiBold"
-                                        Foreground="White"
-                                        HorizontalAlignment="Center"
-                                        Text="{Binding TodayStatDisplay}" />
-                                </StackPanel>
-                            </Border>
+                        <StackPanel Spacing="10">
+                            <!--  Labels Row  -->
+                            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                                <TextBlock
+                                    Classes="label"
+                                    Grid.Column="0"
+                                    HorizontalAlignment="Center"
+                                    Text="Today" />
+                                <TextBlock
+                                    Classes="label"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Center"
+                                    Text="This Week" />
+                                <TextBlock
+                                    Classes="label"
+                                    Grid.Column="2"
+                                    HorizontalAlignment="Center"
+                                    Text="{Binding CurrentMonthName}" />
+                            </Grid>
 
-                            <!--  This Week  -->
-                            <Border Classes="stat-card" Grid.Column="1">
-                                <StackPanel Spacing="12">
-                                    <TextBlock
-                                        Classes="label"
-                                        HorizontalAlignment="Center"
-                                        Text="This Week" />
+                            <!--  Time Studied Row  -->
+                            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                                <Border Classes="stat-card" Grid.Column="0">
                                     <TextBlock
                                         FontSize="20"
                                         FontWeight="SemiBold"
-                                        Foreground="White"
+                                        Foreground="#90FFFFFF"
                                         HorizontalAlignment="Center"
-                                        Text="{Binding WeekStatDisplay}" />
-                                </StackPanel>
-                            </Border>
+                                        Text="{Binding TodayTimeDisplay}" />
+                                </Border>
 
-                            <!--  This Month  -->
-                            <Border Classes="stat-card" Grid.Column="2">
-                                <StackPanel Spacing="12">
-                                    <TextBlock
-                                        Classes="label"
-                                        HorizontalAlignment="Center"
-                                        Text="{Binding CurrentMonthName}" />
+                                <Border Classes="stat-card" Grid.Column="1">
                                     <TextBlock
                                         FontSize="20"
                                         FontWeight="SemiBold"
-                                        Foreground="White"
+                                        Foreground="#90FFFFFF"
                                         HorizontalAlignment="Center"
-                                        Text="{Binding MonthStatDisplay}" />
-                                </StackPanel>
-                            </Border>
-                        </Grid>
+                                        Text="{Binding WeekTimeDisplay}" />
+                                </Border>
+
+                                <Border Classes="stat-card" Grid.Column="2">
+                                    <TextBlock
+                                        FontSize="20"
+                                        FontWeight="SemiBold"
+                                        Foreground="#90FFFFFF"
+                                        HorizontalAlignment="Center"
+                                        Text="{Binding MonthTimeDisplay}" />
+                                </Border>
+                            </Grid>
+
+                            <!--  Sessions Count Row  -->
+                            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="10">
+                                <Border Classes="stat-card" Grid.Column="0">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock
+                                            FontSize="20"
+                                            FontWeight="Medium"
+                                            Foreground="#90FFFFFF"
+                                            HorizontalAlignment="Center"
+                                            Text="{Binding TodaySessionsDisplay}" />
+                                        <TextBlock
+                                            Classes="label"
+                                            FontSize="15"
+                                            HorizontalAlignment="Center"
+                                            Text="sessions" />
+                                    </StackPanel>
+                                </Border>
+
+                                <Border Classes="stat-card" Grid.Column="1">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock
+                                            FontSize="20"
+                                            FontWeight="Medium"
+                                            Foreground="#90FFFFFF"
+                                            HorizontalAlignment="Center"
+                                            Text="{Binding WeekSessionsDisplay}" />
+                                        <TextBlock
+                                            Classes="label"
+                                            FontSize="15"
+                                            HorizontalAlignment="Center"
+                                            Text="sessions" />
+                                    </StackPanel>
+                                </Border>
+
+                                <Border Classes="stat-card" Grid.Column="2">
+                                    <StackPanel Spacing="4">
+                                        <TextBlock
+                                            FontSize="20"
+                                            FontWeight="Medium"
+                                            Foreground="#90FFFFFF"
+                                            HorizontalAlignment="Center"
+                                            Text="{Binding MonthSessionsDisplay}" />
+                                        <TextBlock
+                                            Classes="label"
+                                            FontSize="15"
+                                            HorizontalAlignment="Center"
+                                            Text="sessions" />
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </StackPanel>
 
                         <!--  Activity Heatmap  -->
                         <Border Classes="glass-card" Padding="25,20">
