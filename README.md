@@ -30,6 +30,9 @@ A modern, lightweight desktop application for managing projects, tasks, and time
 
 <img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/77e818b2-8f06-47c1-8e8b-9ebabc66e308" />
 
+<img width="245" height="182" alt="image" src="https://github.com/user-attachments/assets/2297a9b5-8dfb-4fbc-8554-8b746fc194bf" />
+
+
 ---
 
 ## ✨ Features
