@@ -18,6 +18,20 @@ A modern, lightweight desktop application for managing projects, tasks, and time
 
 ---
 
+## 📸 Screenshots
+
+<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/25f14f69-6f93-444b-aeb6-ba410d6915d2" />
+
+<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/d12b8efe-7086-45d4-86b6-efba3cd52a33" />
+
+<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/6e668f05-703a-4dc7-b6a8-d1f6471d9878" />
+
+<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/b617336b-2c4f-431d-a1fe-c0832b7265a7" />
+
+<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/77e818b2-8f06-47c1-8e8b-9ebabc66e308" />
+
+---
+
 ## ✨ Features
 
 ### 📁 Project Management
@@ -90,21 +104,6 @@ A modern, lightweight desktop application for managing projects, tasks, and time
 1. Download `ProductivityCake-win-x64.zip` from [Releases](https://github.com/amuza2/ProductivityCake/releases)
 2. Extract the ZIP file
 3. Run `ProductivityCake.exe`
-
----
-
-## 📸 Screenshots
-
-<img width="400" height="600" alt="image" src="https://github.com/user-attachments/assets/25f14f69-6f93-444b-aeb6-ba410d6915d2" />
-
-<img width="400" height="600" alt="image" src="https://github.com/user-attachments/assets/d12b8efe-7086-45d4-86b6-efba3cd52a33" />
-
-<img width="400" height="600" alt="image" src="https://github.com/user-attachments/assets/6e668f05-703a-4dc7-b6a8-d1f6471d9878" />
-
-<img width="400" height="600" alt="image" src="https://github.com/user-attachments/assets/b617336b-2c4f-431d-a1fe-c0832b7265a7" />
-
-<img width="400" height="600" alt="image" src="https://github.com/user-attachments/assets/77e818b2-8f06-47c1-8e8b-9ebabc66e308" />
-
 
 ---
 
