@@ -52,7 +52,20 @@ cd ../..
 echo ""
 echo "✅ Archive created: ./publish/linux-x64/ProductivityCake-linux-x64-v1.1.0.tar.gz"
 echo ""
+
+# Make executable
+chmod +x ./publish/linux-x64/ProductivityCake
+
+# Show file sizes
+echo "📊 Build information:"
+echo "   Binary size: $(du -h ./publish/linux-x64/ProductivityCake | cut -f1)"
+echo "   Archive size: $(du -h ./publish/linux-x64/ProductivityCake-linux-x64-v1.1.0.tar.gz | cut -f1)"
+echo ""
+
 echo "🚀 To run the application:"
 echo "   cd publish/linux-x64"
 echo "   ./ProductivityCake"
+echo ""
+echo "📦 To distribute:"
+echo "   Share the file: ProductivityCake-linux-x64-v1.1.0.tar.gz"
 echo ""

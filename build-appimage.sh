@@ -5,7 +5,7 @@
 
 set -e  # Exit on error
 
-VERSION="1.1.0"
+VERSION="1.2.0"
 ARCH="x86_64"
 APP_NAME="ProductivityCake"
 APPDIR="${APP_NAME}.AppDir"
