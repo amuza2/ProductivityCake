@@ -42,15 +42,15 @@ fi
 echo "📦 Creating distributable archive..."
 cd publish/linux-x64
 if [ -f "alarm.mp3" ]; then
-    tar -czf ProductivityCake-linux-x64-v1.1.0.tar.gz ProductivityCake alarm.mp3
+    tar -czf ProductivityCake-linux-x64-v1.2.0.tar.gz ProductivityCake alarm.mp3
 else
     echo "⚠️  Creating archive without alarm.mp3 (file not found)"
-    tar -czf ProductivityCake-linux-x64-v1.1.0.tar.gz ProductivityCake
+    tar -czf ProductivityCake-linux-x64-v1.2.0.tar.gz ProductivityCake
 fi
 cd ../..
 
 echo ""
-echo "✅ Archive created: ./publish/linux-x64/ProductivityCake-linux-x64-v1.1.0.tar.gz"
+echo "✅ Archive created: ./publish/linux-x64/ProductivityCake-linux-x64-v1.2.0.tar.gz"
 echo ""
 
 # Make executable
@@ -59,7 +59,7 @@ chmod +x ./publish/linux-x64/ProductivityCake
 # Show file sizes
 echo "📊 Build information:"
 echo "   Binary size: $(du -h ./publish/linux-x64/ProductivityCake | cut -f1)"
-echo "   Archive size: $(du -h ./publish/linux-x64/ProductivityCake-linux-x64-v1.1.0.tar.gz | cut -f1)"
+echo "   Archive size: $(du -h ./publish/linux-x64/ProductivityCake-linux-x64-v1.2.0.tar.gz | cut -f1)"
 echo ""
 
 echo "🚀 To run the application:"
@@ -67,5 +67,5 @@ echo "   cd publish/linux-x64"
 echo "   ./ProductivityCake"
 echo ""
 echo "📦 To distribute:"
-echo "   Share the file: ProductivityCake-linux-x64-v1.1.0.tar.gz"
+echo "   Share the file: ProductivityCake-linux-x64-v1.2.0.tar.gz"
 echo ""

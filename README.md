@@ -2,231 +2,115 @@
 
 ![Productivity Cake Logo](ProductivityCake/Assets/icons8-cake-96.png)
 
-**Your Productivity Companion**
+# ProductivityCake
 
-A modern, lightweight desktop application for managing projects, tasks, and time using the Pomodoro technique.
+**A beautiful Pomodoro timer with project management**
 
 [![.NET](https://img.shields.io/badge/.NET-9.0-512BD4?logo=dotnet)](https://dotnet.microsoft.com/)
-[![Avalonia UI](https://img.shields.io/badge/Avalonia-11.0-8B5CF6)](https://avaloniaui.net/)
+[![Avalonia UI](https://img.shields.io/badge/Avalonia-11.3-8B5CF6)](https://avaloniaui.net/)
 [![License](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](LICENSE)
-[![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20Windows%20%7C%20macOS-lightgrey)](https://github.com/amuza2/ProductivityCake)
-[![CI](https://github.com/amuza2/ProductivityCake/actions/workflows/ci.yml/badge.svg)](https://github.com/amuza2/ProductivityCake/actions/workflows/ci.yml)
+[![Version](https://img.shields.io/badge/Version-1.2.0-green)](https://github.com/amuza2/ProductivityCake/releases)
 
-[Features](#-features) • [Installation](#-installation)  • [Screenshots](#-screenshots) • [Building](#-building-from-source)
+Modern glassmorphism UI • Native AOT • Cross-platform
 
 </div>
 
 ---
 
-## 📸 Screenshots
-
-<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/1a98105c-f9d9-4a6e-99d9-b227841bb9ef" />
-
-<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/d32e2b77-556e-49ab-b95f-84daad2e6a51" />
-
-<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/93cbfef2-3bd8-4752-b27b-cdf6bf3a567f" />
-
-<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/b3923740-3238-4f60-aeb0-4dace12cc463" />
-
-<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/a3a067ef-102a-4785-adad-2e4262adcc6b" />
-
-<img width="25%" height="35%" alt="image" src="https://github.com/user-attachments/assets/68085158-4593-4366-8ea8-f3a39886f25a" />
-
-<img width="245" height="182" alt="image" src="https://github.com/user-attachments/assets/2297a9b5-8dfb-4fbc-8554-8b746fc194bf" />
-
-
----
-
 ## ✨ Features
 
-### 📁 Project Management
-- **Create & Organize Projects** - Add projects with names and descriptions
-- **Kanban Board View** - Visualize tasks in ToDo, Doing, and Done columns
-- **Archive Projects** - Keep your workspace clean without losing data
-- **Task Association** - Link tasks to specific projects for better organization
-
-### ✅ Task Management
-- **Full CRUD Operations** - Create, read, update, and delete tasks
-- **Task Details** - Add descriptions, due dates, and assign to projects
-- **Status Tracking** - Track progress with ToDo, Doing, and Done states
-
 ### ⏱️ Pomodoro Timer
-- **25-90 Minute Work Sessions** - Focused work periods for maximum productivity
-- **Smart Breaks** - 5-minute short breaks and 15-minute long breaks
-- **Auto-Advance** - Automatically transitions between work and break sessions
-- **Progress Tracking** - Visual circular progress bar and completed pomodoro counter
-- **Flexible Controls** - Start, pause, reset, skip, and switch modes manually
-- **Audio Notifications** - Sound alerts when timer completes
-- **Customizable Settings** - Adjust work and break durations (1-90 minutes)
+- Customizable work sessions (1-90 minutes, default 25 min)
+- Smart breaks (5 min short, 15 min long)
+- Auto-advance between work and breaks
+- Visual circular progress bar
+- Audio notifications with sound alerts
+- Flexible controls: start, pause, reset, skip
+
+### 📁 Project & Task Management
+- Create projects with descriptions
+- Kanban board (ToDo, Doing, Done)
+- Archive completed projects
+- Task CRUD operations with due dates
 
 ### 📊 Statistics & Analytics
-- **Daily Statistics** - Track today's work time, break time, and completed sessions
-- **Weekly & Monthly Stats** - View aggregated time worked over different periods
-- **GitHub-Style Heatmap** - Visualize your entire year of productivity at a glance
-  - Color-coded intensity based on daily session counts
-  - Day labels (Mon, Wed, Fri) on Y-axis
-  - Month labels on X-axis
-  - Hover tooltips showing date and session count
-- **Real-time Updates** - Statistics update automatically as you complete sessions
+- Daily, weekly, and monthly time tracking
+- GitHub-style activity heatmap
+- Session count tracking
+- Real-time statistics updates
 
-### ⚙️ Settings & Customization
-- **Timer Configuration** - Customize work, short break, and long break durations
-- **Notification Controls** - Toggle desktop notifications on/off
-- **Always on Top** - Keep the window above all other applications
-- **Test Notifications** - 5-second test timer to verify sound and notifications
+### 🎨 Modern UI
+- Beautiful glassmorphism design
+- Smooth animations and transitions
+- Interactive hover effects
+- Always-on-top mode
 
 ---
 
 ## 📥 Installation
 
-### Download Pre-built Binaries
+Download from [Releases](https://github.com/amuza2/ProductivityCake/releases)
 
-**All platforms will be available in the [Releases](https://github.com/amuza2/ProductivityCake/releases) section.**
+**Linux:**
+```bash
+# AppImage (recommended)
+chmod +x ProductivityCake-*.AppImage
+./ProductivityCake-*.AppImage
 
-### Linux
+# Or standalone binary
+tar -xzf ProductivityCake-linux-x64-v1.2.0.tar.gz
+./ProductivityCake
+```
 
-**Option 1: AppImage (Recommended - Works on all distros)**
-
-1. Download `ProductivityCake-x.x.x-x86_64.AppImage` from [Releases](https://github.com/amuza2/ProductivityCake/releases)
-2. Make it executable and run:
-   ```bash
-   chmod +x ProductivityCake-*.AppImage
-   ./ProductivityCake-*.AppImage
-   ```
-
-**Option 2: Standalone Binary**
-
-1. Download `ProductivityCake-linux-x64.tar.gz` from [Releases](https://github.com/amuza2/ProductivityCake/releases)
-2. Extract and run:
-   ```bash
-   tar -xzf ProductivityCake-linux-x64.tar.gz
-   ./ProductivityCake
-   ```
-
-### Windows
-
-1. Download `ProductivityCake-win-x64.zip` from [Releases](https://github.com/amuza2/ProductivityCake/releases)
-2. Extract the ZIP file
-3. Run `ProductivityCake.exe`
+**Windows:**
+- Extract `ProductivityCake-win-x64.zip`
+- Run `ProductivityCake.exe`
 
 ---
 
 ## 🛠️ Building from Source
 
-### Prerequisites
-
-- [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
-- **Linux**: 
-  - `clang` and `zlib1g-dev` (for AOT compilation)
-  - `libnotify-bin` (for desktop notifications)
-  ```bash
-  sudo apt install clang zlib1g-dev libnotify-bin
-  ```
-
-### Clone & Build
+**Prerequisites:** [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
 
 ```bash
-# Clone the repository
+# Clone and run
 git clone https://github.com/amuza2/ProductivityCake.git
 cd ProductivityCake
-
-# Build for development
-dotnet build
-
-# Run
 dotnet run --project ProductivityCake/ProductivityCake.csproj
-```
 
-### Publish for Linux (Native AOT)
-
-**Option 1: Using the publish script (recommended)**
-```bash
+# Publish for Linux (Native AOT)
 chmod +x publish-linux.sh
 ./publish-linux.sh
-```
 
-**Option 2: Manual publish**
-```bash
-# Publish optimized native binary for Linux x64
-dotnet publish ProductivityCake/ProductivityCake.csproj \
-  -c Release \
-  -r linux-x64 \
-  --self-contained \
-  -o ./publish/linux-x64
-
-# The executable will be at: ./publish/linux-x64/ProductivityCake
-# Create a distributable archive
-cd publish/linux-x64
-tar -czf ProductivityCake-linux-x64.tar.gz ProductivityCake alarm.mp3
-```
-
-### Build AppImage (Universal Linux Package)
-
-**Prerequisites for AppImage:**
-```bash
-# On Arch/EndeavourOS
-sudo pacman -S fuse2
-
-# On Ubuntu/Debian
-sudo apt install fuse libfuse2
-```
-
-**Build the AppImage:**
-```bash
+# Build AppImage
 chmod +x build-appimage.sh
 ./build-appimage.sh
 ```
 
-This creates a universal `ProductivityCake-1.1.0-x86_64.AppImage` that works on:
-- ✅ Arch Linux / EndeavourOS / Manjaro
-- ✅ Ubuntu / Debian / Linux Mint
-- ✅ Fedora / RHEL / CentOS
-- ✅ openSUSE
-- ✅ Any Linux distro with FUSE support
+**Linux dependencies:**
+```bash
+sudo apt install clang zlib1g-dev libnotify-bin fuse libfuse2
+```
 
+## 🏗️ Tech Stack
 
-## 🏗️ Technology Stack
-
-- **Framework**: [Avalonia UI 11.0](https://avaloniaui.net/) - Cross-platform .NET UI framework
-- **Language**: C# / .NET 9.0
-- **Architecture**: MVVM (Model-View-ViewModel)
-- **UI Toolkit**: [CommunityToolkit.Mvvm](https://github.com/CommunityToolkit/dotnet)
-- **Data Storage**: JSON file-based storage with source generation
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+- Avalonia UI 11.3 • .NET 9.0 • MVVM • Native AOT
+- CommunityToolkit.Mvvm • JSON storage
 
 ---
 
 ## 📄 License
 
-This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
-
-This means you are free to use, modify, and distribute this software, but any modifications must also be released under the GPL-3.0 license.
-
----
-
-## 🙏 Acknowledgments
-
-- Icons by [Icons8](https://icons8.com/)
-- Built with [Avalonia UI](https://avaloniaui.net/)
-- Inspired by the Pomodoro Technique by Francesco Cirillo
+GPL-3.0 License - see [LICENSE](LICENSE) for details.
 
 ---
 
 <div align="center">
 
-**Made with ❤️ and ☕**
+**Made with ❤️ by [amuza2](https://github.com/amuza2)**
 
-If you find this project helpful, please consider giving it a ⭐!
+Icons by [Icons8](https://icons8.com/) • Built with [Avalonia UI](https://avaloniaui.net/)
+
+If you find this helpful, give it a ⭐!
 
 </div>
