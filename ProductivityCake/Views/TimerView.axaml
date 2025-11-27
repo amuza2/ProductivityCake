@@ -399,7 +399,7 @@
                         <!--  Timer Settings  -->
                         <Border Classes="glass-card" Padding="30,25">
                             <StackPanel Spacing="25">
-                                <TextBlock Classes="title" Text="⏱️ Timer Settings" />
+                                <TextBlock Classes="title" Text="Timer Settings" />
 
                                 <!--  Work Time  -->
                                 <StackPanel Spacing="15">
@@ -520,7 +520,7 @@
                         <!--  Notifications  -->
                         <Border Classes="glass-card" Padding="30,25">
                             <StackPanel Spacing="18">
-                                <TextBlock Classes="title" Text="🔔 Notifications" />
+                                <TextBlock Classes="title" Text="Notifications" />
 
                                 <CheckBox
                                     Classes="glass-checkbox"
@@ -548,7 +548,7 @@
                         <!--  Window Settings  -->
                         <Border Classes="glass-card" Padding="30,25">
                             <StackPanel Spacing="18">
-                                <TextBlock Classes="title" Text="🪟 Window Settings" />
+                                <TextBlock Classes="title" Text="Window Settings" />
 
                                 <CheckBox
                                     Classes="glass-checkbox"

@@ -126,14 +126,26 @@
                         VerticalAlignment="Center">
                         <PathIcon
                             Data="{StaticResource folder_regular}"
-                            Foreground="White"
+                            Foreground="#B0FFFFFF"
                             Height="24"
-                            Width="24" />
+                            Width="24">
+                            <PathIcon.Transitions>
+                                <Transitions>
+                                    <BrushTransition Property="Foreground" Duration="0:0:0.2" />
+                                </Transitions>
+                            </PathIcon.Transitions>
+                        </PathIcon>
                         <TextBlock
                             FontSize="10"
-                            Foreground="White"
+                            Foreground="#B0FFFFFF"
                             HorizontalAlignment="Center"
-                            Text="Projects" />
+                            Text="Projects">
+                            <TextBlock.Transitions>
+                                <Transitions>
+                                    <BrushTransition Property="Foreground" Duration="0:0:0.2" />
+                                </Transitions>
+                            </TextBlock.Transitions>
+                        </TextBlock>
                     </StackPanel>
                 </Button>
 
@@ -150,14 +162,26 @@
                         VerticalAlignment="Center">
                         <PathIcon
                             Data="{StaticResource clock_regular}"
-                            Foreground="White"
+                            Foreground="#B0FFFFFF"
                             Height="24"
-                            Width="24" />
+                            Width="24">
+                            <PathIcon.Transitions>
+                                <Transitions>
+                                    <BrushTransition Property="Foreground" Duration="0:0:0.2" />
+                                </Transitions>
+                            </PathIcon.Transitions>
+                        </PathIcon>
                         <TextBlock
                             FontSize="10"
-                            Foreground="White"
+                            Foreground="#B0FFFFFF"
                             HorizontalAlignment="Center"
-                            Text="Timer" />
+                            Text="Timer">
+                            <TextBlock.Transitions>
+                                <Transitions>
+                                    <BrushTransition Property="Foreground" Duration="0:0:0.2" />
+                                </Transitions>
+                            </TextBlock.Transitions>
+                        </TextBlock>
                     </StackPanel>
                 </Button>
             </Grid>
