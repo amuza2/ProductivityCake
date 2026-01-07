@@ -6,10 +6,10 @@
 
 **A beautiful Pomodoro timer with project management**
 
-[![.NET](https://img.shields.io/badge/.NET-9.0-512BD4?logo=dotnet)](https://dotnet.microsoft.com/)
+[![.NET](https://img.shields.io/badge/.NET-10.0-512BD4?logo=dotnet)](https://dotnet.microsoft.com/)
 [![Avalonia UI](https://img.shields.io/badge/Avalonia-11.3-8B5CF6)](https://avaloniaui.net/)
 [![License](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-1.2.0-green)](https://github.com/amuza2/ProductivityCake/releases)
+[![Version](https://img.shields.io/badge/Version-1.2.1-green)](https://github.com/amuza2/ProductivityCake/releases)
 
 Modern glassmorphism UI • Native AOT • Cross-platform
 
@@ -42,8 +42,14 @@ Modern glassmorphism UI • Native AOT • Cross-platform
 - Smart breaks (5 min short, 15 min long)
 - Auto-advance between work and breaks
 - Visual circular progress bar
-- Audio notifications with sound alerts
 - Flexible controls: start, pause, reset, skip
+
+### 🔔 Notification System
+- Multiple notification sounds (Alarm, Bird Tweet)
+- Adjustable volume control (0-100%)
+- Customizable notification timeout (5-60 seconds)
+- Sound loops until notification is dismissed
+- Desktop notifications with configurable duration
 
 ### 📁 Project & Task Management
 - Create projects with descriptions
@@ -53,15 +59,17 @@ Modern glassmorphism UI • Native AOT • Cross-platform
 
 ### 📊 Statistics & Analytics
 - Daily, weekly, and monthly time tracking
-- GitHub-style activity heatmap
+- GitHub-style activity heatmap (orange/amber gradient)
+- Rolling 52-week view like GitHub contributions
 - Session count tracking
 - Real-time statistics updates
 
 ### 🎨 Modern UI
-- Beautiful glassmorphism design
+- Beautiful glassmorphism design with Leafy Green palette
 - Smooth animations and transitions
 - Interactive hover effects
 - Always-on-top mode
+- System tray integration
 
 ---
 
@@ -75,9 +83,9 @@ Download from [Releases](https://github.com/amuza2/ProductivityCake/releases)
 chmod +x ProductivityCake-*.AppImage
 ./ProductivityCake-*.AppImage
 
-# Or standalone binary
-tar -xzf ProductivityCake-linux-x64-v1.2.0.tar.gz
-./ProductivityCake
+# Or standalone binary with installer
+tar -xzf ProductivityCake-linux-x64.tar.gz
+./install.sh
 ```
 
 **Windows:** (not available yet)
@@ -88,7 +96,7 @@ tar -xzf ProductivityCake-linux-x64-v1.2.0.tar.gz
 
 ## 🛠️ Building from Source
 
-**Prerequisites:** [.NET 9.0 SDK](https://dotnet.microsoft.com/download/dotnet/9.0)
+**Prerequisites:** [.NET 10.0 SDK](https://dotnet.microsoft.com/download/dotnet/10.0)
 
 ```bash
 # Clone and run
@@ -96,11 +104,11 @@ git clone https://github.com/amuza2/ProductivityCake.git
 cd ProductivityCake
 dotnet run --project ProductivityCake/ProductivityCake.csproj
 
-# Publish for Linux (Native AOT)
-chmod +x publish-linux.sh
-./publish-linux.sh
+# Publish (supports Linux, Windows, macOS)
+chmod +x publish.sh
+./publish.sh
 
-# Build AppImage
+# Build AppImage (Linux only)
 chmod +x build-appimage.sh
 ./build-appimage.sh
 ```
@@ -112,7 +120,7 @@ sudo apt install clang zlib1g-dev libnotify-bin fuse libfuse2
 
 ## 🏗️ Tech Stack
 
-- Avalonia UI 11.3 • .NET 9.0 • MVVM • Native AOT
+- Avalonia UI 11.3 • .NET 10.0 • MVVM • Native AOT
 - CommunityToolkit.Mvvm • JSON storage
 
 ---
