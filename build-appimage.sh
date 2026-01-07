@@ -5,7 +5,7 @@
 
 set -e  # Exit on error
 
-VERSION="1.2.0"
+VERSION="1.2.1"
 ARCH="x86_64"
 APP_NAME="ProductivityCake"
 APPDIR="${APP_NAME}.AppDir"
@@ -69,19 +69,23 @@ for lib in ./publish/linux-x64/*.so; do
     fi
 done
 
-# Copy alarm.mp3 (check multiple locations)
-if [ -f "./publish/linux-x64/alarm.mp3" ]; then
-    cp ./publish/linux-x64/alarm.mp3 ${APPDIR}/usr/bin/
-    echo "✅ Copied alarm.mp3 from publish directory"
-elif [ -f "./publish/linux-x64/Assets/alarm.mp3" ]; then
-    cp ./publish/linux-x64/Assets/alarm.mp3 ${APPDIR}/usr/bin/
-    echo "✅ Copied alarm.mp3 from Assets directory"
-elif [ -f "./ProductivityCake/Assets/alarm.mp3" ]; then
-    cp ./ProductivityCake/Assets/alarm.mp3 ${APPDIR}/usr/bin/
-    echo "✅ Copied alarm.mp3 from source Assets directory"
-else
-    echo "⚠️  Warning: alarm.mp3 not found, sound notifications may not work"
-fi
+# Copy sound files (check multiple locations)
+echo "🔔 Copying sound files..."
+SOUND_FILES=("alarm.mp3" "9326__tigersound__bird-tweet-3.mp3")
+for sound in "${SOUND_FILES[@]}"; do
+    if [ -f "./publish/linux-x64/$sound" ]; then
+        cp "./publish/linux-x64/$sound" ${APPDIR}/usr/bin/
+        echo "✅ Copied $sound from publish directory"
+    elif [ -f "./publish/linux-x64/Assets/$sound" ]; then
+        cp "./publish/linux-x64/Assets/$sound" ${APPDIR}/usr/bin/
+        echo "✅ Copied $sound from Assets directory"
+    elif [ -f "./ProductivityCake/Assets/$sound" ]; then
+        cp "./ProductivityCake/Assets/$sound" ${APPDIR}/usr/bin/
+        echo "✅ Copied $sound from source Assets directory"
+    else
+        echo "⚠️  Warning: $sound not found"
+    fi
+done
 
 # Copy icon (convert from PNG to use as app icon)
 if [ -f "ProductivityCake/Assets/icons8-cake-96.png" ]; then
