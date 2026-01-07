@@ -33,7 +33,10 @@ public partial class App : Application
     {
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
+            // Suppress IL2026 warning - this is intentional for Avalonia AOT compatibility
+            #pragma warning disable IL2026
             BindingPlugins.DataValidators.RemoveAt(0);
+            #pragma warning restore IL2026
             
             var collection = new ServiceCollection();
             collection.AddCommonServices();
@@ -69,6 +72,8 @@ public partial class App : Application
 
     private void DisableAvaloniaDataAnnotationValidation()
     {
+        // Suppress IL2026 warning - this is intentional for Avalonia AOT compatibility
+        #pragma warning disable IL2026
         // Get an array of plugins to remove
         var dataValidationPluginsToRemove =
             BindingPlugins.DataValidators.OfType<DataAnnotationsValidationPlugin>().ToArray();
@@ -78,6 +83,7 @@ public partial class App : Application
         {
             BindingPlugins.DataValidators.Remove(plugin);
         }
+        #pragma warning restore IL2026
     }
     
     // Tray Icon Implementation
