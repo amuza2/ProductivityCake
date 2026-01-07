@@ -92,6 +92,37 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
     [ObservableProperty]
     private bool _alwaysOnTop = false;
     
+    [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(SelectedSoundName))]
+    private int _selectedSoundIndex = 0;
+    
+    [ObservableProperty]
+    private int _soundVolume = 50;
+    
+    [ObservableProperty]
+    private int _notificationTimeoutSeconds = 10;
+    
+    // Available notification sounds
+    public static readonly string[] AvailableSounds = { "Alarm", "Bird Tweet" };
+    public static readonly string[] SoundFileNames = { "alarm.mp3", "9326__tigersound__bird-tweet-3.mp3" };
+    
+    public string SelectedSoundName => AvailableSounds[SelectedSoundIndex];
+    
+    partial void OnSelectedSoundIndexChanged(int value)
+    {
+        _ = SaveSettingsAsync();
+    }
+    
+    partial void OnSoundVolumeChanged(int value)
+    {
+        _ = SaveSettingsAsync();
+    }
+    
+    partial void OnNotificationTimeoutSecondsChanged(int value)
+    {
+        _ = SaveSettingsAsync();
+    }
+    
     public TimeSpan WorkDuration => TimeSpan.FromMinutes(WorkSessionMinutes);
     public TimeSpan ShortBreakDuration => TimeSpan.FromMinutes(ShortBreakMinutes);
     public TimeSpan LongBreakDuration => TimeSpan.FromMinutes(LongBreakMinutes);
@@ -475,12 +506,13 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
             soundProcess = PlayAlarmSound();
             
             // Use notify-send for Linux notifications
+            var timeoutMs = NotificationTimeoutSeconds * 1000;
             var notificationProcess = new Process
             {
                 StartInfo = new ProcessStartInfo
                 {
                     FileName = "notify-send",
-                    Arguments = $"\"{title}\" \"{message}\" --icon=dialog-information --urgency=normal --expire-time=10000 --wait",
+                    Arguments = $"\"{title}\" \"{message}\" --icon=dialog-information --urgency=normal --expire-time={timeoutMs} --wait",
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
                     UseShellExecute = false,
@@ -514,17 +546,20 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
     {
         try
         {
+            // Get the selected sound file name
+            var soundFileName = SoundFileNames[SelectedSoundIndex];
+            
             // Try multiple possible locations for the sound file
             var possiblePaths = new[]
             {
-                // Published version (alarm.mp3 in same directory as executable)
-                System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "alarm.mp3"),
+                // Published version (sound file in same directory as executable)
+                System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, soundFileName),
                 // Development version (in Assets folder)
-                System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", "alarm.mp3"),
+                System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Assets", soundFileName),
                 // Source directory (for development)
                 System.IO.Path.Combine(
                     System.IO.Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory)?.Parent?.Parent?.Parent?.FullName ?? "",
-                    "Assets", "alarm.mp3")
+                    "Assets", soundFileName)
             };
             
             string? soundPath = null;
@@ -549,13 +584,19 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
             
             Console.WriteLine($"Playing sound from: {soundPath}");
             
+            // Calculate volume for different players
+            // SoundVolume is 0-100, paplay uses 0-65536, ffplay uses 0-100
+            var paplayVolume = (int)(SoundVolume / 100.0 * 65536);
+            var ffplayVolume = SoundVolume;
+            
             // Try multiple audio players in order of preference
+            // All players configured to loop indefinitely until killed
             var players = new (string player, string args)[]
             {
-                ("paplay", $"--volume=32768 \"{soundPath}\""), // PulseAudio (most common)
-                ("ffplay", $"-nodisp -autoexit -loop 3 -volume 50 \"{soundPath}\""), // FFmpeg
-                ("mpg123", $"-q --loop -1 \"{soundPath}\""), // mpg123
-                ("cvlc", $"--play-and-exit --loop \"{soundPath}\"") // VLC
+                ("ffplay", $"-nodisp -autoexit -loop 0 -volume {ffplayVolume} \"{soundPath}\""), // FFmpeg - loop 0 = infinite
+                ("mpg123", $"-q --loop -1 \"{soundPath}\""), // mpg123 - loop -1 = infinite
+                ("cvlc", $"--loop --gain {SoundVolume / 100.0} \"{soundPath}\""), // VLC - loop without play-and-exit
+                ("paplay", $"--volume={paplayVolume} \"{soundPath}\"") // PulseAudio (plays once, fallback)
             };
             
             foreach (var (player, args) in players)
@@ -608,6 +649,9 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
             LongBreakMinutes = settings.LongBreakMinutes;
             NotificationsEnabled = settings.NotificationsEnabled;
             AlwaysOnTop = settings.AlwaysOnTop;
+            SelectedSoundIndex = settings.SelectedSoundIndex;
+            SoundVolume = settings.SoundVolume;
+            NotificationTimeoutSeconds = settings.NotificationTimeoutSeconds;
             
             // Load statistics
             var statistics = await _dataService.LoadStatisticsAsync();
@@ -681,7 +725,10 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
                 ShortBreakMinutes = ShortBreakMinutes,
                 LongBreakMinutes = LongBreakMinutes,
                 NotificationsEnabled = NotificationsEnabled,
-                AlwaysOnTop = AlwaysOnTop
+                AlwaysOnTop = AlwaysOnTop,
+                SelectedSoundIndex = SelectedSoundIndex,
+                SoundVolume = SoundVolume,
+                NotificationTimeoutSeconds = NotificationTimeoutSeconds
             };
             
             await _dataService.SaveSettingsAsync(settings);

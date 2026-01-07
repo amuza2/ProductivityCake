@@ -532,6 +532,80 @@
                                     Classes="label"
                                     Text="Get notified when your timer completes"
                                     TextWrapping="Wrap" />
+                                
+                                <!--  Sound Selection  -->
+                                <StackPanel Spacing="12" Margin="0,10,0,0">
+                                    <Grid ColumnDefinitions="*, Auto">
+                                        <TextBlock 
+                                            Classes="subtitle" 
+                                            Text="Notification Sound" 
+                                            VerticalAlignment="Center" />
+                                        <TextBlock 
+                                            Grid.Column="1" 
+                                            Classes="value" 
+                                            Text="{Binding SelectedSoundName}" 
+                                            VerticalAlignment="Center" />
+                                    </Grid>
+                                    
+                                    <ComboBox
+                                        Classes="glass-combo"
+                                        HorizontalAlignment="Stretch"
+                                        SelectedIndex="{Binding SelectedSoundIndex}">
+                                        <ComboBoxItem Content="🔔 Alarm" />
+                                        <ComboBoxItem Content="🐦 Bird Tweet" />
+                                    </ComboBox>
+                                </StackPanel>
+                                
+                                <!--  Volume Control  -->
+                                <StackPanel Spacing="12" Margin="0,10,0,0">
+                                    <Grid ColumnDefinitions="*, Auto">
+                                        <TextBlock 
+                                            Classes="subtitle" 
+                                            Text="Volume" 
+                                            VerticalAlignment="Center" />
+                                        <TextBlock 
+                                            Grid.Column="1" 
+                                            Classes="value" 
+                                            Text="{Binding SoundVolume, StringFormat={}{0}%}" 
+                                            VerticalAlignment="Center" />
+                                    </Grid>
+                                    
+                                    <Slider
+                                        Classes="glass-slider"
+                                        IsSnapToTickEnabled="True"
+                                        Maximum="100"
+                                        Minimum="0"
+                                        TickFrequency="5"
+                                        Value="{Binding SoundVolume}" />
+                                </StackPanel>
+                                
+                                <!--  Notification Timeout  -->
+                                <StackPanel Spacing="12" Margin="0,10,0,0">
+                                    <Grid ColumnDefinitions="*, Auto">
+                                        <TextBlock 
+                                            Classes="subtitle" 
+                                            Text="Notification Timeout" 
+                                            VerticalAlignment="Center" />
+                                        <TextBlock 
+                                            Grid.Column="1" 
+                                            Classes="value" 
+                                            Text="{Binding NotificationTimeoutSeconds, StringFormat={}{0}s}" 
+                                            VerticalAlignment="Center" />
+                                    </Grid>
+                                    
+                                    <Slider
+                                        Classes="glass-slider"
+                                        IsSnapToTickEnabled="True"
+                                        Maximum="60"
+                                        Minimum="5"
+                                        TickFrequency="5"
+                                        Value="{Binding NotificationTimeoutSeconds}" />
+                                    
+                                    <TextBlock
+                                        Classes="label"
+                                        Text="How long the notification popup stays visible"
+                                        TextWrapping="Wrap" />
+                                </StackPanel>
 
                                 <Button
                                     Classes="glass-button"

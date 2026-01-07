@@ -13,6 +13,9 @@ public class TimerSettings
     public int LongBreakMinutes { get; set; } = 15;
     public bool NotificationsEnabled { get; set; } = true;
     public bool AlwaysOnTop { get; set; } = false;
+    public int SelectedSoundIndex { get; set; } = 0;
+    public int SoundVolume { get; set; } = 50;
+    public int NotificationTimeoutSeconds { get; set; } = 10;
 }
 
 /// <summary>
