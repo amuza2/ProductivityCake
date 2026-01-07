@@ -649,7 +649,7 @@
 
                                 <TextBlock
                                     Classes="label"
-                                    Text="Version 1.2.0"
+                                    Text="Version 1.2.1"
                                     HorizontalAlignment="Center"
                                     Margin="0,5,0,0" />
 
