@@ -1,20 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <Nullable>enable</Nullable>
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
         
         <!-- Version Information -->
-        <Version>1.2.0</Version>
-        <AssemblyVersion>1.2.0.0</AssemblyVersion>
-        <FileVersion>1.2.0.0</FileVersion>
-        <Company>amuza2</Company>
+        <Version>1.2.1</Version>
+        <AssemblyVersion>1.2.1.0</AssemblyVersion>
+        <FileVersion>1.2.1.0</FileVersion>
+        <Company>DzDevelopers</Company>
         <Product>ProductivityCake</Product>
         <Description>A simple and elegant Pomodoro timer with project management</Description>
-        <Copyright>Copyright © 2025</Copyright>
+        <Copyright>Copyright © 2026</Copyright>
         
         <!-- Native AOT Configuration -->
         <PublishAot>true</PublishAot>
@@ -46,6 +46,6 @@
             <PrivateAssets Condition="'$(Configuration)' != 'Debug'">All</PrivateAssets>
         </PackageReference>
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.8" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="10.0.0" />
     </ItemGroup>
 </Project>
