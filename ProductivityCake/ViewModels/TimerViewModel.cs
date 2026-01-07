@@ -862,8 +862,12 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
         HeatmapMonths.Clear();
         
         var today = DateTime.Today;
-        // Show only current year starting from January 1st
-        var startDate = new DateTime(today.Year, 1, 1);
+        // GitHub-style: Show last 52 weeks (approximately 1 year) ending at today
+        // Find the Sunday of the week containing today, then go back 52 weeks
+        var endDate = today;
+        
+        // Calculate start date: 52 weeks ago, aligned to Sunday
+        var startDate = today.AddDays(-364); // ~52 weeks
         
         // Align to start of week (Sunday)
         while (startDate.DayOfWeek != DayOfWeek.Sunday)
@@ -873,33 +877,23 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
         
         var currentDate = startDate;
         var weeks = new List<HeatmapWeek>();
-        var monthLabels = new Dictionary<string, int>(); // Track month positions
         int weekIndex = 0;
         
+        // Generate exactly 53 weeks (to cover full year including partial weeks)
         while (currentDate <= today)
         {
             var week = new HeatmapWeek();
-            
-            // Track month changes for labels
-            if (currentDate.Day <= 7 || weekIndex == 0)
-            {
-                var monthKey = currentDate.ToString("MMM");
-                if (!monthLabels.ContainsKey(monthKey))
-                {
-                    monthLabels[monthKey] = weekIndex;
-                }
-            }
             
             for (int i = 0; i < 7; i++)
             {
                 if (currentDate > today)
                 {
-                    // Add empty day for future dates
+                    // Add empty/invisible day for future dates in current week
                     week.Days.Add(new HeatmapDay
                     {
                         Date = currentDate,
                         SessionCount = 0,
-                        Color = "#374151",
+                        Color = "Transparent",
                         Tooltip = ""
                     });
                 }
@@ -933,47 +927,41 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
             HeatmapWeeks.Add(week);
         }
         
-        // Generate month labels (only for current year)
+        // Generate month labels for the last 12 months
         var previousMonth = "";
-        var monthStartWeek = -1;
-        var currentYear = today.Year;
-        var hasStartedCurrentYear = false;
+        var monthStartWeek = 0;
         
         for (int i = 0; i < weeks.Count; i++)
         {
-            // Only consider days in the current year
-            var firstDayInCurrentYear = weeks[i].Days.FirstOrDefault(d => d.Date.Year == currentYear && d.Date <= today);
-            if (firstDayInCurrentYear != null)
+            // Get the first valid day in this week (not future)
+            var firstValidDay = weeks[i].Days.FirstOrDefault(d => d.Date <= today);
+            if (firstValidDay != null)
             {
-                if (!hasStartedCurrentYear)
-                {
-                    hasStartedCurrentYear = true;
-                    monthStartWeek = i;
-                }
+                var currentMonth = firstValidDay.Date.ToString("MMM");
                 
-                var currentMonth = firstDayInCurrentYear.Date.ToString("MMM");
-                
-                if (currentMonth != previousMonth && !string.IsNullOrEmpty(previousMonth))
+                if (currentMonth != previousMonth)
                 {
-                    // Add the previous month label
-                    var weeksInMonth = i - monthStartWeek;
-                    if (weeksInMonth > 0)
+                    if (!string.IsNullOrEmpty(previousMonth))
                     {
-                        HeatmapMonths.Add(new HeatmapMonth
+                        // Add the previous month label
+                        var weeksInMonth = i - monthStartWeek;
+                        if (weeksInMonth > 0)
                         {
-                            MonthName = previousMonth,
-                            Width = weeksInMonth * 15 // 12px square + 3px spacing
-                        });
+                            HeatmapMonths.Add(new HeatmapMonth
+                            {
+                                MonthName = previousMonth,
+                                Width = weeksInMonth * 17 // 14px square + 3px spacing
+                            });
+                        }
                     }
                     monthStartWeek = i;
+                    previousMonth = currentMonth;
                 }
-                
-                previousMonth = currentMonth;
             }
         }
         
         // Add the last month
-        if (!string.IsNullOrEmpty(previousMonth) && monthStartWeek >= 0)
+        if (!string.IsNullOrEmpty(previousMonth))
         {
             var weeksInMonth = weeks.Count - monthStartWeek;
             if (weeksInMonth > 0)
@@ -981,7 +969,7 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
                 HeatmapMonths.Add(new HeatmapMonth
                 {
                     MonthName = previousMonth,
-                    Width = weeksInMonth * 15
+                    Width = weeksInMonth * 17
                 });
             }
         }
