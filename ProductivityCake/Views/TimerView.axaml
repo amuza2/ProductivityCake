@@ -378,11 +378,11 @@
                                 <!--  Legend  -->
                                 <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Right">
                                     <TextBlock Classes="label" Text="Less" VerticalAlignment="Center" />
-                                    <Border Width="14" Height="14" Background="#20FFFFFF" CornerRadius="3" />
-                                    <Border Width="14" Height="14" Background="#132a13" CornerRadius="3" />
-                                    <Border Width="14" Height="14" Background="#31572c" CornerRadius="3" />
-                                    <Border Width="14" Height="14" Background="#4f772d" CornerRadius="3" />
-                                    <Border Width="14" Height="14" Background="#90a955" CornerRadius="3" />
+                                    <Border Width="14" Height="14" Background="#2d2d2d" CornerRadius="3" />
+                                    <Border Width="14" Height="14" Background="#7c4a03" CornerRadius="3" />
+                                    <Border Width="14" Height="14" Background="#b45309" CornerRadius="3" />
+                                    <Border Width="14" Height="14" Background="#d97706" CornerRadius="3" />
+                                    <Border Width="14" Height="14" Background="#f59e0b" CornerRadius="3" />
                                     <TextBlock Classes="label" Text="More" VerticalAlignment="Center" />
                                 </StackPanel>
                             </StackPanel>

@@ -1024,13 +1024,14 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
     
     private string GetHeatmapColor(int sessionCount)
     {
+        // Orange/Amber gradient for better visibility against green theme
         return sessionCount switch
         {
-            0 => "#1a3a1a",      // No sessions - Evergreen dark
-            1 => "#132a13",      // 1 session - Evergreen
-            2 or 3 => "#31572c", // 2-3 sessions - Hunter Green
-            4 or 5 => "#4f772d", // 4-5 sessions - Fern
-            _ => "#90a955"       // 6+ sessions - Palm Leaf
+            0 => "#2d2d2d",      // No sessions - Dark gray
+            1 => "#7c4a03",      // 1 session - Dark amber
+            2 or 3 => "#b45309", // 2-3 sessions - Amber
+            4 or 5 => "#d97706", // 4-5 sessions - Orange
+            _ => "#f59e0b"       // 6+ sessions - Bright amber/gold
         };
     }
     
