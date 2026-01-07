@@ -10,7 +10,7 @@ namespace ProductivityCake.Services;
 
 public class CategoryService
 {
-    private readonly string _filePath = "categories.json";
+    private readonly string _filePath;
     private List<Category> _categories = new();
     private int _nextId = 1;
     
@@ -18,6 +18,12 @@ public class CategoryService
     
     public CategoryService()
     {
+        // Use user's home directory for data storage (consistent with other services)
+        var homeDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        var dataDirectory = Path.Combine(homeDir, ".local", "share", "ProductivityCake", "Data");
+        Directory.CreateDirectory(dataDirectory);
+        _filePath = Path.Combine(dataDirectory, "categories.json");
+        
         _ = LoadCategoriesAsync();
     }
     
@@ -90,12 +96,12 @@ public class CategoryService
             }
             else
             {
-                // Create default categories
+                // Create default categories with Leafy Green palette
                 _categories = new List<Category>
                 {
-                    new Category { Id = 1, Name = "Work", Color = "#2196F3" },
-                    new Category { Id = 2, Name = "Personal", Color = "#4CAF50" },
-                    new Category { Id = 3, Name = "Urgent", Color = "#F44336" }
+                    new Category { Id = 1, Name = "Work", Color = "#4f772d" },
+                    new Category { Id = 2, Name = "Personal", Color = "#90a955" },
+                    new Category { Id = 3, Name = "Urgent", Color = "#31572c" }
                 };
                 _nextId = 4;
                 await SaveCategoriesAsync();

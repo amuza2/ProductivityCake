@@ -20,10 +20,12 @@ public class ProjectService
     public ProjectService(IJsonDataService dataService)
     {
         _dataService = dataService;
-        _storagePath = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
-            "ProductivityCake",
-            "projects.json");
+        
+        // Use user's home directory for data storage (consistent with other services)
+        var homeDir = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        var dataDirectory = Path.Combine(homeDir, ".local", "share", "ProductivityCake", "Data");
+        Directory.CreateDirectory(dataDirectory);
+        _storagePath = Path.Combine(dataDirectory, "projects.json");
         
         // Load projects synchronously in constructor to ensure they're available immediately
         LoadProjectsSync();
