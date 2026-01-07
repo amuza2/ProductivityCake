@@ -991,11 +991,11 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
     {
         return sessionCount switch
         {
-            0 => "#374151",      // No sessions - gray
-            1 => "#0E4429",      // 1 session - lightest green
-            2 or 3 => "#006D32", // 2-3 sessions - light green
-            4 or 5 => "#26A641", // 4-5 sessions - medium green
-            _ => "#39D353"       // 6+ sessions - bright green
+            0 => "#1a3a1a",      // No sessions - Evergreen dark
+            1 => "#132a13",      // 1 session - Evergreen
+            2 or 3 => "#31572c", // 2-3 sessions - Hunter Green
+            4 or 5 => "#4f772d", // 4-5 sessions - Fern
+            _ => "#90a955"       // 6+ sessions - Palm Leaf
         };
     }
     

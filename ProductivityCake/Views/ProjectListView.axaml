@@ -18,9 +18,9 @@
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
-                <GradientStop Color="#0F172A" Offset="0" />
-                <GradientStop Color="#1E293B" Offset="0.5" />
-                <GradientStop Color="#0F172A" Offset="1" />
+                <GradientStop Color="#132a13" Offset="0" />
+                <GradientStop Color="#1a3a1a" Offset="0.5" />
+                <GradientStop Color="#132a13" Offset="1" />
             </LinearGradientBrush>
         </Grid.Background>
         <!--  Main Content  -->
@@ -135,7 +135,7 @@
                                             <!--  Task Counts  -->
                                             <StackPanel Orientation="Horizontal" Spacing="12">
                                                 <Border
-                                                    Background="#1E40AF"
+                                                    Background="#31572c"
                                                     CornerRadius="3"
                                                     Padding="6,3">
                                                     <TextBlock
@@ -145,7 +145,7 @@
                                                         Text="{Binding TodoTasksCount, StringFormat='To Do: {0}'}" />
                                                 </Border>
                                                 <Border
-                                                    Background="#CA8A04"
+                                                    Background="#90a955"
                                                     CornerRadius="3"
                                                     Padding="6,3">
                                                     <TextBlock
@@ -155,7 +155,7 @@
                                                         Text="{Binding DoingTasksCount, StringFormat='Doing: {0}'}" />
                                                 </Border>
                                                 <Border
-                                                    Background="#16A34A"
+                                                    Background="#4f772d"
                                                     CornerRadius="3"
                                                     Padding="6,3">
                                                     <TextBlock
@@ -177,7 +177,7 @@
                                                     <TextBlock
                                                         FontSize="11"
                                                         FontWeight="SemiBold"
-                                                        Foreground="#10B981"
+                                                        Foreground="#90a955"
                                                         Text="{Binding CompletionPercentage, StringFormat={}{0}% Complete}" />
                                                 </StackPanel>
 

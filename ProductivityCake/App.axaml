@@ -21,10 +21,10 @@
         <converter:TimerStateToColorConverter x:Key="TimerStateToColorConverter" />
         <converter:ProgressToAngleConverter x:Key="ProgressToAngleConverter" />
         <converter:BoolToThicknessConverter x:Key="BoolToThicknessConverter" />
-        <converter:BoolToBorderBrushConverter x:Key="WorkBorderBrushConverter" ActiveColor="#16A34A" />
-        <converter:BoolToBorderBrushConverter x:Key="LongWorkBorderBrushConverter" ActiveColor="#059669" />
-        <converter:BoolToBorderBrushConverter x:Key="ShortBreakBorderBrushConverter" ActiveColor="#3B82F6" />
-        <converter:BoolToBorderBrushConverter x:Key="LongBreakBorderBrushConverter" ActiveColor="#9333EA" />
+        <converter:BoolToBorderBrushConverter x:Key="WorkBorderBrushConverter" ActiveColor="#4f772d" />
+        <converter:BoolToBorderBrushConverter x:Key="LongWorkBorderBrushConverter" ActiveColor="#31572c" />
+        <converter:BoolToBorderBrushConverter x:Key="ShortBreakBorderBrushConverter" ActiveColor="#90a955" />
+        <converter:BoolToBorderBrushConverter x:Key="LongBreakBorderBrushConverter" ActiveColor="#ecf39e" />
     </Application.Resources>
 
 

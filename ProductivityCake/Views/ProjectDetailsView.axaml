@@ -19,9 +19,9 @@
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
-                <GradientStop Color="#0F172A" Offset="0" />
-                <GradientStop Color="#1E293B" Offset="0.5" />
-                <GradientStop Color="#0F172A" Offset="1" />
+                <GradientStop Color="#132a13" Offset="0" />
+                <GradientStop Color="#1a3a1a" Offset="0.5" />
+                <GradientStop Color="#132a13" Offset="1" />
             </LinearGradientBrush>
         </Grid.Background>
         <!--  Main Content  -->
@@ -65,7 +65,7 @@
 
                     <!--  ToDo Section  -->
                     <Border
-                        Background="#3B82F6"
+                        Background="#31572c"
                         CornerRadius="12"
                         Padding="0">
                         <StackPanel>
@@ -104,7 +104,7 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate DataType="models:TodoItem">
                                         <Button
-                                            Background="#1F2937"
+                                            Background="#1a3a1a"
                                             BorderBrush="#374151"
                                             BorderThickness="1"
                                             Classes="task-card"
@@ -187,7 +187,7 @@
 
                     <!--  Doing Section  -->
                     <Border
-                        Background="#F59E0B"
+                        Background="#90a955"
                         CornerRadius="12"
                         Padding="0">
                         <StackPanel>
@@ -226,7 +226,7 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate DataType="models:TodoItem">
                                         <Button
-                                            Background="#1F2937"
+                                            Background="#1a3a1a"
                                             BorderBrush="#374151"
                                             BorderThickness="1"
                                             Classes="task-card"
@@ -309,7 +309,7 @@
 
                     <!--  Done Section  -->
                     <Border
-                        Background="#10B981"
+                        Background="#4f772d"
                         CornerRadius="12"
                         Padding="0">
                         <StackPanel>
@@ -348,7 +348,7 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate DataType="models:TodoItem">
                                         <Button
-                                            Background="#1F2937"
+                                            Background="#1a3a1a"
                                             BorderBrush="#374151"
                                             BorderThickness="1"
                                             Classes="task-card"
@@ -454,7 +454,7 @@
             IsVisible="{Binding IsAddTaskDialogOpen}"
             ZIndex="100">
             <Border
-                Background="#CC1E293B"
+                Background="#CC1a3a1a"
                 BorderBrush="#50FFFFFF"
                 BorderThickness="1"
                 CornerRadius="20"
@@ -610,7 +610,7 @@
             IsVisible="{Binding IsEditTaskDialogOpen}"
             ZIndex="100">
             <Border
-                Background="#CC1E293B"
+                Background="#CC1a3a1a"
                 BorderBrush="#50FFFFFF"
                 BorderThickness="1"
                 CornerRadius="20"
@@ -766,7 +766,7 @@
             IsVisible="{Binding IsAddCategoryDialogOpen}"
             ZIndex="101">
             <Border
-                Background="#CC1E293B"
+                Background="#CC1a3a1a"
                 BorderBrush="#50FFFFFF"
                 BorderThickness="1"
                 CornerRadius="20"
@@ -836,7 +836,7 @@
             IsVisible="{Binding IsTaskDetailsDialogOpen}"
             ZIndex="102">
             <Border
-                Background="#CC1E293B"
+                Background="#CC1a3a1a"
                 BorderBrush="#50FFFFFF"
                 BorderThickness="1"
                 CornerRadius="20"

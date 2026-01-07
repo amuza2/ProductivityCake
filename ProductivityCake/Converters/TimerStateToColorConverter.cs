@@ -14,11 +14,11 @@ public class TimerStateToColorConverter : IValueConverter
         {
             var colorString = state switch
             {
-                TimerState.Work => "#16A34A",           // Green
-                TimerState.LongWork => "#059669",      // Darker Green
-                TimerState.ShortBreak => "#3B82F6",    // Blue
-                TimerState.LongBreak => "#9333EA",     // Purple
-                _ => "#374151"                         // Default Gray
+                TimerState.Work => "#4f772d",           // Fern
+                TimerState.LongWork => "#31572c",      // Hunter Green
+                TimerState.ShortBreak => "#90a955",    // Palm Leaf
+                TimerState.LongBreak => "#ecf39e",     // Lime Cream
+                _ => "#31572c"                         // Default Hunter Green
             };
             
             return Color.Parse(colorString);

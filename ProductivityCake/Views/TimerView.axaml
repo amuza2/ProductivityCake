@@ -24,9 +24,9 @@
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
-                <GradientStop Color="#0F172A" Offset="0" />
-                <GradientStop Color="#1E293B" Offset="0.5" />
-                <GradientStop Color="#0F172A" Offset="1" />
+                <GradientStop Color="#132a13" Offset="0" />
+                <GradientStop Color="#1a3a1a" Offset="0.5" />
+                <GradientStop Color="#132a13" Offset="1" />
             </LinearGradientBrush>
         </Grid.Background>
 
@@ -379,10 +379,10 @@
                                 <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Right">
                                     <TextBlock Classes="label" Text="Less" VerticalAlignment="Center" />
                                     <Border Width="14" Height="14" Background="#20FFFFFF" CornerRadius="3" />
-                                    <Border Width="14" Height="14" Background="#0E4429" CornerRadius="3" />
-                                    <Border Width="14" Height="14" Background="#006D32" CornerRadius="3" />
-                                    <Border Width="14" Height="14" Background="#26A641" CornerRadius="3" />
-                                    <Border Width="14" Height="14" Background="#39D353" CornerRadius="3" />
+                                    <Border Width="14" Height="14" Background="#132a13" CornerRadius="3" />
+                                    <Border Width="14" Height="14" Background="#31572c" CornerRadius="3" />
+                                    <Border Width="14" Height="14" Background="#4f772d" CornerRadius="3" />
+                                    <Border Width="14" Height="14" Background="#90a955" CornerRadius="3" />
                                     <TextBlock Classes="label" Text="More" VerticalAlignment="Center" />
                                 </StackPanel>
                             </StackPanel>

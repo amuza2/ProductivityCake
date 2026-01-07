@@ -36,7 +36,7 @@
     
     <!--  Button Hover Effects  -->
     <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#7C3AED" />
+        <Setter Property="Background" Value="#4f772d" />
     </Style>
     <!--    -->
     <!-- <Style Selector="Button:pressed /template/ ContentPresenter#PART_ContentPresenter"> -->
@@ -47,32 +47,32 @@
 
     <!--  Primary Action Buttons (Add, Save, etc.)  -->
     <Style Selector="Button.primary">
-        <Setter Property="Background" Value="#8B5CF6" />
+        <Setter Property="Background" Value="#4f772d" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="CornerRadius" Value="8" />
     </Style>
 
     <Style Selector="Button.primary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#A78BFA" />
+        <Setter Property="Background" Value="#90a955" />
     </Style>
 
     <Style Selector="Button.primary:pressed /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#7C3AED" />
+        <Setter Property="Background" Value="#31572c" />
     </Style>
 
     <!--  Secondary Buttons (Cancel, etc.)  -->
     <Style Selector="Button.secondary">
-        <Setter Property="Background" Value="#3B82F6" />
+        <Setter Property="Background" Value="#90a955" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="CornerRadius" Value="8" />
     </Style>
 
     <Style Selector="Button.secondary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#60A5FA" />
+        <Setter Property="Background" Value="#ecf39e" />
     </Style>
 
     <Style Selector="Button.secondary:pressed /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#2563EB" />
+        <Setter Property="Background" Value="#4f772d" />
     </Style>
 
     <!--  Danger Buttons (Delete)  -->
@@ -96,11 +96,11 @@
     </Style>
 
     <Style Selector="Button.transparent:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#8B5CF620" />
+        <Setter Property="Background" Value="#4f772d20" />
     </Style>
 
     <Style Selector="Button.transparent:pressed /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#8B5CF610" />
+        <Setter Property="Background" Value="#4f772d10" />
     </Style>
 
     <!--  Floating Action Button  -->
@@ -108,8 +108,8 @@
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
-                    <GradientStop Color="#10B981" Offset="0" />
-                    <GradientStop Color="#059669" Offset="1" />
+                    <GradientStop Color="#4f772d" Offset="0" />
+                    <GradientStop Color="#31572c" Offset="1" />
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
@@ -134,39 +134,39 @@
 
     <!--  Task Card Buttons  -->
     <Style Selector="Button.task-card">
-        <Setter Property="Background" Value="#1E293B" />
-        <Setter Property="BorderBrush" Value="#8B5CF640" />
+        <Setter Property="Background" Value="#132a13" />
+        <Setter Property="BorderBrush" Value="#4f772d40" />
         <Setter Property="BorderThickness" Value="2" />
         <Setter Property="CornerRadius" Value="12" />
     </Style>
 
     <Style Selector="Button.task-card:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#334155" />
-        <Setter Property="BorderBrush" Value="#8B5CF6" />
+        <Setter Property="Background" Value="#1a3a1a" />
+        <Setter Property="BorderBrush" Value="#4f772d" />
     </Style>
 
     <Style Selector="Button.task-card:pressed /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#1E293B" />
+        <Setter Property="Background" Value="#132a13" />
     </Style>
 
     <!--  CheckBox Styling  -->
     <Style Selector="CheckBox:pointerover /template/ Border#NormalRectangle">
-        <Setter Property="BorderBrush" Value="#8B5CF6" />
-        <Setter Property="Background" Value="#8B5CF620" />
+        <Setter Property="BorderBrush" Value="#4f772d" />
+        <Setter Property="Background" Value="#4f772d20" />
     </Style>
 
     <Style Selector="CheckBox:pressed /template/ Border#NormalRectangle">
-        <Setter Property="BorderBrush" Value="#7C3AED" />
-        <Setter Property="Background" Value="#8B5CF630" />
+        <Setter Property="BorderBrush" Value="#31572c" />
+        <Setter Property="Background" Value="#4f772d30" />
     </Style>
 
     <!--  ComboBox Styling  -->
     <Style Selector="ComboBox:pointerover /template/ Border#Background">
-        <Setter Property="BorderBrush" Value="#8B5CF6" />
+        <Setter Property="BorderBrush" Value="#4f772d" />
     </Style>
 
     <Style Selector="ComboBox:focus /template/ Border#Background">
-        <Setter Property="BorderBrush" Value="#A78BFA" />
+        <Setter Property="BorderBrush" Value="#90a955" />
     </Style>
 
     <!--  TextBox Styling  -->
@@ -179,12 +179,12 @@
     </Style>
     
     <Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
-        <Setter Property="BorderBrush" Value="#8B5CF6" />
+        <Setter Property="BorderBrush" Value="#4f772d" />
     </Style>
 
     <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
-        <Setter Property="BorderBrush" Value="#A78BFA" />
-        <Setter Property="BoxShadow" Value="0 0 0 3 #8B5CF620" />
+        <Setter Property="BorderBrush" Value="#90a955" />
+        <Setter Property="BoxShadow" Value="0 0 0 3 #4f772d20" />
     </Style>
     
     <Style Selector="TextBox.glass-combo:focus /template/ Border#PART_BorderElement">
@@ -195,12 +195,12 @@
 
     <!--  Border Hover Effects (Self-rendering)  -->
     <Style Selector="Border.hoverable:pointerover">
-        <Setter Property="Background" Value="#334155" />
+        <Setter Property="Background" Value="#1a3a1a" />
     </Style>
 
     <Style Selector="Border.task-card:pointerover">
-        <Setter Property="BorderBrush" Value="#8B5CF6" />
-        <Setter Property="Background" Value="#334155" />
+        <Setter Property="BorderBrush" Value="#4f772d" />
+        <Setter Property="Background" Value="#1a3a1a" />
     </Style>
 
     <!--  Navigation Button Styling  -->
@@ -244,8 +244,8 @@
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
-                    <GradientStop Color="#8B5CF640" Offset="0" />
-                    <GradientStop Color="#A78BFA30" Offset="1" />
+                    <GradientStop Color="#4f772d40" Offset="0" />
+                    <GradientStop Color="#90a95530" Offset="1" />
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
@@ -256,11 +256,11 @@
     </Style>
     
     <Style Selector="Button.nav-button:pressed PathIcon">
-        <Setter Property="Foreground" Value="#A78BFA" />
+        <Setter Property="Foreground" Value="#90a955" />
     </Style>
     
     <Style Selector="Button.nav-button:pressed TextBlock">
-        <Setter Property="Foreground" Value="#A78BFA" />
+        <Setter Property="Foreground" Value="#90a955" />
     </Style>
 
     <!--  Project Card Styles  -->
@@ -274,7 +274,7 @@
     
     <Style Selector="Button.project-card:pointerover /template/ ContentPresenter#PART_ContentPresenter">
         <Setter Property="Background" Value="#30FFFFFF" />
-        <Setter Property="BorderBrush" Value="#8B5CF6" />
+        <Setter Property="BorderBrush" Value="#4f772d" />
     </Style>
     
     <Style Selector="Button.project-card:pointerover">
@@ -287,7 +287,7 @@
 
     <!--  Title Bar Button Styles  -->
     <Style Selector="Button#MinimizeButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#334155" />
+        <Setter Property="Background" Value="#1a3a1a" />
     </Style>
     
     <Style Selector="Button#CloseButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
@@ -368,8 +368,8 @@
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
-                    <GradientStop Color="#10B981" Offset="0" />
-                    <GradientStop Color="#059669" Offset="1" />
+                    <GradientStop Color="#4f772d" Offset="0" />
+                    <GradientStop Color="#31572c" Offset="1" />
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
@@ -425,15 +425,15 @@
     
     <!-- Glass Slider Style -->
     <Style Selector="Slider.glass-slider">
-        <Setter Property="Foreground" Value="#10B981" />
+        <Setter Property="Foreground" Value="#4f772d" />
     </Style>
     
     <Style Selector="Slider.glass-slider /template/ RepeatButton#PART_DecreaseButton">
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
-                    <GradientStop Color="#10B981" Offset="0" />
-                    <GradientStop Color="#34D399" Offset="1" />
+                    <GradientStop Color="#4f772d" Offset="0" />
+                    <GradientStop Color="#90a955" Offset="1" />
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
@@ -459,7 +459,7 @@
     
     <Style Selector="Slider.glass-slider /template/ Thumb">
         <Setter Property="Background" Value="White" />
-        <Setter Property="BorderBrush" Value="#10B981" />
+        <Setter Property="BorderBrush" Value="#4f772d" />
         <Setter Property="BorderThickness" Value="3" />
         <Setter Property="Width" Value="22" />
         <Setter Property="Height" Value="22" />
@@ -476,7 +476,7 @@
     <!-- Slider Hover Effects -->
     <Style Selector="Slider.glass-slider:pointerover /template/ Thumb">
         <Setter Property="RenderTransform" Value="scale(1.15)" />
-        <Setter Property="Background" Value="#10B981" />
+        <Setter Property="Background" Value="#4f772d" />
         <Setter Property="BorderBrush" Value="White" />
     </Style>
     
@@ -484,8 +484,8 @@
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
-                    <GradientStop Color="#34D399" Offset="0" />
-                    <GradientStop Color="#6EE7B7" Offset="1" />
+                    <GradientStop Color="#90a955" Offset="0" />
+                    <GradientStop Color="#ecf39e" Offset="1" />
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
@@ -498,28 +498,28 @@
     <!-- Slider Pressed Effects -->
     <Style Selector="Slider.glass-slider:pressed /template/ Thumb">
         <Setter Property="RenderTransform" Value="scale(1.05)" />
-        <Setter Property="Background" Value="#059669" />
+        <Setter Property="Background" Value="#31572c" />
     </Style>
     
-    <!-- Blue Slider Variant -->
+    <!-- Blue Slider Variant (now Palm Leaf green) -->
     <Style Selector="Slider.glass-slider-blue /template/ RepeatButton#PART_DecreaseButton">
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
-                    <GradientStop Color="#3B82F6" Offset="0" />
-                    <GradientStop Color="#60A5FA" Offset="1" />
+                    <GradientStop Color="#90a955" Offset="0" />
+                    <GradientStop Color="#ecf39e" Offset="1" />
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
     </Style>
     
     <Style Selector="Slider.glass-slider-blue /template/ Thumb">
-        <Setter Property="BorderBrush" Value="#3B82F6" />
+        <Setter Property="BorderBrush" Value="#90a955" />
     </Style>
     
     <Style Selector="Slider.glass-slider-blue:pointerover /template/ Thumb">
         <Setter Property="RenderTransform" Value="scale(1.15)" />
-        <Setter Property="Background" Value="#3B82F6" />
+        <Setter Property="Background" Value="#90a955" />
         <Setter Property="BorderBrush" Value="White" />
     </Style>
     
@@ -527,8 +527,8 @@
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
-                    <GradientStop Color="#60A5FA" Offset="0" />
-                    <GradientStop Color="#93C5FD" Offset="1" />
+                    <GradientStop Color="#ecf39e" Offset="0" />
+                    <GradientStop Color="#ecf39e" Offset="1" />
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
@@ -536,28 +536,28 @@
     
     <Style Selector="Slider.glass-slider-blue:pressed /template/ Thumb">
         <Setter Property="RenderTransform" Value="scale(1.05)" />
-        <Setter Property="Background" Value="#2563EB" />
+        <Setter Property="Background" Value="#4f772d" />
     </Style>
     
-    <!-- Purple Slider Variant -->
+    <!-- Purple Slider Variant (now Hunter Green) -->
     <Style Selector="Slider.glass-slider-purple /template/ RepeatButton#PART_DecreaseButton">
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
-                    <GradientStop Color="#A855F7" Offset="0" />
-                    <GradientStop Color="#C084FC" Offset="1" />
+                    <GradientStop Color="#31572c" Offset="0" />
+                    <GradientStop Color="#4f772d" Offset="1" />
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
     </Style>
     
     <Style Selector="Slider.glass-slider-purple /template/ Thumb">
-        <Setter Property="BorderBrush" Value="#A855F7" />
+        <Setter Property="BorderBrush" Value="#31572c" />
     </Style>
     
     <Style Selector="Slider.glass-slider-purple:pointerover /template/ Thumb">
         <Setter Property="RenderTransform" Value="scale(1.15)" />
-        <Setter Property="Background" Value="#A855F7" />
+        <Setter Property="Background" Value="#31572c" />
         <Setter Property="BorderBrush" Value="White" />
     </Style>
     
@@ -565,8 +565,8 @@
         <Setter Property="Background">
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
-                    <GradientStop Color="#C084FC" Offset="0" />
-                    <GradientStop Color="#E9D5FF" Offset="1" />
+                    <GradientStop Color="#4f772d" Offset="0" />
+                    <GradientStop Color="#90a955" Offset="1" />
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>
@@ -574,7 +574,7 @@
     
     <Style Selector="Slider.glass-slider-purple:pressed /template/ Thumb">
         <Setter Property="RenderTransform" Value="scale(1.05)" />
-        <Setter Property="Background" Value="#9333EA" />
+        <Setter Property="Background" Value="#132a13" />
     </Style>
     
     <!-- Glass ComboBox Style -->
@@ -599,8 +599,8 @@
     </Style>
     
     <Style Selector="CheckBox.glass-checkbox:checked /template/ Border#NormalRectangle">
-        <Setter Property="Background" Value="#10B981" />
-        <Setter Property="BorderBrush" Value="#10B981" />
+        <Setter Property="Background" Value="#4f772d" />
+        <Setter Property="BorderBrush" Value="#31572c" />
     </Style>
     
     <!-- Stat Card Style -->

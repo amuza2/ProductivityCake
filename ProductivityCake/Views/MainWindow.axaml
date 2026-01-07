@@ -24,9 +24,9 @@
     <!-- Gradient Background -->
     <Window.Background>
         <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
-            <GradientStop Color="#0F172A" Offset="0" />
-            <GradientStop Color="#1E293B" Offset="0.5" />
-            <GradientStop Color="#0F172A" Offset="1" />
+            <GradientStop Color="#132a13" Offset="0" />
+            <GradientStop Color="#1a3a1a" Offset="0.5" />
+            <GradientStop Color="#132a13" Offset="1" />
         </LinearGradientBrush>
     </Window.Background>
 
