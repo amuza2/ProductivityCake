@@ -17,19 +17,14 @@
 
     <Grid>
         <Grid.Background>
-            <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
-                <GradientStop Color="#132a13" Offset="0" />
-                <GradientStop Color="#1a3a1a" Offset="0.5" />
-                <GradientStop Color="#132a13" Offset="1" />
-            </LinearGradientBrush>
+            <SolidColorBrush Color="#1e1e2e" />
         </Grid.Background>
         <!--  Main Content  -->
         <Grid RowDefinitions="Auto, *">
-            <!--  Header  -->
+            <!--  Header (Neumorphic)  -->
             <Border
-                Background="#15FFFFFF"
-                BorderBrush="#30FFFFFF"
-                BorderThickness="0,0,0,1"
+                Background="#1e1e2e"
+                BoxShadow="0 2 8 0 #0a0a10"
                 Grid.Row="0"
                 Padding="20,20,20,15">
                 <Grid ColumnDefinitions="*,Auto">
@@ -107,9 +102,8 @@
                         <ItemsControl.ItemTemplate>
                             <DataTemplate DataType="models:Project">
                                 <Button
-                                    Background="#20FFFFFF"
-                                    BorderBrush="#30FFFFFF"
-                                    BorderThickness="1"
+                                    Background="#2a2a3e"
+                                    BorderThickness="0"
                                     Classes="project-card"
                                     Command="{Binding $parent[ItemsControl].((vm:ProjectListViewModel)DataContext).OpenProjectDetailsCommand}"
                                     CommandParameter="{Binding}"
@@ -269,15 +263,14 @@
             IsVisible="{Binding IsAddProjectDialogOpen}"
             ZIndex="100">
             <Border
-                Background="#45FFFFFF"
-                BorderBrush="#50FFFFFF"
-                BorderThickness="1"
+                Background="#2a2a3e"
+                BorderThickness="0"
                 CornerRadius="20"
                 HorizontalAlignment="Center"
                 MaxWidth="450"
                 Padding="30,25"
                 VerticalAlignment="Center"
-                BoxShadow="0 20 60 0 #40000000">
+                BoxShadow="8 8 20 0 #0a0a10, -4 -4 12 0 #2a2a3e">
                 <StackPanel Spacing="20">
                     <StackPanel Spacing="8">
                         <TextBlock

@@ -21,21 +21,16 @@
         <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <!-- Gradient Background -->
+    <!-- Neumorphic Solid Background -->
     <Window.Background>
-        <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
-            <GradientStop Color="#132a13" Offset="0" />
-            <GradientStop Color="#1a3a1a" Offset="0.5" />
-            <GradientStop Color="#132a13" Offset="1" />
-        </LinearGradientBrush>
+        <SolidColorBrush Color="#1e1e2e" />
     </Window.Background>
 
     <Grid RowDefinitions="Auto, *, Auto">
-        <!--  Custom Title Bar  -->
+        <!--  Custom Title Bar (Neumorphic)  -->
         <Border
-            Background="#15FFFFFF"
-            BorderBrush="#30FFFFFF"
-            BorderThickness="0,0,0,1"
+            Background="#1e1e2e"
+            BoxShadow="0 2 8 0 #0a0a10"
             Grid.Row="0"
             IsHitTestVisible="True">
             <Grid ColumnDefinitions="Auto, *, Auto" Height="40">
@@ -107,11 +102,10 @@
         <!--  page content  -->
         <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}" />
 
-        <!--  footer navigation  -->
+        <!--  footer navigation (Neumorphic)  -->
         <Border
-            Background="#15FFFFFF"
-            BorderBrush="#30FFFFFF"
-            BorderThickness="0,1,0,0"
+            Background="#1e1e2e"
+            BoxShadow="0 -2 8 0 #0a0a10"
             Grid.Row="2">
             <Grid ColumnDefinitions="*,*" Height="60">
                 <Button

@@ -20,14 +20,10 @@
         <vm:TimerViewModel />
     </Design.DataContext>
 
-    <!-- Gradient Background -->
+    <!-- Neumorphic Solid Background -->
     <Grid>
         <Grid.Background>
-            <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
-                <GradientStop Color="#132a13" Offset="0" />
-                <GradientStop Color="#1a3a1a" Offset="0.5" />
-                <GradientStop Color="#132a13" Offset="1" />
-            </LinearGradientBrush>
+            <SolidColorBrush Color="#1e1e2e" />
         </Grid.Background>
 
         <TabControl Margin="5,0,5,5" TabStripPlacement="Top">
@@ -379,10 +375,10 @@
                                 <StackPanel Orientation="Horizontal" Spacing="10" HorizontalAlignment="Right">
                                     <TextBlock Classes="label" Text="Less" VerticalAlignment="Center" />
                                     <Border Width="14" Height="14" Background="#2d2d2d" CornerRadius="3" />
-                                    <Border Width="14" Height="14" Background="#7c4a03" CornerRadius="3" />
-                                    <Border Width="14" Height="14" Background="#b45309" CornerRadius="3" />
-                                    <Border Width="14" Height="14" Background="#d97706" CornerRadius="3" />
-                                    <Border Width="14" Height="14" Background="#f59e0b" CornerRadius="3" />
+                                    <Border Width="14" Height="14" Background="#164e63" CornerRadius="3" />
+                                    <Border Width="14" Height="14" Background="#0e7490" CornerRadius="3" />
+                                    <Border Width="14" Height="14" Background="#0891b2" CornerRadius="3" />
+                                    <Border Width="14" Height="14" Background="#22d3ee" CornerRadius="3" />
                                     <TextBlock Classes="label" Text="More" VerticalAlignment="Center" />
                                 </StackPanel>
                             </StackPanel>

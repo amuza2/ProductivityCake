@@ -14,16 +14,16 @@ public class TimerStateToColorConverter : IValueConverter
         {
             var colorString = state switch
             {
-                TimerState.Work => "#4f772d",           // Fern
-                TimerState.LongWork => "#31572c",      // Hunter Green
-                TimerState.ShortBreak => "#90a955",    // Palm Leaf
-                TimerState.LongBreak => "#ecf39e",     // Lime Cream
-                _ => "#31572c"                         // Default Hunter Green
+                TimerState.Work => "#22d3ee",            // Cyan (primary accent)
+                TimerState.LongWork => "#a78bfa",        // Purple (secondary)
+                TimerState.ShortBreak => "#4ade80",      // Green (success)
+                TimerState.LongBreak => "#fbbf24",       // Amber/Yellow (warm)
+                _ => "#22d3ee"                           // Default Cyan
             };
-            
+
             return Color.Parse(colorString);
         }
-        
+
         return Color.Parse("#374151");
     }
 

@@ -18,19 +18,14 @@
 
     <Grid>
         <Grid.Background>
-            <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
-                <GradientStop Color="#132a13" Offset="0" />
-                <GradientStop Color="#1a3a1a" Offset="0.5" />
-                <GradientStop Color="#132a13" Offset="1" />
-            </LinearGradientBrush>
+            <SolidColorBrush Color="#1e1e2e" />
         </Grid.Background>
         <!--  Main Content  -->
         <Grid RowDefinitions="Auto, *">
-            <!--  Header  -->
+            <!--  Header (Neumorphic)  -->
             <Border
-                Background="#15FFFFFF"
-                BorderBrush="#30FFFFFF"
-                BorderThickness="0,0,0,1"
+                Background="#1e1e2e"
+                BoxShadow="0 2 8 0 #0a0a10"
                 Grid.Row="0"
                 Padding="20,15">
                 <StackPanel Spacing="10">
@@ -63,10 +58,11 @@
             <ScrollViewer Background="Transparent" Grid.Row="1">
                 <StackPanel Margin="20,20,20,100" Spacing="15">
 
-                    <!--  ToDo Section  -->
+                    <!--  ToDo Section (Neumorphic)  -->
                     <Border
-                        Background="#31572c"
-                        CornerRadius="12"
+                        Background="#2a2a3e"
+                        CornerRadius="16"
+                        BoxShadow="4 4 12 0 #0a0a10, -2 -2 8 0 #2a2a3e"
                         Padding="0">
                         <StackPanel>
                             <!--  Section Header  -->
@@ -104,13 +100,12 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate DataType="models:TodoItem">
                                         <Button
-                                            Background="#1a3a1a"
-                                            BorderBrush="#374151"
-                                            BorderThickness="1"
+                                            Background="#1e1e2e"
+                                            BorderThickness="0"
                                             Classes="task-card"
                                             Command="{Binding $parent[ItemsControl].((vm:ProjectDetailsViewModel)DataContext).OpenTaskDetailsCommand}"
                                             CommandParameter="{Binding}"
-                                            CornerRadius="6"
+                                            CornerRadius="12"
                                             HorizontalAlignment="Stretch"
                                             HorizontalContentAlignment="Stretch"
                                             Margin="0,0,0,8"
@@ -185,10 +180,11 @@
                         </StackPanel>
                     </Border>
 
-                    <!--  Doing Section  -->
+                    <!--  Doing Section (Neumorphic)  -->
                     <Border
-                        Background="#90a955"
-                        CornerRadius="12"
+                        Background="#2a2a3e"
+                        CornerRadius="16"
+                        BoxShadow="4 4 12 0 #0a0a10, -2 -2 8 0 #2a2a3e"
                         Padding="0">
                         <StackPanel>
                             <!--  Section Header  -->
@@ -226,8 +222,8 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate DataType="models:TodoItem">
                                         <Button
-                                            Background="#1a3a1a"
-                                            BorderBrush="#374151"
+                                            Background="#1a2e3a"
+                                            BorderBrush="#0891b2"
                                             BorderThickness="1"
                                             Classes="task-card"
                                             Command="{Binding $parent[ItemsControl].((vm:ProjectDetailsViewModel)DataContext).OpenTaskDetailsCommand}"
@@ -307,10 +303,11 @@
                         </StackPanel>
                     </Border>
 
-                    <!--  Done Section  -->
+                    <!--  Done Section (Neumorphic)  -->
                     <Border
-                        Background="#4f772d"
-                        CornerRadius="12"
+                        Background="#2a2a3e"
+                        CornerRadius="16"
+                        BoxShadow="4 4 12 0 #0a0a10, -2 -2 8 0 #2a2a3e"
                         Padding="0">
                         <StackPanel>
                             <!--  Section Header  -->
@@ -348,8 +345,8 @@
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate DataType="models:TodoItem">
                                         <Button
-                                            Background="#1a3a1a"
-                                            BorderBrush="#374151"
+                                            Background="#2a1a3a"
+                                            BorderBrush="#a78bfa"
                                             BorderThickness="1"
                                             Classes="task-card"
                                             Command="{Binding $parent[ItemsControl].((vm:ProjectDetailsViewModel)DataContext).OpenTaskDetailsCommand}"
@@ -454,11 +451,10 @@
             IsVisible="{Binding IsAddTaskDialogOpen}"
             ZIndex="100">
             <Border
-                Background="#CC1a3a1a"
-                BorderBrush="#50FFFFFF"
-                BorderThickness="1"
+                Background="#2a2a3e"
+                BorderThickness="0"
                 CornerRadius="20"
-                BoxShadow="0 8 32 0 #40000000"
+                BoxShadow="8 8 24 0 #0a0a10, -4 -4 16 0 #3a3a52"
                 HorizontalAlignment="Center"
                 MaxWidth="400"
                 Padding="20"
@@ -610,11 +606,10 @@
             IsVisible="{Binding IsEditTaskDialogOpen}"
             ZIndex="100">
             <Border
-                Background="#CC1a3a1a"
-                BorderBrush="#50FFFFFF"
-                BorderThickness="1"
+                Background="#2a2a3e"
+                BorderThickness="0"
                 CornerRadius="20"
-                BoxShadow="0 8 32 0 #40000000"
+                BoxShadow="8 8 24 0 #0a0a10, -4 -4 16 0 #3a3a52"
                 HorizontalAlignment="Center"
                 MaxWidth="400"
                 Padding="20"
@@ -766,11 +761,10 @@
             IsVisible="{Binding IsAddCategoryDialogOpen}"
             ZIndex="101">
             <Border
-                Background="#CC1a3a1a"
-                BorderBrush="#50FFFFFF"
-                BorderThickness="1"
+                Background="#2a2a3e"
+                BorderThickness="0"
                 CornerRadius="20"
-                BoxShadow="0 8 32 0 #40000000"
+                BoxShadow="8 8 24 0 #0a0a10, -4 -4 16 0 #3a3a52"
                 HorizontalAlignment="Center"
                 MaxWidth="350"
                 Padding="20"
@@ -836,11 +830,10 @@
             IsVisible="{Binding IsTaskDetailsDialogOpen}"
             ZIndex="102">
             <Border
-                Background="#CC1a3a1a"
-                BorderBrush="#50FFFFFF"
-                BorderThickness="1"
+                Background="#2a2a3e"
+                BorderThickness="0"
                 CornerRadius="20"
-                BoxShadow="0 8 32 0 #40000000"
+                BoxShadow="8 8 24 0 #0a0a10, -4 -4 16 0 #3a3a52"
                 HorizontalAlignment="Center"
                 MaxWidth="400"
                 Padding="20"
@@ -868,7 +861,7 @@
                         <TextBlock
                             FontSize="12"
                             FontWeight="SemiBold"
-                            Foreground="#9CA3AF"
+                            Foreground="#94a3b8"
                             Text="TITLE" />
                         <TextBlock
                             FontSize="16"
@@ -882,7 +875,7 @@
                         <TextBlock
                             FontSize="12"
                             FontWeight="SemiBold"
-                            Foreground="#9CA3AF"
+                            Foreground="#94a3b8"
                             Text="DESCRIPTION" />
                         <TextBlock
                             FontSize="14"
@@ -896,16 +889,18 @@
                         <TextBlock
                             FontSize="12"
                             FontWeight="SemiBold"
-                            Foreground="#9CA3AF"
+                            Foreground="#94a3b8"
                             Text="STATUS" />
                         <Border
-                            Background="#2D3748"
-                            CornerRadius="4"
+                            Background="#1e1e2e"
+                            BorderBrush="#3f3f5a"
+                            BorderThickness="1"
+                            CornerRadius="8"
                             HorizontalAlignment="Left"
-                            Padding="10,5">
+                            Padding="12,6">
                             <TextBlock
                                 FontSize="14"
-                                Foreground="#D1D5DB"
+                                Foreground="#f1f5f9"
                                 Text="{Binding SelectedTaskForDetails.Status}" />
                         </Border>
                     </StackPanel>
@@ -915,7 +910,7 @@
                         <TextBlock
                             FontSize="12"
                             FontWeight="SemiBold"
-                            Foreground="#9CA3AF"
+                            Foreground="#94a3b8"
                             Text="TAGS" />
                         <ItemsControl ItemsSource="{Binding SelectedTaskForDetails.Tags}">
                             <ItemsControl.ItemsPanel>
@@ -946,7 +941,7 @@
                         <TextBlock
                             FontSize="12"
                             FontWeight="SemiBold"
-                            Foreground="#9CA3AF"
+                            Foreground="#94a3b8"
                             Text="DUE DATE" />
                         <TextBlock
                             FontSize="14"
@@ -959,7 +954,7 @@
                         <TextBlock
                             FontSize="12"
                             FontWeight="SemiBold"
-                            Foreground="#9CA3AF"
+                            Foreground="#94a3b8"
                             Text="CREATED" />
                         <TextBlock
                             FontSize="14"

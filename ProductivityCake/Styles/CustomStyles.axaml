@@ -7,11 +7,38 @@
         </Border>
     </Design.PreviewWith>
 
-    <!--  Add Styles Here  -->
+    <!--  ========== NEUMORPHISM DESIGN SYSTEM v2 ========== -->
+    <!--  Modern Dark Slate with Teal/Cyan accent - Trending 2026  -->
+    
+    <Styles.Resources>
+        <!-- Neumorphism Color Palette - Modern Slate/Teal -->
+        <Color x:Key="NeuroBackground">#1e1e2e</Color>
+        <Color x:Key="NeuroBackgroundLight">#2a2a3e</Color>
+        <Color x:Key="NeuroBackgroundDark">#16161f</Color>
+        <Color x:Key="NeuroLightShadow">#2a2a3e</Color>
+        <Color x:Key="NeuroDarkShadow">#121218</Color>
+        <Color x:Key="NeuroAccent">#22d3ee</Color>
+        <Color x:Key="NeuroAccentDark">#0891b2</Color>
+        <Color x:Key="NeuroAccentGlow">#67e8f9</Color>
+        <Color x:Key="NeuroSecondary">#a78bfa</Color>
+        <Color x:Key="NeuroSuccess">#4ade80</Color>
+        <Color x:Key="NeuroTextPrimary">#f1f5f9</Color>
+        <Color x:Key="NeuroTextSecondary">#94a3b8</Color>
+        <Color x:Key="NeuroTextMuted">#64748b</Color>
+        <Color x:Key="NeuroDanger">#f87171</Color>
+        <Color x:Key="NeuroDangerDark">#dc2626</Color>
+        
+        <!-- Solid Brushes -->
+        <SolidColorBrush x:Key="NeuroBackgroundBrush" Color="{StaticResource NeuroBackground}" />
+        <SolidColorBrush x:Key="NeuroLightShadowBrush" Color="{StaticResource NeuroLightShadow}" />
+        <SolidColorBrush x:Key="NeuroDarkShadowBrush" Color="{StaticResource NeuroDarkShadow}" />
+        <SolidColorBrush x:Key="NeuroAccentBrush" Color="{StaticResource NeuroAccent}" />
+    </Styles.Resources>
     
     <!-- Global Font Family -->
     <Style Selector="Window">
         <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundBrush}" />
     </Style>
     
     <Style Selector="UserControl">
@@ -34,176 +61,326 @@
         <Setter Property="FontFamily" Value="{StaticResource DefaultFont}" />
     </Style>
     
-    <!--  Button Hover Effects  -->
-    <Style Selector="Button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#4f772d" />
-    </Style>
-    <!--    -->
-    <!-- <Style Selector="Button:pressed /template/ ContentPresenter#PART_ContentPresenter"> -->
-    <!--     <Setter Property="Background" Value="#6D28D9" /> -->
-    <!-- </Style> -->
-
-    <!--  Specific Button Styles  -->
+    <!--  ========== NEUMORPHIC BUTTON STYLES ========== -->
 
     <!--  Primary Action Buttons (Add, Save, etc.)  -->
     <Style Selector="Button.primary">
-        <Setter Property="Background" Value="#4f772d" />
+        <Setter Property="Background" Value="{StaticResource NeuroAccentDark}" />
         <Setter Property="Foreground" Value="White" />
-        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccent}" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Button.primary /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource NeuroAccentDark}" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccent}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.15" />
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.15" />
+            </Transitions>
+        </Setter>
     </Style>
 
     <Style Selector="Button.primary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#90a955" />
+        <Setter Property="Background" Value="{StaticResource NeuroAccent}" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccentGlow}" />
+    </Style>
+    
+    <Style Selector="Button.primary:pointerover">
+        <Setter Property="RenderTransform" Value="scale(1.02)" />
     </Style>
 
     <Style Selector="Button.primary:pressed /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#31572c" />
+        <Setter Property="Background" Value="#0e7490" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccentDark}" />
+    </Style>
+    
+    <Style Selector="Button.primary:pressed">
+        <Setter Property="RenderTransform" Value="scale(0.98)" />
     </Style>
 
-    <!--  Secondary Buttons (Cancel, etc.)  -->
+    <!--  Secondary Buttons  -->
     <Style Selector="Button.secondary">
-        <Setter Property="Background" Value="#90a955" />
-        <Setter Property="Foreground" Value="White" />
-        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundLight}" />
+        <Setter Property="Foreground" Value="{StaticResource NeuroTextSecondary}" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="#3f3f5a" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Foreground" Duration="0:0:0.15" />
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Button.secondary /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundLight}" />
+        <Setter Property="BorderBrush" Value="#3f3f5a" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.15" />
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.15" />
+            </Transitions>
+        </Setter>
     </Style>
 
     <Style Selector="Button.secondary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#ecf39e" />
+        <Setter Property="Background" Value="#3a3a52" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccent}" />
+    </Style>
+    
+    <Style Selector="Button.secondary:pointerover">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="RenderTransform" Value="scale(1.02)" />
     </Style>
 
     <Style Selector="Button.secondary:pressed /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#4f772d" />
+        <Setter Property="Background" Value="#252538" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccentDark}" />
+    </Style>
+    
+    <Style Selector="Button.secondary:pressed">
+        <Setter Property="RenderTransform" Value="scale(0.98)" />
     </Style>
 
     <!--  Danger Buttons (Delete)  -->
     <Style Selector="Button.danger">
-        <Setter Property="Background" Value="#EF4444" />
-        <Setter Property="Foreground" Value="White" />
-        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundLight}" />
+        <Setter Property="Foreground" Value="{StaticResource NeuroDanger}" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="#5a3a3a" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Button.danger /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundLight}" />
+        <Setter Property="BorderBrush" Value="#5a3a3a" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.15" />
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.15" />
+            </Transitions>
+        </Setter>
     </Style>
 
     <Style Selector="Button.danger:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#F87171" />
+        <Setter Property="Background" Value="#3a2a2a" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroDanger}" />
+    </Style>
+    
+    <Style Selector="Button.danger:pointerover">
+        <Setter Property="RenderTransform" Value="scale(1.02)" />
     </Style>
 
     <Style Selector="Button.danger:pressed /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#DC2626" />
+        <Setter Property="Background" Value="{StaticResource NeuroDangerDark}" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroDangerDark}" />
+    </Style>
+    
+    <Style Selector="Button.danger:pressed">
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="RenderTransform" Value="scale(0.98)" />
     </Style>
 
     <!--  Transparent Buttons  -->
     <Style Selector="Button.transparent">
         <Setter Property="Background" Value="Transparent" />
-    </Style>
-
-    <Style Selector="Button.transparent:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#4f772d20" />
-    </Style>
-
-    <Style Selector="Button.transparent:pressed /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#4f772d10" />
-    </Style>
-
-    <!--  Floating Action Button  -->
-    <Style Selector="Button.fab">
-        <Setter Property="Background">
-            <Setter.Value>
-                <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
-                    <GradientStop Color="#4f772d" Offset="0" />
-                    <GradientStop Color="#31572c" Offset="1" />
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Foreground" Value="White" />
-        <Setter Property="CornerRadius" Value="30" />
-        <Setter Property="Width" Value="64" />
-        <Setter Property="Height" Value="64" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Transitions">
             <Transitions>
-                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
             </Transitions>
         </Setter>
     </Style>
 
-    <Style Selector="Button.fab:pointerover">
-        <Setter Property="RenderTransform" Value="scale(1.1) rotate(90deg)" />
+    <Style Selector="Button.transparent:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#20FFFFFF" />
+    </Style>
+    
+    <Style Selector="Button.transparent:pointerover">
+        <Setter Property="RenderTransform" Value="scale(1.05)" />
+    </Style>
+    
+    <Style Selector="Button.transparent:pressed">
+        <Setter Property="RenderTransform" Value="scale(0.95)" />
     </Style>
 
+    <!--  Floating Action Button (Neumorphic)  -->
+    <Style Selector="Button.fab">
+        <Setter Property="Background" Value="{StaticResource NeuroAccentDark}" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="CornerRadius" Value="32" />
+        <Setter Property="Width" Value="64" />
+        <Setter Property="Height" Value="64" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccent}" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.15" />
+            </Transitions>
+        </Setter>
+    </Style>
+
+    <Style Selector="Button.fab:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource NeuroAccent}" />
+    </Style>
+    
+    <Style Selector="Button.fab:pointerover">
+        <Setter Property="RenderTransform" Value="scale(1.1) rotate(90deg)" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccentGlow}" />
+    </Style>
+
+    <Style Selector="Button.fab:pressed /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#0e7490" />
+    </Style>
+    
     <Style Selector="Button.fab:pressed">
         <Setter Property="RenderTransform" Value="scale(1.0) rotate(90deg)" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccentDark}" />
     </Style>
 
     <!--  Task Card Buttons  -->
     <Style Selector="Button.task-card">
-        <Setter Property="Background" Value="#132a13" />
-        <Setter Property="BorderBrush" Value="#4f772d40" />
-        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundLight}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="#3f3f5a" />
         <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.15" />
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.15" />
+            </Transitions>
+        </Setter>
     </Style>
 
     <Style Selector="Button.task-card:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#1a3a1a" />
-        <Setter Property="BorderBrush" Value="#4f772d" />
+        <Setter Property="Background" Value="#323248" />
+    </Style>
+    
+    <Style Selector="Button.task-card:pointerover">
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccent}" />
+        <Setter Property="RenderTransform" Value="translateY(-2px)" />
     </Style>
 
     <Style Selector="Button.task-card:pressed /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#132a13" />
+        <Setter Property="Background" Value="#1a1a28" />
+    </Style>
+    
+    <Style Selector="Button.task-card:pressed">
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccentDark}" />
+        <Setter Property="RenderTransform" Value="translateY(0px)" />
     </Style>
 
-    <!--  CheckBox Styling  -->
+    <!--  CheckBox Styling (Neumorphic)  -->
+    <Style Selector="CheckBox /template/ Border#NormalRectangle">
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundDark}" />
+        <Setter Property="BorderBrush" Value="#3f3f5a" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    
     <Style Selector="CheckBox:pointerover /template/ Border#NormalRectangle">
-        <Setter Property="BorderBrush" Value="#4f772d" />
-        <Setter Property="Background" Value="#4f772d20" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccent}" />
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundLight}" />
     </Style>
 
-    <Style Selector="CheckBox:pressed /template/ Border#NormalRectangle">
-        <Setter Property="BorderBrush" Value="#31572c" />
-        <Setter Property="Background" Value="#4f772d30" />
+    <Style Selector="CheckBox:checked /template/ Border#NormalRectangle">
+        <Setter Property="Background" Value="{StaticResource NeuroAccentDark}" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccent}" />
     </Style>
 
     <!--  ComboBox Styling  -->
+    <Style Selector="ComboBox /template/ Border#Background">
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundDark}" />
+        <Setter Property="BorderBrush" Value="#3f3f5a" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    
     <Style Selector="ComboBox:pointerover /template/ Border#Background">
-        <Setter Property="BorderBrush" Value="#4f772d" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccent}" />
     </Style>
 
     <Style Selector="ComboBox:focus /template/ Border#Background">
-        <Setter Property="BorderBrush" Value="#90a955" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccentGlow}" />
     </Style>
 
-    <!--  TextBox Styling  -->
+    <!--  TextBox Styling (Neumorphic Inset)  -->
     <Style Selector="TextBox">
         <Setter Property="Transitions">
             <Transitions>
-                <BrushTransition Property="BorderBrush" Duration="0:0:0.2" />
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.15" />
             </Transitions>
         </Setter>
     </Style>
     
+    <Style Selector="TextBox /template/ Border#PART_BorderElement">
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundDark}" />
+        <Setter Property="BorderBrush" Value="#2a2a3e" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="BorderThickness" Value="1" />
+    </Style>
+    
     <Style Selector="TextBox:pointerover /template/ Border#PART_BorderElement">
-        <Setter Property="BorderBrush" Value="#4f772d" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccent}" />
     </Style>
 
     <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
-        <Setter Property="BorderBrush" Value="#90a955" />
-        <Setter Property="BoxShadow" Value="0 0 0 3 #4f772d20" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccentGlow}" />
+        <Setter Property="Background" Value="#1a1a28" />
     </Style>
     
-    <Style Selector="TextBox.glass-combo:focus /template/ Border#PART_BorderElement">
-        <Setter Property="BorderBrush" Value="#50FFFFFF" />
-        <Setter Property="Background" Value="#25FFFFFF" />
-        <Setter Property="BoxShadow" Value="0 0 0 3 #15FFFFFF" />
+    <Style Selector="TextBox.neuro-input /template/ Border#PART_BorderElement">
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundDark}" />
+        <Setter Property="BorderBrush" Value="#2a2a3e" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="BorderThickness" Value="1" />
     </Style>
 
-    <!--  Border Hover Effects (Self-rendering)  -->
+    <!--  Border Hover Effects  -->
+    <Style Selector="Border.hoverable">
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.15" />
+            </Transitions>
+        </Setter>
+    </Style>
+    
     <Style Selector="Border.hoverable:pointerover">
-        <Setter Property="Background" Value="#1a3a1a" />
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundLight}" />
     </Style>
 
     <Style Selector="Border.task-card:pointerover">
-        <Setter Property="BorderBrush" Value="#4f772d" />
-        <Setter Property="Background" Value="#1a3a1a" />
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundLight}" />
     </Style>
 
-    <!--  Navigation Button Styling  -->
+    <!--  Navigation Button Styling (Neumorphic)  -->
     <Style Selector="Button.nav-button">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
@@ -211,547 +388,465 @@
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Transitions">
             <Transitions>
-                <BrushTransition Property="Background" Duration="0:0:0.3" />
-                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
+                <BrushTransition Property="Background" Duration="0:0:0.2" />
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.15" />
             </Transitions>
         </Setter>
     </Style>
 
     <Style Selector="Button.nav-button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background">
-            <Setter.Value>
-                <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
-                    <GradientStop Color="#25FFFFFF" Offset="0" />
-                    <GradientStop Color="#15FFFFFF" Offset="1" />
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Background" Value="#2a2a3e" />
     </Style>
     
     <Style Selector="Button.nav-button:pointerover">
-        <Setter Property="RenderTransform" Value="scale(1.05)" />
+        <Setter Property="RenderTransform" Value="scale(1.03)" />
     </Style>
     
     <Style Selector="Button.nav-button:pointerover PathIcon">
-        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Foreground" Value="{StaticResource NeuroAccent}" />
     </Style>
     
     <Style Selector="Button.nav-button:pointerover TextBlock">
-        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Foreground" Value="{StaticResource NeuroAccent}" />
     </Style>
     
     <Style Selector="Button.nav-button:pressed /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background">
-            <Setter.Value>
-                <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
-                    <GradientStop Color="#4f772d40" Offset="0" />
-                    <GradientStop Color="#90a95530" Offset="1" />
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Background" Value="#1a1a28" />
     </Style>
     
     <Style Selector="Button.nav-button:pressed">
-        <Setter Property="RenderTransform" Value="scale(0.95)" />
+        <Setter Property="RenderTransform" Value="scale(0.97)" />
     </Style>
     
     <Style Selector="Button.nav-button:pressed PathIcon">
-        <Setter Property="Foreground" Value="#90a955" />
+        <Setter Property="Foreground" Value="{StaticResource NeuroAccentGlow}" />
     </Style>
     
     <Style Selector="Button.nav-button:pressed TextBlock">
-        <Setter Property="Foreground" Value="#90a955" />
+        <Setter Property="Foreground" Value="{StaticResource NeuroAccentGlow}" />
     </Style>
 
-    <!--  Project Card Styles  -->
+    <!--  Project Card Styles (Neumorphic)  -->
     <Style Selector="Button.project-card">
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundLight}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="#3f3f5a" />
+        <Setter Property="CornerRadius" Value="16" />
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Transitions">
             <Transitions>
                 <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.15" />
             </Transitions>
         </Setter>
     </Style>
     
     <Style Selector="Button.project-card:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#30FFFFFF" />
-        <Setter Property="BorderBrush" Value="#4f772d" />
+        <Setter Property="Background" Value="#323248" />
     </Style>
     
     <Style Selector="Button.project-card:pointerover">
-        <Setter Property="RenderTransform" Value="translateY(-2px)" />
+        <Setter Property="RenderTransform" Value="translateY(-3px)" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccent}" />
+    </Style>
+    
+    <Style Selector="Button.project-card:pressed /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#1a1a28" />
     </Style>
     
     <Style Selector="Button.project-card:pressed">
         <Setter Property="RenderTransform" Value="translateY(0px)" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccentDark}" />
     </Style>
 
     <!--  Title Bar Button Styles  -->
     <Style Selector="Button#MinimizeButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#1a3a1a" />
+        <Setter Property="Background" Value="#2a2a3e" />
     </Style>
     
     <Style Selector="Button#CloseButton:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#EF444420" />
+        <Setter Property="Background" Value="#3a2a2a" />
     </Style>
     
     <Style Selector="Button#CloseButton:pressed /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#EF4444" />
+        <Setter Property="Background" Value="{StaticResource NeuroDangerDark}" />
     </Style>
 
-    <!-- ========== GLASSMORPHISM STYLES ========== -->
+    <!--  ========== NEUMORPHIC CARD STYLES ========== -->
     
-    <!-- Mode Selection Button Style -->
+    <!--  Mode Selection Button Style  -->
     <Style Selector="Button.mode-button">
-        <Setter Property="Background" Value="#15FFFFFF" />
-        <Setter Property="BorderBrush" Value="#30FFFFFF" />
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundLight}" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Foreground" Value="#B0FFFFFF" />
+        <Setter Property="BorderBrush" Value="#3f3f5a" />
+        <Setter Property="Foreground" Value="{StaticResource NeuroTextSecondary}" />
         <Setter Property="CornerRadius" Value="12" />
         <Setter Property="FontSize" Value="13" />
         <Setter Property="FontWeight" Value="Medium" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Transitions">
             <Transitions>
-                <BrushTransition Property="Background" Duration="0:0:0.2" />
-                <BrushTransition Property="Foreground" Duration="0:0:0.2" />
-                <BrushTransition Property="BorderBrush" Duration="0:0:0.2" />
+                <BrushTransition Property="Background" Duration="0:0:0.15" />
+                <BrushTransition Property="Foreground" Duration="0:0:0.15" />
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.15" />
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
             </Transitions>
         </Setter>
     </Style>
     
     <Style Selector="Button.mode-button:pointerover /template/ ContentPresenter">
-        <Setter Property="Background" Value="#25FFFFFF" />
+        <Setter Property="Background" Value="#323248" />
         <Setter Property="Foreground" Value="White" />
-        <Setter Property="BorderBrush" Value="#50FFFFFF" />
+    </Style>
+    
+    <Style Selector="Button.mode-button:pointerover">
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccent}" />
+        <Setter Property="RenderTransform" Value="scale(1.02)" />
     </Style>
     
     <Style Selector="Button.mode-button:pressed /template/ ContentPresenter">
-        <Setter Property="Background" Value="#35FFFFFF" />
+        <Setter Property="Background" Value="#1a1a28" />
     </Style>
     
-    <!-- Glass Card Style -->
-    <Style Selector="Border.glass-card">
-        <Setter Property="Background" Value="#15FFFFFF" />
-        <Setter Property="BorderBrush" Value="#30FFFFFF" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="CornerRadius" Value="20" />
-        <Setter Property="BoxShadow" Value="0 8 32 0 #20000000" />
-    </Style>
-    
-    <!-- Glass Button Style -->
-    <Style Selector="Button.glass-button">
-        <Setter Property="Background" Value="#15FFFFFF" />
-        <Setter Property="BorderBrush" Value="#30FFFFFF" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Foreground" Value="White" />
-        <Setter Property="CornerRadius" Value="50" />
-        <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Transitions">
-            <Transitions>
-                <BrushTransition Property="Background" Duration="0:0:0.2" />
-                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
-            </Transitions>
-        </Setter>
-    </Style>
-    
-    <Style Selector="Button.glass-button:pointerover /template/ ContentPresenter">
-        <Setter Property="Background" Value="#25FFFFFF" />
-    </Style>
-    
-    <Style Selector="Button.glass-button:pressed /template/ ContentPresenter">
-        <Setter Property="Background" Value="#35FFFFFF" />
-        <Setter Property="RenderTransform" Value="scale(0.95)" />
-    </Style>
-    
-    <!-- Primary Glass Button (Play/Pause) -->
-    <Style Selector="Button.glass-button-primary">
-        <Setter Property="Background">
-            <Setter.Value>
-                <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
-                    <GradientStop Color="#4f772d" Offset="0" />
-                    <GradientStop Color="#31572c" Offset="1" />
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="BorderBrush">
-            <Setter.Value>
-                <SolidColorBrush Color="#50FFFFFF" />
-            </Setter.Value>
-        </Setter>
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Foreground" Value="White" />
-        <Setter Property="CornerRadius" Value="50" />
-        <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Transitions">
-            <Transitions>
-                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
-            </Transitions>
-        </Setter>
-    </Style>
-    
-    <Style Selector="Button.glass-button-primary:pointerover">
-        <Setter Property="RenderTransform" Value="scale(1.05)" />
-    </Style>
-    
-    <Style Selector="Button.glass-button-primary:pressed">
+    <Style Selector="Button.mode-button:pressed">
         <Setter Property="RenderTransform" Value="scale(0.98)" />
     </Style>
     
-    <!-- Glass Tab Style -->
-    <Style Selector="TabItem.glass-tab">
-        <Setter Property="FontSize" Value="14" />
-        <Setter Property="FontWeight" Value="Medium" />
-        <Setter Property="Padding" Value="24,10" />
-        <Setter Property="Foreground" Value="#B0FFFFFF" />
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="CornerRadius" Value="12,12,0,0" />
+    <!--  Neumorphic Card Style (replacing glass-card)  -->
+    <Style Selector="Border.glass-card">
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundLight}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="#3f3f5a" />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="BoxShadow" Value="6 6 20 0 #0a0a10, -3 -3 12 0 #2a2a3e" />
+    </Style>
+    
+    <!--  Neumorphic Button Style (replacing glass-button)  -->
+    <Style Selector="Button.glass-button">
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundLight}" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="#3f3f5a" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="CornerRadius" Value="50" />
+        <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Transitions">
             <Transitions>
-                <BrushTransition Property="Background" Duration="0:0:0.3" />
-                <BrushTransition Property="Foreground" Duration="0:0:0.3" />
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.15" />
             </Transitions>
         </Setter>
     </Style>
     
-    <Style Selector="TabItem.glass-tab:selected">
+    <Style Selector="Button.glass-button /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundLight}" />
+        <Setter Property="BorderBrush" Value="#3f3f5a" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="50" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.15" />
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.15" />
+            </Transitions>
+        </Setter>
+    </Style>
+    
+    <Style Selector="Button.glass-button:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#323248" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccent}" />
+    </Style>
+    
+    <Style Selector="Button.glass-button:pointerover">
+        <Setter Property="RenderTransform" Value="scale(1.05)" />
+    </Style>
+    
+    <Style Selector="Button.glass-button:pressed /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#1a1a28" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccentDark}" />
+    </Style>
+    
+    <Style Selector="Button.glass-button:pressed">
+        <Setter Property="RenderTransform" Value="scale(0.95)" />
+    </Style>
+    
+    <!--  Primary Neumorphic Button (Play/Pause)  -->
+    <Style Selector="Button.glass-button-primary">
+        <Setter Property="Background" Value="{StaticResource NeuroAccentDark}" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccent}" />
         <Setter Property="Foreground" Value="White" />
-        <Setter Property="Background" Value="#15FFFFFF" />
+        <Setter Property="CornerRadius" Value="50" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.15" />
+            </Transitions>
+        </Setter>
     </Style>
     
-    <Style Selector="TabItem.glass-tab:pointerover">
-        <Setter Property="Foreground" Value="#E0FFFFFF" />
-        <Setter Property="Background" Value="#10FFFFFF" />
+    <Style Selector="Button.glass-button-primary /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource NeuroAccentDark}" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccent}" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="CornerRadius" Value="50" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Background" Duration="0:0:0.15" />
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.15" />
+            </Transitions>
+        </Setter>
     </Style>
     
-    <!-- Glass Slider Style -->
+    <Style Selector="Button.glass-button-primary:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="{StaticResource NeuroAccent}" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccentGlow}" />
+    </Style>
+    
+    <Style Selector="Button.glass-button-primary:pointerover">
+        <Setter Property="RenderTransform" Value="scale(1.08)" />
+    </Style>
+    
+    <Style Selector="Button.glass-button-primary:pressed /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#0e7490" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccentDark}" />
+    </Style>
+    
+    <Style Selector="Button.glass-button-primary:pressed">
+        <Setter Property="RenderTransform" Value="scale(0.95)" />
+    </Style>
+    
+    
+    <!--  Neumorphic Slider Style  -->
     <Style Selector="Slider.glass-slider">
-        <Setter Property="Foreground" Value="#4f772d" />
+        <Setter Property="Foreground" Value="{StaticResource NeuroAccent}" />
     </Style>
     
     <Style Selector="Slider.glass-slider /template/ RepeatButton#PART_DecreaseButton">
-        <Setter Property="Background">
-            <Setter.Value>
-                <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
-                    <GradientStop Color="#4f772d" Offset="0" />
-                    <GradientStop Color="#90a955" Offset="1" />
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Background" Value="{StaticResource NeuroAccentDark}" />
+        <Setter Property="CornerRadius" Value="4" />
         <Setter Property="Transitions">
             <Transitions>
-                <BrushTransition Property="Background" Duration="0:0:0.2" />
+                <BrushTransition Property="Background" Duration="0:0:0.15" />
             </Transitions>
         </Setter>
     </Style>
     
     <Style Selector="Slider.glass-slider /template/ RepeatButton#PART_IncreaseButton">
-        <Setter Property="Background">
-            <Setter.Value>
-                <SolidColorBrush Color="#20FFFFFF" />
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundDark}" />
+        <Setter Property="CornerRadius" Value="4" />
         <Setter Property="Transitions">
             <Transitions>
-                <BrushTransition Property="Background" Duration="0:0:0.2" />
+                <BrushTransition Property="Background" Duration="0:0:0.15" />
             </Transitions>
         </Setter>
     </Style>
     
     <Style Selector="Slider.glass-slider /template/ Thumb">
         <Setter Property="Background" Value="White" />
-        <Setter Property="BorderBrush" Value="#4f772d" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccent}" />
         <Setter Property="BorderThickness" Value="3" />
         <Setter Property="Width" Value="22" />
         <Setter Property="Height" Value="22" />
         <Setter Property="CornerRadius" Value="11" />
         <Setter Property="Transitions">
             <Transitions>
-                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
-                <BrushTransition Property="Background" Duration="0:0:0.2" />
-                <BrushTransition Property="BorderBrush" Duration="0:0:0.2" />
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.15" />
+                <BrushTransition Property="Background" Duration="0:0:0.15" />
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.15" />
             </Transitions>
         </Setter>
     </Style>
     
-    <!-- Slider Hover Effects -->
+    <!--  Slider Hover Effects  -->
     <Style Selector="Slider.glass-slider:pointerover /template/ Thumb">
-        <Setter Property="RenderTransform" Value="scale(1.15)" />
-        <Setter Property="Background" Value="#4f772d" />
+        <Setter Property="RenderTransform" Value="scale(1.2)" />
+        <Setter Property="Background" Value="{StaticResource NeuroAccent}" />
         <Setter Property="BorderBrush" Value="White" />
     </Style>
     
     <Style Selector="Slider.glass-slider:pointerover /template/ RepeatButton#PART_DecreaseButton">
-        <Setter Property="Background">
-            <Setter.Value>
-                <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
-                    <GradientStop Color="#90a955" Offset="0" />
-                    <GradientStop Color="#ecf39e" Offset="1" />
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Background" Value="{StaticResource NeuroAccent}" />
     </Style>
     
     <Style Selector="Slider.glass-slider:pointerover /template/ RepeatButton#PART_IncreaseButton">
-        <Setter Property="Background" Value="#30FFFFFF" />
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundLight}" />
     </Style>
     
-    <!-- Slider Pressed Effects -->
+    <!--  Slider Pressed Effects  -->
     <Style Selector="Slider.glass-slider:pressed /template/ Thumb">
-        <Setter Property="RenderTransform" Value="scale(1.05)" />
-        <Setter Property="Background" Value="#31572c" />
+        <Setter Property="RenderTransform" Value="scale(1.1)" />
+        <Setter Property="Background" Value="{StaticResource NeuroAccentDark}" />
     </Style>
     
-    <!-- Blue Slider Variant (now Palm Leaf green) -->
+    <!--  Blue Slider Variant  -->
     <Style Selector="Slider.glass-slider-blue /template/ RepeatButton#PART_DecreaseButton">
-        <Setter Property="Background">
-            <Setter.Value>
-                <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
-                    <GradientStop Color="#90a955" Offset="0" />
-                    <GradientStop Color="#ecf39e" Offset="1" />
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Background" Value="{StaticResource NeuroSecondary}" />
     </Style>
     
     <Style Selector="Slider.glass-slider-blue /template/ Thumb">
-        <Setter Property="BorderBrush" Value="#90a955" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroSecondary}" />
     </Style>
     
     <Style Selector="Slider.glass-slider-blue:pointerover /template/ Thumb">
-        <Setter Property="RenderTransform" Value="scale(1.15)" />
-        <Setter Property="Background" Value="#90a955" />
+        <Setter Property="RenderTransform" Value="scale(1.2)" />
+        <Setter Property="Background" Value="{StaticResource NeuroSecondary}" />
         <Setter Property="BorderBrush" Value="White" />
     </Style>
     
     <Style Selector="Slider.glass-slider-blue:pointerover /template/ RepeatButton#PART_DecreaseButton">
-        <Setter Property="Background">
-            <Setter.Value>
-                <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
-                    <GradientStop Color="#ecf39e" Offset="0" />
-                    <GradientStop Color="#ecf39e" Offset="1" />
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Background" Value="#c4b5fd" />
     </Style>
     
     <Style Selector="Slider.glass-slider-blue:pressed /template/ Thumb">
-        <Setter Property="RenderTransform" Value="scale(1.05)" />
-        <Setter Property="Background" Value="#4f772d" />
+        <Setter Property="RenderTransform" Value="scale(1.1)" />
+        <Setter Property="Background" Value="#7c3aed" />
     </Style>
     
-    <!-- Purple Slider Variant (now Hunter Green) -->
+    <!--  Purple Slider Variant  -->
     <Style Selector="Slider.glass-slider-purple /template/ RepeatButton#PART_DecreaseButton">
-        <Setter Property="Background">
-            <Setter.Value>
-                <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
-                    <GradientStop Color="#31572c" Offset="0" />
-                    <GradientStop Color="#4f772d" Offset="1" />
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Background" Value="{StaticResource NeuroSuccess}" />
     </Style>
     
     <Style Selector="Slider.glass-slider-purple /template/ Thumb">
-        <Setter Property="BorderBrush" Value="#31572c" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroSuccess}" />
     </Style>
     
     <Style Selector="Slider.glass-slider-purple:pointerover /template/ Thumb">
-        <Setter Property="RenderTransform" Value="scale(1.15)" />
-        <Setter Property="Background" Value="#31572c" />
+        <Setter Property="RenderTransform" Value="scale(1.2)" />
+        <Setter Property="Background" Value="{StaticResource NeuroSuccess}" />
         <Setter Property="BorderBrush" Value="White" />
     </Style>
     
     <Style Selector="Slider.glass-slider-purple:pointerover /template/ RepeatButton#PART_DecreaseButton">
-        <Setter Property="Background">
-            <Setter.Value>
-                <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,0%">
-                    <GradientStop Color="#4f772d" Offset="0" />
-                    <GradientStop Color="#90a955" Offset="1" />
-                </LinearGradientBrush>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Background" Value="#86efac" />
     </Style>
     
     <Style Selector="Slider.glass-slider-purple:pressed /template/ Thumb">
-        <Setter Property="RenderTransform" Value="scale(1.05)" />
-        <Setter Property="Background" Value="#132a13" />
+        <Setter Property="RenderTransform" Value="scale(1.1)" />
+        <Setter Property="Background" Value="#22c55e" />
     </Style>
     
-    <!-- Glass ComboBox Style -->
+    <!--  Neumorphic ComboBox Style  -->
     <Style Selector="ComboBox.glass-combo">
-        <Setter Property="Background" Value="#15FFFFFF" />
-        <Setter Property="BorderBrush" Value="#30FFFFFF" />
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundDark}" />
         <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="#3f3f5a" />
         <Setter Property="CornerRadius" Value="12" />
         <Setter Property="Foreground" Value="White" />
         <Setter Property="Padding" Value="16,10" />
     </Style>
     
-    <!-- Glass CheckBox Style -->
+    <!--  Neumorphic CheckBox Style  -->
     <Style Selector="CheckBox.glass-checkbox">
         <Setter Property="Foreground" Value="White" />
     </Style>
     
     <Style Selector="CheckBox.glass-checkbox /template/ Border#NormalRectangle">
-        <Setter Property="Background" Value="#15FFFFFF" />
-        <Setter Property="BorderBrush" Value="#30FFFFFF" />
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundDark}" />
+        <Setter Property="BorderBrush" Value="#3f3f5a" />
         <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="BorderThickness" Value="1" />
     </Style>
     
     <Style Selector="CheckBox.glass-checkbox:checked /template/ Border#NormalRectangle">
-        <Setter Property="Background" Value="#4f772d" />
-        <Setter Property="BorderBrush" Value="#31572c" />
+        <Setter Property="Background" Value="{StaticResource NeuroAccentDark}" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccent}" />
     </Style>
     
-    <!-- Stat Card Style -->
+    <!--  Stat Card Style (Neumorphic)  -->
     <Style Selector="Border.stat-card">
-        <Setter Property="Background" Value="#15FFFFFF" />
-        <Setter Property="BorderBrush" Value="#30FFFFFF" />
+        <Setter Property="Background" Value="{StaticResource NeuroBackgroundLight}" />
         <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="BorderBrush" Value="#3f3f5a" />
         <Setter Property="CornerRadius" Value="16" />
         <Setter Property="Padding" Value="10,16" />
-        <Setter Property="BoxShadow" Value="0 4 16 0 #15000000" />
+        <Setter Property="BoxShadow" Value="4 4 12 0 #0a0a10, -2 -2 8 0 #2a2a3e" />
         <Setter Property="Transitions">
             <Transitions>
                 <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.2" />
                 <BoxShadowsTransition Property="BoxShadow" Duration="0:0:0.2" />
+                <BrushTransition Property="BorderBrush" Duration="0:0:0.15" />
             </Transitions>
         </Setter>
     </Style>
     
     <Style Selector="Border.stat-card:pointerover">
-        <Setter Property="RenderTransform" Value="translateY(-2px)" />
-        <Setter Property="BoxShadow" Value="0 8 24 0 #20000000" />
+        <Setter Property="RenderTransform" Value="translateY(-3px)" />
+        <Setter Property="BoxShadow" Value="6 6 18 0 #0a0a10, -3 -3 12 0 #2a2a3e" />
+        <Setter Property="BorderBrush" Value="{StaticResource NeuroAccent}" />
     </Style>
     
-    <!-- Text Styles -->
+    <!--  Text Styles  -->
     <Style Selector="TextBlock.title">
         <Setter Property="FontSize" Value="20" />
         <Setter Property="FontWeight" Value="SemiBold" />
-        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Foreground" Value="{StaticResource NeuroTextPrimary}" />
     </Style>
     
     <Style Selector="TextBlock.subtitle">
         <Setter Property="FontSize" Value="14" />
-        <Setter Property="Foreground" Value="#B0FFFFFF" />
+        <Setter Property="Foreground" Value="{StaticResource NeuroTextSecondary}" />
     </Style>
     
     <Style Selector="TextBlock.label">
         <Setter Property="FontSize" Value="12" />
-        <Setter Property="Foreground" Value="#80FFFFFF" />
+        <Setter Property="Foreground" Value="{StaticResource NeuroTextMuted}" />
     </Style>
 
-    <!-- TabItem Control Theme -->
+    <!--  TabItem Control Theme - Text highlight only, no background  -->
     <Styles.Resources>
         <ControlTheme x:Key="{x:Type TabItem}" TargetType="TabItem">
-        <Setter Property="FontSize" Value="{DynamicResource TabItemHeaderFontSize}" />
-        <Setter Property="FontWeight" Value="{DynamicResource TabItemHeaderThemeFontWeight}" />
-        <Setter Property="Background" Value="{DynamicResource TabItemHeaderBackgroundUnselected}" />
-        <Setter Property="Foreground" Value="{DynamicResource TabItemHeaderForegroundUnselected}" />
-        <Setter Property="Padding" Value="{DynamicResource TabItemHeaderMargin}" />
-        <Setter Property="Margin" Value="0" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontWeight" Value="Medium" />
+        <Setter Property="Foreground" Value="{StaticResource NeuroTextMuted}" />
+        <Setter Property="Padding" Value="24,12" />
+        <Setter Property="Margin" Value="4,0" />
         <Setter Property="MinHeight" Value="{DynamicResource TabItemMinHeight}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Transitions">
+            <Transitions>
+                <BrushTransition Property="Foreground" Duration="0:0:0.15" />
+            </Transitions>
+        </Setter>
         <Setter Property="Template">
             <ControlTemplate>
                 <Border
                     Name="PART_LayoutRoot"
-                    Background="{TemplateBinding Background}"
+                    Background="Transparent"
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
-                    CornerRadius="{TemplateBinding CornerRadius}"
+                    CornerRadius="12"
                     Padding="{TemplateBinding Padding}">
-                    <Panel>
-                        <ContentPresenter
-                            Name="PART_ContentPresenter"
-                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            Content="{TemplateBinding Header}"
-                            ContentTemplate="{TemplateBinding HeaderTemplate}"
-                            TextElement.Foreground="{TemplateBinding Foreground}" />
-                        <Border Name="PART_SelectedPipe"
-                                Background="{DynamicResource TabItemHeaderSelectedPipeFill}"
-                                CornerRadius="{DynamicResource ControlCornerRadius}"
-                                IsVisible="False"/>
-                    </Panel>
+                    <ContentPresenter
+                        Name="PART_ContentPresenter"
+                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                        Content="{TemplateBinding Header}"
+                        ContentTemplate="{TemplateBinding HeaderTemplate}"
+                        RecognizesAccessKey="True"
+                        TextElement.Foreground="{TemplateBinding Foreground}" />
                 </Border>
             </ControlTemplate>
         </Setter>
 
-        <Style Selector="^ /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="RecognizesAccessKey" Value="True" />
-        </Style>
-
         <!--  Selected state  -->
         <Style Selector="^:selected">
-            <Setter Property="Background" Value="{DynamicResource TabItemHeaderBackgroundSelected}" />
-            <Setter Property="Foreground" Value="{DynamicResource TabItemHeaderForegroundSelected}" />
-        </Style>
-        <Style Selector="^:selected /template/ Border#PART_SelectedPipe">
-            <Setter Property="IsVisible" Value="True" />
+            <Setter Property="Foreground" Value="{StaticResource NeuroAccent}" />
+            <Setter Property="FontWeight" Value="SemiBold" />
         </Style>
 
         <!--  PointerOver state  -->
         <Style Selector="^:pointerover">
-            <Setter Property="Background" Value="{DynamicResource TabItemHeaderBackgroundUnselectedPointerOver}" />
-            <Setter Property="Foreground" Value="{DynamicResource TabItemHeaderForegroundUnselectedPointerOver}" />
+            <Setter Property="Foreground" Value="{StaticResource NeuroTextPrimary}" />
         </Style>
 
         <!--  Selected PointerOver state  -->
         <Style Selector="^:selected:pointerover">
-            <Setter Property="Background" Value="{DynamicResource TabItemHeaderBackgroundSelectedPointerOver}" />
-            <Setter Property="Foreground" Value="{DynamicResource TabItemHeaderForegroundSelectedPointerOver}" />
-        </Style>
-
-        <!--  Pressed state  -->
-        <Style Selector="^:pressed">
-            <Setter Property="Background" Value="{DynamicResource TabItemHeaderBackgroundUnselectedPressed}" />
-            <Setter Property="Foreground" Value="{DynamicResource TabItemHeaderForegroundUnselectedPressed}" />
-        </Style>
-
-        <!--  Selected Pressed state  -->
-        <Style Selector="^:selected:pressed">
-            <Setter Property="Background" Value="{DynamicResource TabItemHeaderBackgroundSelectedPressed}" />
-            <Setter Property="Foreground" Value="{DynamicResource TabItemHeaderForegroundSelectedPressed}" />
+            <Setter Property="Foreground" Value="{StaticResource NeuroAccentGlow}" />
         </Style>
 
         <!--  Disabled state  -->
         <Style Selector="^:disabled">
-            <Setter Property="Background" Value="{DynamicResource TabItemHeaderBackgroundDisabled}" />
-            <Setter Property="Foreground" Value="{DynamicResource TabItemHeaderForegroundDisabled}" />
-        </Style>
-
-        <!--  TabStripPlacement States Group  -->
-        <Style Selector="^[TabStripPlacement=Left] /template/ Border#PART_SelectedPipe">
-            <Setter Property="Width" Value="{DynamicResource TabItemPipeThickness}" />
-            <Setter Property="Height" Value="{DynamicResource TabItemVerticalPipeHeight}" />
-            <Setter Property="Margin" Value="0,0,2,0" />
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-        </Style>
-        <Style Selector="^[TabStripPlacement=Left] /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Margin" Value="8,0,0,0" />
-        </Style>
-
-        <Style Selector="^[TabStripPlacement=Top] /template/ Border#PART_SelectedPipe, ^[TabStripPlacement=Bottom] /template/ Border#PART_SelectedPipe">
-            <Setter Property="Height" Value="{DynamicResource TabItemPipeThickness}" />
-            <Setter Property="Margin" Value="0,0,0,2" />
-            <Setter Property="HorizontalAlignment" Value="Stretch" />
-            <Setter Property="VerticalAlignment" Value="Bottom" />
-        </Style>
-
-        <Style Selector="^[TabStripPlacement=Right] /template/ Border#PART_SelectedPipe">
-            <Setter Property="Width" Value="{DynamicResource TabItemPipeThickness}" />
-            <Setter Property="Height" Value="{DynamicResource TabItemVerticalPipeHeight}" />
-            <Setter Property="Margin" Value="2,0,0,0" />
-            <Setter Property="HorizontalAlignment" Value="Right" />
-            <Setter Property="VerticalAlignment" Value="Center" />
-        </Style>
-        <Style Selector="^[TabStripPlacement=Right] /template/ ContentPresenter#PART_ContentPresenter">
-            <Setter Property="Margin" Value="0,0,8,0" />
-        </Style>
-        <Style Selector="^[TabStripPlacement=Right]">
-            <Setter Property="HorizontalContentAlignment" Value="Right" />
+            <Setter Property="Foreground" Value="#4a4a5a" />
         </Style>
     </ControlTheme>
     </Styles.Resources>

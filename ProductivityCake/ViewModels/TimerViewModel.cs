@@ -1024,14 +1024,14 @@ public partial class TimerViewModel : ViewModelBase, IDisposable
     
     private string GetHeatmapColor(int sessionCount)
     {
-        // Orange/Amber gradient for better visibility against green theme
+        // Cyan/Teal gradient matching the modern neumorphic theme
         return sessionCount switch
         {
             0 => "#2d2d2d",      // No sessions - Dark gray
-            1 => "#7c4a03",      // 1 session - Dark amber
-            2 or 3 => "#b45309", // 2-3 sessions - Amber
-            4 or 5 => "#d97706", // 4-5 sessions - Orange
-            _ => "#f59e0b"       // 6+ sessions - Bright amber/gold
+            1 => "#164e63",      // 1 session - Dark cyan
+            2 or 3 => "#0e7490", // 2-3 sessions - Cyan dark
+            4 or 5 => "#0891b2", // 4-5 sessions - Cyan
+            _ => "#22d3ee"       // 6+ sessions - Bright cyan (NeuroAccent)
         };
     }
     
