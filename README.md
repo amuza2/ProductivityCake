@@ -40,15 +40,12 @@ Modern glassmorphism UI • Native AOT • Cross-platform
 ### ⏱️ Pomodoro Timer
 - Customizable work sessions (1-90 minutes, default 25 min)
 - Smart breaks (5 min short, 15 min long)
-- Auto-advance between work and breaks
 - Visual circular progress bar
-- Flexible controls: start, pause, reset, skip
 
 ### 🔔 Notification System
-- Multiple notification sounds (Alarm, Bird Tweet)
+- Ajust notification sounds (Alarm, Bird Tweet)
 - Adjustable volume control (0-100%)
 - Customizable notification timeout (5-60 seconds)
-- Sound loops until notification is dismissed
 - Desktop notifications with configurable duration
 
 ### 📁 Project & Task Management
@@ -57,21 +54,6 @@ Modern glassmorphism UI • Native AOT • Cross-platform
 - Archive completed projects
 - Task CRUD operations with due dates
 
-### 📊 Statistics & Analytics
-- Daily, weekly, and monthly time tracking
-- GitHub-style activity heatmap (orange/amber gradient)
-- Rolling 52-week view like GitHub contributions
-- Session count tracking
-- Real-time statistics updates
-
-### 🎨 Modern UI
-- Beautiful glassmorphism design with Leafy Green palette
-- Smooth animations and transitions
-- Interactive hover effects
-- Always-on-top mode
-- System tray integration
-
----
 
 ## 📥 Installation
 
