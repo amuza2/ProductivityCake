@@ -72,11 +72,9 @@ jobs:
     
     - name: Copy assets and create archive
       run: |
-        cp install.sh publish/linux-x64/ || true
+        cp install.sh publish/linux-x64/
         cd publish/linux-x64
-        tar -czf ProductivityCake-linux-x64.tar.gz ProductivityCake *.so *.mp3 install.sh 2>/dev/null || \
-        tar -czf ProductivityCake-linux-x64.tar.gz ProductivityCake *.so *.mp3 2>/dev/null || \
-        tar -czf ProductivityCake-linux-x64.tar.gz ProductivityCake *.so
+        tar -czf ProductivityCake-linux-x64.tar.gz ProductivityCake *.so *.mp3 install.sh
     
     - name: Upload Linux Release Asset
       uses: actions/upload-release-asset@v1
