@@ -11,29 +11,22 @@
 [![License](https://img.shields.io/badge/License-GPL--3.0-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/Version-1.2.1-green)](https://github.com/amuza2/ProductivityCake/releases)
 
-Modern glassmorphism UI • Native AOT • Cross-platform
-
 </div>
 
 ---
 
 ## 📸 Screenshots
 
-<img width="30%" height="40%" alt="image" src="https://github.com/user-attachments/assets/1a98105c-f9d9-4a6e-99d9-b227841bb9ef" />
+<img width="30%" height="40%" alt="image" src="https://github.com/user-attachments/assets/618aa6cc-adae-439c-a4fc-a724182ad0c2" />
+<img width="30%" height="40%" alt="image" src="https://github.com/user-attachments/assets/4bd4f033-20f1-40c3-b87a-5e6089ac743d" />
+<img width="30%" height="40%" alt="image" src="https://github.com/user-attachments/assets/16dd7efd-51bd-4832-8dc6-5da75fee36f4" />
+<img width="30%" height="40%" alt="image" src="https://github.com/user-attachments/assets/3e16c534-69ab-466d-a24f-f8eed4e605ac" />
+<img width="30%" height="40%" alt="image" src="https://github.com/user-attachments/assets/1e41aff0-9a28-44e5-afe8-eafa69d519ad" />
+<img width="30%" height="40%" alt="image" src="https://github.com/user-attachments/assets/085b1ab0-8667-4d0c-aaa3-07772d1ec6f3" />
 
-<img width="30%" height="40%" alt="image" src="https://github.com/user-attachments/assets/d32e2b77-556e-49ab-b95f-84daad2e6a51" />
-
-<img width="30%" height="40%" alt="image" src="https://github.com/user-attachments/assets/93cbfef2-3bd8-4752-b27b-cdf6bf3a567f" />
-
-<img width="30%" height="40%" alt="image" src="https://github.com/user-attachments/assets/b3923740-3238-4f60-aeb0-4dace12cc463" />
-
-<img width="30%" height="40%" alt="image" src="https://github.com/user-attachments/assets/a3a067ef-102a-4785-adad-2e4262adcc6b" />
-
-<img width="30%" height="40%" alt="image" src="https://github.com/user-attachments/assets/68085158-4593-4366-8ea8-f3a39886f25a" />
 
 <img width="20%" height="30%" alt="image" src="https://github.com/user-attachments/assets/2297a9b5-8dfb-4fbc-8554-8b746fc194bf" />
 
----
 
 ## ✨ Features
 
